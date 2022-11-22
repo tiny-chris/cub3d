@@ -19,6 +19,8 @@ NAME		:= cub3D
 # LDFLAGS	linker flags
 # LDLIBS	library names
 
+LIBFT		:=	lib/libft/libft.a
+
 SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
@@ -28,43 +30,16 @@ SRCS		:= \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 
-OBJ_DIR		:= objs
+OBJ_DIR		:= obj
 OBJS		:= $(subst .c,.o,$(SRCS))
 OBJS		:= $(subst $(SRC_DIR),$(OBJ_DIR),$(OBJS))
 
-# SRCS	=	so_long \
-			# sl_checks_map1.c \
-			# sl_checks_map2.c \
-			# sl_clean.c \
-			# sl_draw_map.c \
-			# sl_init.c \
-			# sl_player_moves.c \
-			# sl_utils.c \
-
-# SRCDIR	=	srcs
-
-# OBJDIR	=	objs
-
-# SOURCES	:= 	${addprefix ${SRCDIR}/, ${SRCS}}
-# OBJS	:=	${SOURCES:${SRCDIR}/%.c=${OBJDIR}/%.o}
-
-LIBFT		:=	lib/libft/libft.a
-# MLX			:=	lib/mlx/libmlx_Linux.a
-# MLX		=	mlx/libmlx.a
-# LFT		=	libft/libft.a
 
 CC			:=	cc
-CFLAGS		:=	-Wall -Wextra -Werror #-g
-CPPFLAGS	:=	-I lib/libft -I includes
+CFLAGS		:=	-Wall -Wextra -Werror -g
+CPPFLAGS	:=	-I lib/libft -I includes -I lib/mlx
 LDFLAGS		:=	-L lib/libft
-LDLIBS		:=	-lft
-# CPPFLAGS	:=	-I lib/libft -I lib/mlx -I includes
-# LDFLAGS		:=	-L lib/libft -L lib/mlx
-# LDLIBS		:=	-lft -lmlx -lXext -lX11 -lm
-# CC		=	cc
-# CFLAGS	=	-Wall -Wextra -Werror -g
-# INC		=	-I./includes -I./libft -I./mlx
-# LIB		=	-L./libft -lft -L./mlx -lmlx -lXext -lX11 -lm
+LDLIBS		:=	-lft -lXext -lX11 -lm -lz
 
 #------------------------------------------------#
 #   UTENSILS                                     #
@@ -91,66 +66,34 @@ DIR_DUP		= mkdir -p $(@D)
 all:		$(NAME)
 
 $(LIBFT):
-			$(MAKE) -C $(dir $(LIBFT))
-			@echo " [ OK ] | Libft ready!"
-# ${LFT}:
-# 			@echo " [ .. ] | Compiling libft.."
-# 			@make -s -C libft
-# 			@echo " [ OK ] | Libft ready!"
+	$(MAKE) -C $(dir $(LIBFT))
 
-# $(MLX):
-# 			$(MAKE) -C $(dir $(MLX))
-# 			@echo " [ OK ] | Minilibx ready!"
-# ${MLX}:
-# 			@echo " [ .. ] | Compiling minilibx.."
-# 			@make -s -C mlx
-# 			@echo " [ OK ] | Minilibx ready!"
+$(MLX):
+	$(MAKE) -C $(dir $(MLX))
 
-# $(NAME): 	$(OBJS) $(LIBFT) $(MLX)
-$(NAME): 	$(OBJS) $(LIBFT)
-			$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
-			$(info CREATED $(NAME))
-# ${NAME}:	${MLX} ${LFT} ${OBJS}
-# 			@echo "Object files created."
-# 			@${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LIB}
-# 			@echo "So_long ready!"
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+	$(info CREATED $(NAME))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-			$(DIR_DUP)
-			$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-			$(info CREATED $@)
-# ${OBJDIR}/%.o: ${SRCDIR}/%.c
-# 			@[ ! -d ${OBJDIR} ] && mkdir -p ${OBJDIR} || true
-# 			@$(CC) $(CFLAGS) -c ${INC} $< -o $@
+	$(DIR_DUP)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+	$(info CREATED $@)
 
 clean:
-			$(MAKE) -C $(dir $(LIBFT)) clean
-			$(RM) $(OBJ_DIR)
-			@echo "REMOVED object files"
-# clean:
-# 			$(MAKE) $@ -C lib/libft
-# 			@${RM} -r ${OBJ_DIR}
-# 			@echo "Object files removed."			
-# clean:
-# 			@make -s $@ -C libft
-# 			@make clean -s -C mlx
-# 			@${RM} ${OBJS}
-# 			@${RM} ${OBJDIR}
-# 			@make clean -s -C mlx
-# 			@echo "Object files removed."
+	$(MAKE) -C $(dir $(LIBFT)) clean
+	$(MAKE) -C lib/mlx clean
+	$(RM) -r $(OBJ_DIR)
+	@echo "REMOVED object files"
 
-# fclean: 	clean
-# 			$(MAKE) -C $(dir $(LIBFT)) fclean
-# 			$(RM) $(NAME)
-fclean:		clean
-			@${RM} lib/libft/libft.a
-			@${RM} ${NAME}
-			@echo "REMOVED binary files"
+fclean: clean
+	$(MAKE) -C $(dir $(LIBFT)) fclean
+	$(RM) $(NAME)
+	@echo "Cleaning done!"
 
-# re:
-# 			$(MAKE) fclean
-# 			$(MAKE) all
-re:			fclean all
+re:
+	$(MAKE) fclean
+	$(MAKE) all
 
 #------------------------------------------------#
 #   SPEC                                         #
