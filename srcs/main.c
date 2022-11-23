@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/22 11:15:16 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:42:37 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,47 @@
 		- mettre un peu d’espace entre les murs et le joueurs (ex: 5 pixels)
 */
 
+void	ft_init_points(t_point *p1, t_point *p2)
+{
+	p1->x = 400;
+	p1->y = 100;
+	p2->x = 400;
+	p2->y = 500;
+}
+
 int	main(int argc, char **argv)
 {
 	char	**map_content;
+	t_img	img;
+	t_point	p1;
+	t_point	p2;
 
+	(void)argv;
+	(void)argc;
 	map_content = NULL;
-	if (ft_check_argc(argc) != 2)
-		return (EXIT_FAILURE);
-	if (ft_check_file(argv[1]))
-		return (EXIT_FAILURE);
+	// commente pour tester l'ouverture de la fenetre
+	// if (ft_check_argc(argc) != 2)
+	// 	return (EXIT_FAILURE);
+	// if (ft_check_file(argv[1]))
+	// 	return (EXIT_FAILURE);
+
+	// init la map dans une structure data 
 	// map_content = ft_get_map_cub(argv[1]);	
-	//creer la map + init ?
+	// creer la map + init ?
 	// check 3.
-	printf("pour l'instant tout est ok");
+	
+	img.mlx_ptr = mlx_init();
+	img.win_ptr = mlx_new_window(img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
+	img.img = mlx_new_image(img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
+				&img.line_lenght, &img.endian);
+	// ft_draw game qui affiche tout les objets du jeu
+	ft_init_points(&p1, &p2);
+	ft_draw_vertical(&p1, &p2, &img);
+	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
+	mlx_key_hook(img.win_ptr, key_hook, &img);
+	mlx_hook(img.win_ptr, 17, 1L << 17, (void *)ft_quit, &img);
+	mlx_loop(img.mlx_ptr);
+	// printf("pour l'instant tout est ok");
 	return (0);
 }

@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/22 11:13:03 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:04:01 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+**	Fonction qui ne prend q'un seul argument peut etre qu'il faudra que 
+**	la structure envoyee en paramettre pointe vers d'autres structures pour 
+**	tout free avant d'exit ou bien faire un garbage collector aussiiiiii
+*/ 
+
+void	ft_quit(t_img *img)
+{
+	mlx_destroy_image(img->mlx_ptr, img->img);
+	mlx_destroy_window(img->mlx_ptr, img->win_ptr);
+	mlx_loop_end(img->mlx_ptr);
+	mlx_destroy_display(img->mlx_ptr);
+	free(img->mlx_ptr);
+	exit(0);
+}
 
 /*  ***** Cleaning - display the error message *****
 **  *************************
