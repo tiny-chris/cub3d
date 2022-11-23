@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/23 16:55:07 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:33:58 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_img {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
 }			t_img;
 
 // typedef struct s_map
@@ -48,23 +52,25 @@ typedef struct s_img {
 // 	/* data */
 // } t_map;
 
-/*	parse	*/
+/*	Parse	*/
 
-int	ft_check_argc(int argc);
+int		ft_check_argc(int argc);
 
-int	ft_check_file(char *file);
-int	ft_check_filename(char *file, char *ext);
-int	ft_check_isdirectory(char *file);
-int	ft_count_lines_gnl(char *file);
+int		ft_check_file(char *file);
+int		ft_check_filename(char *file, char *ext);
+int		ft_check_isdirectory(char *file);
+int		ft_count_lines_gnl(char *file);
 
-int	ft_open_read(const char *file);
+int		ft_open_read(const char *file);
 
-/*	clean */
+/*	Clean	*/
 
-int	ft_err_msg(int res, char *msg1, char *msg2);
+void	ft_quit(t_img *img);
+int		key_hook(int keycode, t_img *img);
+int		ft_err_msg(int res, char *msg1, char *msg2);
 
-/*	utils */
+/*	Utils 	*/
 
-int	ft_open_read(const char *file);
+int		ft_open_read(const char *file);
 
 #endif
