@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/23 17:34:12 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:42:37 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,20 @@
 		- mettre un peu d’espace entre les murs et le joueurs (ex: 5 pixels)
 */
 
+void	ft_init_points(t_point *p1, t_point *p2)
+{
+	p1->x = 400;
+	p1->y = 100;
+	p2->x = 400;
+	p2->y = 500;
+}
+
 int	main(int argc, char **argv)
 {
 	char	**map_content;
 	t_img	img;
+	t_point	p1;
+	t_point	p2;
 
 	(void)argv;
 	(void)argc;
@@ -61,6 +71,10 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 				&img.line_lenght, &img.endian);
+	// ft_draw game qui affiche tout les objets du jeu
+	ft_init_points(&p1, &p2);
+	ft_draw_vertical(&p1, &p2, &img);
+	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
 	mlx_key_hook(img.win_ptr, key_hook, &img);
 	mlx_hook(img.win_ptr, 17, 1L << 17, (void *)ft_quit, &img);
 	mlx_loop(img.mlx_ptr);

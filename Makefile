@@ -27,6 +27,7 @@ SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
 			clean.c \
+			draw_line.c \
 			parse_1.c \
 			utils.c \
 

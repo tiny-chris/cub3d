@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/23 17:29:10 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:04:01 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ void	ft_quit(t_img *img)
 	mlx_destroy_display(img->mlx_ptr);
 	free(img->mlx_ptr);
 	exit(0);
-}
-
-int	key_hook(int keycode, t_img *img)
-{
-	if (keycode == 65307)
-		ft_quit(img);
-	return (0);
 }
 
 /*  ***** Cleaning - display the error message *****

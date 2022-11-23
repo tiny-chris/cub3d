@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/23 17:33:58 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:41:47 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
+# define COLOR_LOW 0x007733FF
+
 # define ER_NO_AG "missing argument\nUsage: ./cub3D <map_path>.cub"
 # define ER_TOO_AG "too many arguments\nUsage: ./cub3D <map_path>.cub"
 # define ER_MALLOC "memory allocation failed"
@@ -46,6 +48,12 @@ typedef struct s_img {
 	int		line_lenght;
 	int		endian;
 }			t_img;
+
+
+typedef struct s_point {
+	int		x;
+	int		y;
+}			t_point;
 
 // typedef struct s_map
 // {
@@ -66,11 +74,16 @@ int		ft_open_read(const char *file);
 /*	Clean	*/
 
 void	ft_quit(t_img *img);
-int		key_hook(int keycode, t_img *img);
 int		ft_err_msg(int res, char *msg1, char *msg2);
+
+/*	Draw line	*/
+
+void	ft_draw_vertical(t_point *p1, t_point *p2, t_img *img);
 
 /*	Utils 	*/
 
 int		ft_open_read(const char *file);
+void	my_pixel_put(t_img *img, int x, int y, int color);
+int		key_hook(int keycode, t_img *img);
 
 #endif
