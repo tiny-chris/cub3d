@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/22 11:14:31 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:55:07 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define CUB3D_H
 
 # include "libft.h"
-// # include "mlx.h"
+# include "../lib/mlx/mlx.h"
+
 # include <errno.h>//	perror, errno
 # include <fcntl.h>//	open, 
 # include <stdio.h>//	printf, perror
@@ -23,6 +24,10 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <unistd.h>//	close, read, write, exit
+# include <math.h>
+
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
 
 # define ER_NO_AG "missing argument\nUsage: ./cub3D <map_path>.cub"
 # define ER_TOO_AG "too many arguments\nUsage: ./cub3D <map_path>.cub"
@@ -31,7 +36,13 @@
 # define ER_MAP_EXT "incorrect file extension"
 # define ER_MAP_ISDIR ": is a directory"
 
-// 
+
+typedef struct s_img {
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img;
+}			t_img;
+
 // typedef struct s_map
 // {
 // 	/* data */
