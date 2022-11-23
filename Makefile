@@ -21,6 +21,8 @@ NAME		:= cub3D
 
 LIBFT		:=	lib/libft/libft.a
 
+MLX			:= lib/mlx/libmlx.a
+
 SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
@@ -82,7 +84,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	$(MAKE) -C $(dir $(LIBFT)) clean
-	$(MAKE) -C lib/mlx clean
+	$(MAKE) -C $(dir $(MLX)) clean
 	$(RM) -r $(OBJ_DIR)
 	@echo "REMOVED object files"
 
