@@ -27,11 +27,11 @@ SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
 			clean.c \
-			init.c \
 			draw_line.c \
-			parse_1.c \
-			parse_2.c \
 			utils.c \
+			#parse_2.c \
+			parse_1.c \
+			init.c \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 

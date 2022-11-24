@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 12:59:10 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:35:42 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,48 +37,64 @@
 		- mettre un peu d’espace entre les murs et le joueurs (ex: 5 pixels)
 */
 
-void	ft_init_points(t_point *p1, t_point *p2)
+void	ft_init_data(t_data *data)
 {
-	p1->x = 400;
-	p1->y = 100;
-	p2->x = 400;
-	p2->y = 500;
+	data->img.mlx_ptr = mlx_init();
+	data->img.win_ptr = mlx_new_window(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
+	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img.img)
+		return ; // On free ?
+	data->img.addr = mlx_get_data_addr(data->img.img, &(data->img.bits_per_pixel), \
+				&(data->img.line_lenght), &(data->img.endian));
+	if (!data->img.addr)
+		return ; // On free ? 
+	data->p1.x = 10;
+	data->p1.y = 100;
+	data->p2.x = 10;
+	data->p2.y = 500;
+}
+
+int	ft_render_next_frame(t_data *data)
+{
+	// update line
+	t_point p1;
+	t_point p2;
+
+	p1.x = data->p1.x;
+	p1.y = data->p1.y;
+	p2.x = data->p2.x;
+	p2.y = data->p2.y;
+	p1.x += 5;
+	p2.x += 5;	
+	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
+	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img.img)
+		return (0); // On free ?
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel, \
+				&data->img.line_lenght, &data->img.endian);
+	if (!data->img.addr)
+		return (0); // On free ? 
+	// render line
+	ft_draw_vertical(data, p1, p2);
+	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);
+	data->p1.x = p1.x;
+	data->p2.x = p2.x;
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	char	**map_content;
-	t_img	img;
-	t_point	p1;
-	t_point	p2;
+	t_data	data;
 
 	(void)argv;
 	(void)argc;
-	map_content = NULL;
-	// commente pour tester l'ouverture de la fenetre
-	// if (ft_check_argc(argc) != 2)
-	// 	return (EXIT_FAILURE);
-	// if (ft_check_file(argv[1]))
-	// 	return (EXIT_FAILURE);
-
-	// init la map dans une structure data 
-	// map_content = ft_get_map_cub(argv[1]);	
-	// creer la map + init ?
-	// check 3.
-	
-	img.mlx_ptr = mlx_init();
-	img.win_ptr = mlx_new_window(img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
-	img.img = mlx_new_image(img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-				&img.line_lenght, &img.endian);
-	// ft_draw game qui affiche tout les objets du jeu
-	ft_init_points(&p1, &p2);
-	ft_draw_vertical(&p1, &p2, &img);
-	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
-	mlx_key_hook(img.win_ptr, key_hook, &img);
-	mlx_hook(img.win_ptr, 17, 1L << 17, (void *)ft_quit, &img);
-	mlx_loop(img.mlx_ptr);
-	// printf("pour l'instant tout est ok");
+	map_content = NULL;	
+	ft_init_data(&data);
+	mlx_key_hook(data.img.win_ptr, key_hook, &data); 
+	mlx_hook(data.img.win_ptr, 17, 1L << 17, (void *)ft_quit, &data); // clic sur la croix
+	mlx_loop_hook(data.img.mlx_ptr, ft_render_next_frame, &data);
+	mlx_loop(data.img.mlx_ptr);
 	return (0);
 }
 

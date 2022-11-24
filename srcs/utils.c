@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/23 18:03:59 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/24 16:39:35 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ int	ft_open_read(const char *file)
 	return (fd);
 }
 
-int	key_hook(int keycode, t_img *img)
+int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
-		ft_quit(img);
+		ft_quit(data);
 	return (0);
 }
 
-void	my_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
+	dst = data->img.addr + (y * data->img.line_lenght + x * (data->img.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 12:56:13 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:30:00 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ typedef enum s_sizetype
 /*	structure	*/
 
 /*	structure for parsing - TO BE UPDATED*/
-typedef struct s_data
-{
-	char	**file_content;
-	char	**map_base;
-	char	**elem_base;
-}	t_data;
+// typedef struct s_data
+// {
+// 	char	**file_content;
+// 	char	**map_base;
+// 	char	**elem_base;
+// }	t_data;
 
 typedef struct s_img {
 	void	*mlx_ptr;
@@ -76,6 +76,12 @@ typedef struct s_point {
 	int		x;
 	int		y;
 }			t_point;
+
+typedef struct s_data {
+	t_img	img;
+	t_point	p1;
+	t_point	p2;
+}			t_data;
 
 // typedef struct s_map
 // {
@@ -101,21 +107,22 @@ int		ft_check_elem_err(char **elem_base);
 
 void	ft_init_t_data_cub(char *file, t_data *data);
 char	**ft_get_file_content(char	*file);
+void	ft_init_data(t_data *data);
 
 /*	Clean	*/
 
-void	ft_quit(t_img *img);
+void	ft_quit(t_data *data);
 int		ft_err_msg(int res, char *msg1, char *msg2);
 void	*ft_malloc(int type, int size);
 
 /*	Draw line	*/
 
-void	ft_draw_vertical(t_point *p1, t_point *p2, t_img *img);
+void	ft_draw_vertical(t_data *data, t_point p1, t_point p2);
 
 /*	Utils 	*/
 
 int		ft_open_read(const char *file);
-void	my_pixel_put(t_img *img, int x, int y, int color);
-int		key_hook(int keycode, t_img *img);
+void	my_pixel_put(t_data *data, int x, int y, int color);
+int		key_hook(int keycode, t_data *data);
 
 #endif
