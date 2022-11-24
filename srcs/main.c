@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 17:35:42 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:48:20 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,8 @@ void	ft_init_data(t_data *data)
 int	ft_render_next_frame(t_data *data)
 {
 	// update line
-	t_point p1;
-	t_point p2;
-
-	p1.x = data->p1.x;
-	p1.y = data->p1.y;
-	p2.x = data->p2.x;
-	p2.y = data->p2.y;
-	p1.x += 5;
-	p2.x += 5;	
+	data->p1.x += 5;
+	data->p2.x += 5;
 	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img.img)
@@ -75,10 +68,8 @@ int	ft_render_next_frame(t_data *data)
 	if (!data->img.addr)
 		return (0); // On free ? 
 	// render line
-	ft_draw_vertical(data, p1, p2);
+	ft_draw_vertical(data, data->p1, data->p2);
 	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);
-	data->p1.x = p1.x;
-	data->p2.x = p2.x;
 	return (1);
 }
 
