@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/22 10:58:35 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/24 12:52:40 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,10 @@ int	ft_count_lines_gnl(char *file)
 **	<RETURN>	- EXIT_FAILURE if any error
 **				- EXIT_SUCCESS to continue the program
 */
-int	ft_check_file(char *file)
+int	ft_check_arg_err(int argc, char *file)
 {
+	if (ft_check_argc(argc) != 2)
+		return (EXIT_FAILURE);
 	if (!file)
 		return (ft_err_msg(EXIT_FAILURE, file, ER_MAP_EMPTY));
 	if (!ft_check_filename(file, ".cub"))
@@ -124,8 +126,12 @@ int	ft_check_file(char *file)
 		return (ft_err_msg(EXIT_FAILURE, file, ER_MAP_EMPTY));
 	return (EXIT_SUCCESS);
 }
+// int	ft_check_file_err(char *file)
+// {
+// 	return (EXIT_SUCCESS);
+// }
 
-	// {
-	// 	ft_putendl_fd(ER_MAP_EMPTY, 1);
-	// 	return (EXIT_FAILURE);
-	// }
+// 	// {
+// 	// 	ft_putendl_fd(ER_MAP_EMPTY, 1);
+// 	// 	return (EXIT_FAILURE);
+// 	// }

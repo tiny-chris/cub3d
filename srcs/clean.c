@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/23 18:04:01 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/24 12:56:29 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Fonction qui ne prend q'un seul argument peut etre qu'il faudra que 
 **	la structure envoyee en paramettre pointe vers d'autres structures pour 
 **	tout free avant d'exit ou bien faire un garbage collector aussiiiiii
-*/ 
+*/
 
 void	ft_quit(t_img *img)
 {
@@ -30,8 +30,8 @@ void	ft_quit(t_img *img)
 
 /*  ***** Cleaning - display the error message *****
 **  *************************
-**  Prints an error message on stderr (if any) and returns the provided error
-** value
+**  <SUMMARY>	Print an error message on stderr (if any) 
+**				and return the provided error value
 */
 int	ft_err_msg(int res, char *msg1, char *msg2)
 {
@@ -45,4 +45,38 @@ int	ft_err_msg(int res, char *msg1, char *msg2)
 	}
 	ft_putendl_fd(msg2, STDERR_FILENO);
 	return (res);
+}
+
+/* <SUMMARY> Gets the 'sizeof' corresponding to the given type
+*/
+static size_t	ft_get_sizeof(int type)
+{
+	if (type == TAB_INT1)
+		return (sizeof(int));
+	else if (type == TAB_INT2 || type == TAB_INTS)
+		return (sizeof(int *));
+	else if (type == TAB_STR1)
+		return (sizeof(char));
+	else if (type == TAB_STR2 || type == TAB_STRS)
+		return (sizeof(char *));
+	return (0);
+}
+
+/*  ***** Cleaning - protect memory allocation *****
+**  *************************
+**  <SUMMARY>	Allocate uninitialized space 
+**				and return a pointer to the allocated memory
+*/
+void	*ft_malloc(int type, int size)
+{
+	void	*ptr;
+
+	ptr = malloc(ft_get_sizeof(type) * size);
+	if (!ptr)
+	{
+		ft_err_msg(1, NULL, ER_MALLOC);
+		//nettoyer
+		exit(EXIT_FAILURE);//revoir
+	}
+	return (ptr);
 }

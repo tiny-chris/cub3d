@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/23 18:42:37 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/24 12:59:10 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,21 @@ int	main(int argc, char **argv)
 	// printf("pour l'instant tout est ok");
 	return (0);
 }
+
+/*	main pour parsing
+//	**************
+int	main(int argc, char **argv)
+{
+	t_data	data;
+
+	if (ft_check_arg_err(argc, argv[1]))
+		return (EXIT_FAILURE);
+	ft_init_t_data_cub(argv[1], &data);
+	if (ft_check_file_err(&data))
+		return (EXIT_FAILURE);
+	//creer la map + init ?
+	// check 3.
+	printf("pour l'instant tout est ok");
+	return (0);
+}
+*/
