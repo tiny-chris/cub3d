@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 12:56:29 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:01:09 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_err_msg(int res, char *msg1, char *msg2)
 {
 	if (!msg1 && !msg2)
 		return (res);
-	write(2, "Error: ", 7);
+	write(2, "Error\n", 6);
 	if (msg1)
 	{
 		ft_putstr_fd(msg1, STDERR_FILENO);

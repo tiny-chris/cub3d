@@ -6,25 +6,26 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/22 16:26:18 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:08:20 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*  ***** Initialisation - structure data *****
+/*  ***** Initialisation - base structure *****
 **  *************************
 **  <SUMMARY>	Initialise the reference structure that will:
 **				- 
 **				- ...
 **				(run mlx, hold images and contain the structure for the game)
 */
-void	ft_init_t_data_cub(char *file, t_data *data)
+void	ft_init_t_base_cub(char *file, t_base *base)
 {
-	data->file_content = NULL;
-	data->map_base = NULL;
-	data->elem_base = NULL;
-	data->file_content = ft_get_file_content(file);
+	base->file_content = NULL;
+	base->map_base = NULL;
+	base->elem_base = NULL;
+	base->nblines_base = -1;
+	base->file_content = ft_get_file_content(file);
 }
 
 /*  ***** Initialising - get file content *****
@@ -32,6 +33,11 @@ void	ft_init_t_data_cub(char *file, t_data *data)
 **  <SUMMARY>	Get the file content in a char **
 **				and fill it by readingthe file (1 string = 1 line)
 */
+
+
+// AJOUTER LE DECOMPTE DU \n COMME DANS SO_LONG
+
+
 char	**ft_get_file_content(char	*file)
 {
 	char	**file_base;
@@ -56,5 +62,17 @@ char	**ft_get_file_content(char	*file)
 	close (fd);
 	if (!file_base)
 		return (ft_err_msg(EXIT_FAILURE, file, ER_MAP_EMPTY), NULL);
+	/*	
+	**	DEBUT - affichage
+	*/
+	i = 0;
+	while (i < lines)
+	{
+		dprintf(2, "line[%d] = %s", i, file_base[i]);
+		i++;
+	}
+	/*	
+	**	FIN - affichage
+	*/
 	return (file_base);
 }

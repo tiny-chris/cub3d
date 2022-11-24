@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 12:52:40 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:12:47 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,40 @@ int	ft_count_lines_gnl(char *file)
 	if (line)
 		free(line);
 	close(fd);
+	dprintf(2, "val de count = %d\n", count);
 	return (count);
 }
+
+// int	ft_count_lines_gnl(char *file)
+// {
+// 	char	*buffer;
+// 	int		fd;
+// 	int		count;
+// 	int		nbyte;
+
+// 	buffer = ft_malloc(TAB_STR1, 1);
+// 	fd = ft_open_read(file);
+// 	count = 0;
+// 	nbyte = 1;
+// 	while (nbyte > 0)
+// 	{
+// 		ft_bzero(buffer, 2);
+// 		nbyte = read(fd, buffer, 1);
+// 		if (nbyte < 0)
+// 		{
+// 			free (buffer);
+// 			close (fd);
+// 			ft_err_msg(1, "read()", strerror(errno));
+// 			exit(errno);
+// 		}
+// 		if (buffer[0] == '\n')
+// 			count++;
+// 	}
+// 	free(buffer);
+// 	close (fd);
+// 	dprintf(2, "val de count = %d\n", count);
+// 	return (count + 1);
+// }
 
 /*  ***** Parsing - file checking on existence, extension, global content *****
 **  *************************
@@ -126,12 +158,3 @@ int	ft_check_arg_err(int argc, char *file)
 		return (ft_err_msg(EXIT_FAILURE, file, ER_MAP_EMPTY));
 	return (EXIT_SUCCESS);
 }
-// int	ft_check_file_err(char *file)
-// {
-// 	return (EXIT_SUCCESS);
-// }
-
-// 	// {
-// 	// 	ft_putendl_fd(ER_MAP_EMPTY, 1);
-// 	// 	return (EXIT_FAILURE);
-// 	// }

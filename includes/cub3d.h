@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 12:56:13 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:53:56 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@
 # define ER_TOO_AG "too many arguments\nUsage: ./cub3D <map_path>.cub"
 # define ER_MALLOC "memory allocation failed"
 # define ER_MAP_EMPTY "no such file or empty file"
-# define ER_MAP_EXT "incorrect file extension"
-# define ER_MAP_ISDIR ": is a directory"
+# define ER_MAP_EXT "incorrect file extension\nUsage: ./cub3D <map_path>.cub"
+# define ER_MAP_ISDIR "is a directory"
 
 /*	enum	*/
 
-typedef enum s_sizetype
+typedef enum e_sizetype
 {
 	TAB_INT1		= 100,
 	TAB_INT2		= 200,
@@ -52,15 +52,42 @@ typedef enum s_sizetype
 	TAB_STRS		= 600,
 }	t_sizetype;
 
+typedef enum e_line_type
+{
+	L_TEXTURE,
+	L_COLOR,
+	L_EMPTY,
+	L_MAP,
+}	t_line_type;
+
+typedef enum e_texture
+{
+	NO,
+	WE,
+	EA,
+	SO,
+}	t_texture;
+
 /*	structure	*/
 
 /*	structure for parsing - TO BE UPDATED*/
-typedef struct s_data
+typedef struct s_base
 {
 	char	**file_content;
+	char	**file_base;
 	char	**map_base;
 	char	**elem_base;
-}	t_data;
+	int		nblines_base;
+	int		index_start_map;
+}	t_base;
+
+typedef struct s_line
+{
+	int				line_index;
+	char			*line_content;
+	t_line_type		line_ref;
+	struct s_line	*next;
+}	t_line;
 
 typedef struct s_img {
 	void	*mlx_ptr;
@@ -90,16 +117,17 @@ int		ft_check_filename(char *file, char *ext);
 int		ft_check_isdirectory(char *file);
 int		ft_count_lines_gnl(char *file);
 
-int		ft_check_file_err(t_data *data);
-int		ft_check_nb_lines(t_data *data);
-int		ft_check_lines_order(t_data *data);
-void	ft_get_file_content_detailed(t_data *data);
+int		ft_check_file_err(t_base *base);
+int		ft_check_nb_lines(t_base *base);
+int		ft_check_lines_order(t_base *b);
+// int		ft_check_lines_order(t_base *base);
+void	ft_get_file_content_detailed(t_base *base);
 int		ft_check_map_err(char **map_base);
 int		ft_check_elem_err(char **elem_base);
 
 /*	Init */
 
-void	ft_init_t_data_cub(char *file, t_data *data);
+void	ft_init_t_base_cub(char *file, t_base *base);
 char	**ft_get_file_content(char	*file);
 
 /*	Clean	*/
