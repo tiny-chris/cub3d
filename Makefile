@@ -29,7 +29,7 @@ SRCS		:= \
 			clean.c \
 			draw_line.c \
 			utils.c \
-			#parse_2.c \
+			parse_2.c \
 			parse_1.c \
 			init.c \
 

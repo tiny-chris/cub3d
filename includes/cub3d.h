@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 17:30:00 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:56:22 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,6 @@ typedef enum s_sizetype
 /*	structure	*/
 
 /*	structure for parsing - TO BE UPDATED*/
-// typedef struct s_data
-// {
-// 	char	**file_content;
-// 	char	**map_base;
-// 	char	**elem_base;
-// }	t_data;
 
 typedef struct s_img {
 	void	*mlx_ptr;
@@ -77,11 +71,18 @@ typedef struct s_point {
 	int		y;
 }			t_point;
 
-typedef struct s_data {
+typedef struct s_data
+{
+	char	**file_content;
+	char	**map_base;
+	char	**elem_base;
 	t_img	img;
 	t_point	p1;
 	t_point	p2;
 }			t_data;
+// typedef struct s_data {
+	
+// }			t_data;
 
 // typedef struct s_map
 // {
