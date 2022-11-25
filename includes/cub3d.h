@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 17:53:56 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:21:43 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../lib/mlx/mlx.h"
 
 # include <errno.h>//	perror, errno
-# include <fcntl.h>//	open, 
+# include <fcntl.h>//	open,
 # include <stdio.h>//	printf, perror
 # include <stdlib.h>//	malloc, free
 # include <string.h>//	strerror
@@ -42,6 +42,12 @@
 
 /*	enum	*/
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE
+}	t_bool;
+
 typedef enum e_sizetype
 {
 	TAB_INT1		= 100,
@@ -54,10 +60,11 @@ typedef enum e_sizetype
 
 typedef enum e_line_type
 {
-	L_TEXTURE,
-	L_COLOR,
-	L_EMPTY,
-	L_MAP,
+	L_TEXTURE	= 1000,
+	L_COLOR		= 2000,
+	L_MAP		= 3000,
+	L_EMPTY		= 5000,
+	L_UNEXPECT	= -1,
 }	t_line_type;
 
 typedef enum e_texture
@@ -68,26 +75,31 @@ typedef enum e_texture
 	SO,
 }	t_texture;
 
-/*	structure	*/
+/*	structure for parsing	*/
 
-/*	structure for parsing - TO BE UPDATED*/
+typedef struct s_line
+{
+	int				index;
+	char			*content;
+	t_line_type		ref;
+	int				range;
+	t_texture		texture;
+	char			*text_path;
+	char			color;
+	int				*col_tab;
+	struct s_line	*next;
+}	t_line;
+
+/*	structure for initial data - TO BE UPDATED*/
 typedef struct s_base
 {
-	char	**file_content;
 	char	**file_base;
 	char	**map_base;
 	char	**elem_base;
 	int		nblines_base;
+	t_line	*list_base;
 	int		index_start_map;
 }	t_base;
-
-typedef struct s_line
-{
-	int				line_index;
-	char			*line_content;
-	t_line_type		line_ref;
-	struct s_line	*next;
-}	t_line;
 
 typedef struct s_img {
 	void	*mlx_ptr;
@@ -118,17 +130,24 @@ int		ft_check_isdirectory(char *file);
 int		ft_count_lines_gnl(char *file);
 
 int		ft_check_file_err(t_base *base);
-int		ft_check_nb_lines(t_base *base);
-int		ft_check_lines_order(t_base *b);
-// int		ft_check_lines_order(t_base *base);
-void	ft_get_file_content_detailed(t_base *base);
+int		ft_check_lines_order(t_base *base);
+
+void	ft_get_file_base_detailed(t_base *base);
 int		ft_check_map_err(char **map_base);
 int		ft_check_elem_err(char **elem_base);
+
+/*	line_list	*/
+
+t_line	*ft_lstlast_line(t_line *lst);
+void	ft_lstadd_line(t_line **line, int index, char *str, t_line_type ref);
+// delone
+// free
+
 
 /*	Init */
 
 void	ft_init_t_base_cub(char *file, t_base *base);
-char	**ft_get_file_content(char	*file);
+char	**ft_get_file_base(char	*file);
 
 /*	Clean	*/
 
@@ -145,5 +164,6 @@ void	ft_draw_vertical(t_point *p1, t_point *p2, t_img *img);
 int		ft_open_read(const char *file);
 void	my_pixel_put(t_img *img, int x, int y, int color);
 int		key_hook(int keycode, t_img *img);
+int		ft_strlen_spechar(const char *str, char spe_c);
 
 #endif

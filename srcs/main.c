@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 15:44:54 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/25 00:30:09 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 	- creer une structure pour la map
 	- recup la map dans un char **
 	- 0 toujours entoure : pas a cote de vide ou \0
-		- ligne 1 : pas de 0 (car sinon map pas fermee) 
+		- ligne 1 : pas de 0 (car sinon map pas fermee)
 		- colonne 1 : pas de 0
 	- Player: verif pas en dehors de la map (a l'interieur des murs)
 
-	- si le nom de la texture finit par .xpm mais n’est pas un fichier 
+	- si le nom de la texture finit par .xpm mais n’est pas un fichier
 		(plutot un folder… directory, donc erreur)
 		- protéger texture (open O_DIRECTORY et bien close) => comme pour file
 
@@ -61,15 +61,15 @@
 // 	// if (ft_check_file(argv[1]))
 // 	// 	return (EXIT_FAILURE);
 
-// 	// init la map dans une structure data 
-// 	// map_content = ft_get_map_cub(argv[1]);	
+// 	// init la map dans une structure data
+// 	// map_content = ft_get_map_cub(argv[1]);
 // 	// creer la map + init ?
 // 	// check 3.
-	
+
 // 	img.mlx_ptr = mlx_init();
 // 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
 // 	img.img = mlx_new_image(img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
+// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 // 				&img.line_lenght, &img.endian);
 // 	// ft_draw game qui affiche tout les objets du jeu
 // 	ft_init_points(&p1, &p2);
@@ -95,6 +95,6 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	//creer la map + init ?
 	// check 3.
-	printf("pour l'instant tout est ok");
+	printf("pour l'instant tout est ok\n");
 	return (0);
 }
