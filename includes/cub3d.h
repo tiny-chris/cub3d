@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 04:35:11 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:18:01 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,15 @@ typedef enum e_sizetype
 	TAB_STR1		= 400,
 	TAB_STR2		= 500,
 	TAB_STRS		= 600,
+	LST_LIN			= 700,
 }	t_sizetype;
+
+typedef enum s_flag
+{
+	ADD				= 1000,
+	MALLOC			= 2000,
+	DELONE			= 3000,
+}	t_flag;
 
 typedef enum e_line_type
 {
@@ -74,6 +82,14 @@ typedef enum e_texture
 	WE,
 	EA,
 }	t_texture;
+
+typedef struct s_bin
+{
+	void			*ptr;
+	int				type;
+	int				size;
+	struct s_bin	*next;
+}	t_bin;
 
 /*	structure for parsing	*/
 

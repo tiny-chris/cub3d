@@ -24,6 +24,8 @@ LIBFT		:=	lib/libft/libft.a
 SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
+			bin_collect/bin_coll.c \
+			bin_collect/bin_list.c \
 			parser/check_1_arg.c \
 			parser/check_2_file.c \
 			parser/check_colors.c \

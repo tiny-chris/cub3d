@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 23:58:06 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:10:23 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,38 +45,4 @@ int	ft_err_msg(int res, char *msg1, char *msg2)
 	}
 	ft_putendl_fd(msg2, STDERR_FILENO);
 	return (res);
-}
-
-/* <SUMMARY> Gets the 'sizeof' corresponding to the given type
-*/
-static size_t	ft_get_sizeof(int type)
-{
-	if (type == TAB_INT1)
-		return (sizeof(int));
-	else if (type == TAB_INT2 || type == TAB_INTS)
-		return (sizeof(int *));
-	else if (type == TAB_STR1)
-		return (sizeof(char));
-	else if (type == TAB_STR2 || type == TAB_STRS)
-		return (sizeof(char *));
-	return (0);
-}
-
-/*  ***** Cleaning - protect memory allocation *****
-**  *************************
-**  <SUMMARY>	Allocate uninitialized space
-**				and return a pointer to the allocated memory
-*/
-void	*ft_malloc(int type, int size)
-{
-	void	*ptr;
-
-	ptr = malloc(ft_get_sizeof(type) * size);
-	if (!ptr)
-	{
-		ft_err_msg(1, NULL, ER_MALLOC);
-		//nettoyer
-		exit(EXIT_FAILURE);//revoir
-	}
-	return (ptr);
 }
