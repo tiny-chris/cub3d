@@ -24,12 +24,19 @@ LIBFT		:=	lib/libft/libft.a
 SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
+			parser/check_1_arg.c \
+			parser/check_2_file.c \
+			parser/check_colors.c \
+			parser/check_elem.c \
+			parser/check_map.c \
+			parser/check_textures.c \
+			parser/get_cub_base.c \
+			parser/get_map_base.c \
+			parser/init_base.c \
+			parser/line_list.c \
+			parser/utils.c \
 			clean.c \
-			init.c \
 			draw_line.c \
-			line_list.c \
-			parse_1.c \
-			parse_2.c \
 			utils.c \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))

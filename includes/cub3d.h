@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/25 13:21:43 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 04:35:11 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ typedef enum e_line_type
 typedef enum e_texture
 {
 	NO,
+	SO,
 	WE,
 	EA,
-	SO,
 }	t_texture;
 
 /*	structure for parsing	*/
@@ -95,7 +95,8 @@ typedef struct s_base
 {
 	char	**file_base;
 	char	**map_base;
-	char	**elem_base;
+	// char	**elem_base;
+	t_line	*list_elem;
 	int		nblines_base;
 	t_line	*list_base;
 	int		index_start_map;
@@ -133,13 +134,22 @@ int		ft_check_file_err(t_base *base);
 int		ft_check_lines_order(t_base *base);
 
 void	ft_get_file_base_detailed(t_base *base);
+void	ft_get_texture(t_line **list_base);
+void	ft_get_color(t_line **list_base);
+t_line	*ft_get_elem_base(t_line **list_base);
+void	ft_get_map_base(t_line **list_base);
+
+int		ft_check_file_base_detailed(t_base *base);
+int		ft_check_elem_err(t_base *base);
+int		ft_check_texture_err(t_base *base);
 int		ft_check_map_err(char **map_base);
-int		ft_check_elem_err(char **elem_base);
 
 /*	line_list	*/
 
 t_line	*ft_lstlast_line(t_line *lst);
+void	ft_lstadd_back_line(t_line **line, t_line *new);
 void	ft_lstadd_line(t_line **line, int index, char *str, t_line_type ref);
+void	ft_lstadd_elem(t_line **list_elem, t_line *line);
 // delone
 // free
 
@@ -162,8 +172,13 @@ void	ft_draw_vertical(t_point *p1, t_point *p2, t_img *img);
 /*	Utils 	*/
 
 int		ft_open_read(const char *file);
+int		ft_strlen_spechar(const char *str, char spe_c);
+int		ft_len_delspace_str(char *str);
+int		ft_lines_tabstr(char **tab_str);
+int		*ft_intdup(int *tab, int size);
+int		ft_atoi_cub(char *str);
+
 void	my_pixel_put(t_img *img, int x, int y, int color);
 int		key_hook(int keycode, t_img *img);
-int		ft_strlen_spechar(const char *str, char spe_c);
 
 #endif

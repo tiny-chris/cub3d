@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_base.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/25 12:22:23 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 02:44:56 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	ft_init_t_base_cub_0(t_base *base)
 {
 	base->file_base = NULL;
 	base->map_base = NULL;
-	base->elem_base = NULL;
+	// base->elem_base = NULL;
+	base->list_elem = NULL;
 	base->nblines_base = -1;
 	base->list_base = NULL;
 	base->index_start_map = -1;
@@ -71,53 +72,4 @@ void	ft_init_t_base_cub(char *file, t_base *base)
 	base->nblines_base = i;
 	dprintf(2, "nblines_base = %d\n", base->nblines_base);
 	ft_init_list_base(base, L_UNEXPECT);
-}
-
-/*  ***** Initialising - get file content *****
-**  *************************
-**  <SUMMARY>	Get the file content in a char **
-**				and fill it by readingthe file (1 string = 1 line)
-*/
-
-
-// AJOUTER LE DECOMPTE DU \n COMME DANS SO_LONG
-//int	ft_strlen_spechar(const char *str, char spe_c)
-
-char	**ft_get_file_base(char	*file)
-{
-	char	**file_base;
-	int		fd;
-	int		lines;
-	int		i;
-
-	lines = ft_count_lines_gnl(file);
-	fd = open(file, O_RDONLY);
-	if (fd < 0 || lines == 0)
-		return (NULL);//adjust en erreur et on exit
-	i = 0;
-	file_base = ft_malloc(TAB_STR2, (lines + 1));
-	//check si pb malloc
-	file_base[i] = get_next_line(fd);
-	while (file_base[i])
-	{
-		i++;
-		file_base[i] = get_next_line(fd);
-	}
-	file_base[i] = NULL;
-	close (fd);
-	if (!file_base)
-		return (ft_err_msg(EXIT_FAILURE, file, ER_MAP_EMPTY), NULL);
-	/*
-	**	DEBUT - affichage
-	*/
-	i = 0;
-	while (i < lines)
-	{
-		dprintf(2, "line[%d] = %s\n", i, file_base[i]);
-		i++;
-	}
-	/*
-	**	FIN - affichage
-	*/
-	return (file_base);
 }

@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_2.c                                          :+:      :+:    :+:   */
+/*   check_2_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/25 13:26:57 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 05:03:52 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// QUESTION - REVOIR POUR * ou **
 static void	ft_check_lines_order_post_elem(t_base **base, t_line **list_base)
 {
 	t_line	*line;
@@ -96,106 +97,6 @@ int	ft_check_lines_order(t_base *base)
 	return (0);
 }
 
-
-
-/* check textures
-	- tant que espace, alors avancer
-	- check les 2 premiers
-	- check un espace --> si autres espaces, avancer
-	-
-*/
-void	ft_check_textures(t_line *line)
-{
-	int		i;
-	int		len;
-	char	*tmp;
-
-	i = 0;
-	len = ft_strlen_spechar(line->content, '\n');
-	//feed node and then check
-	// 1.
-	while (line->content[i] == ' ')
-		i++;
-	if (ft_strncmp(line->content + i, "NO ", 3) == 0)
-		line->texture = NO;
-	else if (ft_strncmp(line->content + i, "SO ", 3) == 0)
-		line->texture = SO;
-	else if (ft_strncmp(line->content + i, "WE ", 3) == 0)
-		line->texture = WE;
-	else if (ft_strncmp(line->content + i, "EA ", 3) == 0)
-		line->texture = EA;
-	i += 3;
-	// while (line->content[i] == ' ')
-	// 	i++;
-	tmp = ft_substr(line->content, i, len - i);// +1 ??
-	line->text_path = ft_strtrim(tmp, " ");
-	// 2.
-	/*
-		- check bien 1 de chaque
-
-		- check que la texture existe(open) pas un directory
-		- se termine par xpm (utiliser ft_check_filename...)
-	*/
-}
-
-// void	ft_check_colors(t_line *line)
-// {
-// 	int		i;
-// 	int		len;
-// 	char	*tmp;
-
-// 	i = 0;
-// 	len = ft_strlen_spechar(line->content, '\n');
-// 	tmp = NULL;
-// 	//feed node and then check
-// 	// 1.
-// 	while (line->content[i] == ' ')
-// 		i++;
-// 	if (ft_strncmp(line->content + i, "C ", 2) == 0)
-// 		line->color = 'C';
-// 	else if (ft_strncmp(line->content + i, "F ", 23) == 0)
-// 	i += 2;
-// 	// while (line->content[i] == ' ')
-// 	// 	i++;
-// 	line->text_path = ft_substr(line->content, i, len - i);// +1 ??
-// 	tmp = ft_strtrim(line->text_path, " ");
-// 	len = (int) ft_strlen(tmp);
-// 	free(line->text_path);
-// 	i = 0;
-// 	while (tmp[i])
-// 	{
-// 		if (tmp[i] == ' ')
-// 			len--;
-// 		i++;
-// 	}
-// 	line->text_path = ft_malloc(TAB_STR1, len + 1);
-// 	int	j;
-// 	j = 0;
-// 	while (tmp[i])
-// 	{
-// 		if (tmp[i] != ' ')
-// 		{
-// 			line->text_path[j] = tmp[i];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	line->text_path[j] = '\0';
-// 	// découper pour mettre dans un tableau et checker val de 0 à 255
-// 	char	**tab_str;
-
-// 	tab_str = ft_split2(line->text_path, ',');
-// 	// proteger
-// 	// comme push_swap: verifier si nb uniquement et compris entre 0 et 255 inclus
-
-// 	// 2.
-// 	/*
-// 		- check bien 1 de chaque
-
-// 		- check que la color existe
-// 	*/
-// }
-
 /*
 	je parcours à nouveau ma liste pour checker :
 	1. les textures + 'feed' et 'range'
@@ -209,30 +110,37 @@ void	ft_check_textures(t_line *line)
 void	ft_get_file_base_detailed(t_base *base)
 {
 	t_line	*line;
-	int		i;
 
 	line = base->list_base;
+	dprintf(2, "********line->index file base detailed = %d\n", line->index);
 	while (line && line->ref != L_MAP)
 	{
 		if (line->ref == L_TEXTURE)
 			ft_get_texture(&line);
-		else if (line-ref == L_COLOR)
+		else if (line->ref == L_COLOR)
 			ft_get_color(&line);
+		else//pour test
+			dprintf(2, "line / ni texture ni color\n");
 		line = line->next;
 	}
+	line = base->list_base;
+	dprintf(2, "xxxxxxxxxxx list_base->index = %d\n", base->list_base->index);
+	dprintf(2, "TESSSSSSSSSSSSST LAAAAA\n");
+	base->list_elem = ft_get_elem_base(&line);
 	ft_get_map_base(&line);
 	return ;
 }
 
-int	ft_check_elem_err(char **elem_base)
+int	ft_check_file_base_detailed(t_base *base)
 {
-	(void) elem_base;
-	return (0);
-}
-
-int	ft_check_map_err(char **map_base)
-{
-	(void) map_base;
+	if (ft_check_elem_err(base))
+		return (1);
+	if (ft_check_texture_err(base))
+		return (1);
+	// if (ft_check_color_err(base))
+	// 	return (1);
+	// if (ft_check_map_err(base))
+	// 	return (1);
 	return (0);
 }
 
@@ -248,12 +156,13 @@ int	ft_check_file_err(t_base *base)
 {
 	// (void) base;
 	// dprintf(2, "test ici 1\n");
-	ft_check_lines_order(base);
+	if (ft_check_lines_order(base))
+		return (EXIT_FAILURE);//nettoyer ?
 	// dprintf(2, "test ici 2\n");
-	// ft_get_file_base_detailed(base);
+	ft_get_file_base_detailed(base);
 	// dprintf(2, "test ici 3\n");
-	// if (ft_check_map_err(base->map_base) || ft_check_elem_err(base->elem_base))
-	// 	return (EXIT_FAILURE);
+	if (ft_check_file_base_detailed(base))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

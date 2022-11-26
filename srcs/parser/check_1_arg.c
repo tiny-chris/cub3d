@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_1.c                                          :+:      :+:    :+:   */
+/*   check_1_arg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/24 15:12:47 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:36:24 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_check_argc(int argc)
 **	<RETURN>	- if yes	--> return 1
 **  			- if no     --> return 0 + display error message
 **	<REMARKS>	only '.cub' is not a correct filename
-**				
+**
 */
 int	ft_check_filename(char *file, char *ext)
 {
@@ -63,7 +63,7 @@ int	ft_check_filename(char *file, char *ext)
 **  *************************
 **  <SUMMARY>	Check if the type is a directory with open() function
 **	<RETURN>	- if yes	--> return 1
-**  			- if no		--> return 0 + display error message	
+**  			- if no		--> return 0 + display error message
 **	<REMARK>	opendir() function is not allowed
 */
 int	ft_check_isdirectory(char *file)
@@ -103,7 +103,7 @@ int	ft_count_lines_gnl(char *file)
 	if (line)
 		free(line);
 	close(fd);
-	dprintf(2, "val de count = %d\n", count);
+	// dprintf(2, "val de count = %d\n", count);
 	return (count);
 }
 
