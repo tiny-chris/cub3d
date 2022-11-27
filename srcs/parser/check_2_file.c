@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 05:03:52 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 23:22:17 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,26 @@ void	ft_get_file_base_detailed(t_base *base)
 		else if (line->ref == L_COLOR)
 			ft_get_color(&line);
 		else//pour test
-			dprintf(2, "line / ni texture ni color\n");
+			dprintf(2, "line / ni texture ni color\n");//pour test
 		line = line->next;
 	}
-	line = base->list_base;
+	// line = base->list_base;// retirer aquand get_map_base OK
 	dprintf(2, "xxxxxxxxxxx list_base->index = %d\n", base->list_base->index);
 	dprintf(2, "TESSSSSSSSSSSSST LAAAAA\n");
-	base->list_elem = ft_get_elem_base(&line);
-	ft_get_map_base(&line);
+	base->list_elem = ft_get_elem_base(base);
+	// DEBUT AFFICHAGE - à supprimer
+		t_line	*tmp;
+		int		nb = 0;
+		tmp = base->list_elem;
+		while (tmp)
+		{
+			dprintf(2, "list_elem[%d] text_path = %s\n", ++nb, tmp->text_path);
+			if (tmp->color == 'F' || tmp->color == 'C')
+				dprintf(2, "col_tab[%d] col_tab[0] = %d\n", nb, tmp->col_tab[0]);
+			tmp = tmp->next;
+		}
+	// FIN AFFICHAGE
+	base->map_base = ft_get_map_base(base);
 	return ;
 }
 

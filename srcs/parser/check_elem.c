@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 04:52:04 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 22:41:37 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	ft_lstadd_elem(t_line **list_elem, t_line *line)
 	ft_lstadd_back_line(list_elem, tmp);
 }
 
-t_line	*ft_get_elem_base(t_line **list_base)
+t_line	*ft_get_elem_base(t_base *base)
 {
 	t_line	*line;
 	t_line	*list_elem;
 	int		i;
 
-	line = (*list_base);
-	dprintf(2, "xxxxxxxxxxx list_base->index = %d\n", (*list_base)->index);
+	line = base->list_base;
+	dprintf(2, "xxxxxxxxxxx list_base->index = %d\n", base->list_base->index);
 	dprintf(2, "xxxxxxxxxxx line->index = %d\n", line->index);
 	list_elem = NULL;
 	i = 1;
@@ -77,10 +77,13 @@ t_line	*ft_get_elem_base(t_line **list_base)
 			dprintf(2, "line->index = %d\n", line->index);
 			dprintf(2, "line->range = %d\n", line->range);
 			if (line->range == i)
+			{
+				dprintf(2, "line->text_path = %s\n", line->text_path);
 				ft_lstadd_elem(&list_elem, line);
+			}
 			line = line->next;
 		}
-		line = (*list_base);
+		line = base->list_base;
 		i++;
 	}
 	dprintf(2, "TESSSSSSSSSSSSST ICIIIIIIIIII\n");

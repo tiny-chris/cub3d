@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 18:18:01 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/26 22:42:24 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef enum e_sizetype
 	TAB_STR1		= 400,
 	TAB_STR2		= 500,
 	TAB_STRS		= 600,
-	LST_LIN			= 700,
+	LST_LINE		= 700,
 }	t_sizetype;
 
 typedef enum s_flag
@@ -68,11 +68,11 @@ typedef enum s_flag
 
 typedef enum e_line_type
 {
-	L_TEXTURE	= 1000,
-	L_COLOR		= 2000,
-	L_MAP		= 3000,
-	L_EMPTY		= 5000,
-	L_UNEXPECT	= -1,
+	L_TEXTURE		= 10,
+	L_COLOR			= 20,
+	L_MAP			= 30,
+	L_EMPTY			= 50,
+	L_UNEXPECT		= -1,
 }	t_line_type;
 
 typedef enum e_texture
@@ -111,7 +111,6 @@ typedef struct s_base
 {
 	char	**file_base;
 	char	**map_base;
-	// char	**elem_base;
 	t_line	*list_elem;
 	int		nblines_base;
 	t_line	*list_base;
@@ -152,8 +151,8 @@ int		ft_check_lines_order(t_base *base);
 void	ft_get_file_base_detailed(t_base *base);
 void	ft_get_texture(t_line **list_base);
 void	ft_get_color(t_line **list_base);
-t_line	*ft_get_elem_base(t_line **list_base);
-void	ft_get_map_base(t_line **list_base);
+t_line	*ft_get_elem_base(t_base *base);
+char	**ft_get_map_base(t_base *base);
 
 int		ft_check_file_base_detailed(t_base *base);
 int		ft_check_elem_err(t_base *base);
