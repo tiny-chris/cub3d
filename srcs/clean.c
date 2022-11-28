@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 18:10:23 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:58:37 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 **	tout free avant d'exit ou bien faire un garbage collector aussiiiiii
 */
 
-// void	ft_quit(t_img *img)
-// {
-// 	mlx_destroy_image(img->mlx_ptr, img->img);
-// 	mlx_destroy_window(img->mlx_ptr, img->win_ptr);
-// 	mlx_loop_end(img->mlx_ptr);
-// 	mlx_destroy_display(img->mlx_ptr);
-// 	free(img->mlx_ptr);
-// 	exit(0);
-// }
+void	ft_quit(t_data *data)
+{
+	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
+	mlx_destroy_window(data->img.mlx_ptr, data->img.win_ptr);
+	mlx_loop_end(data->img.mlx_ptr);
+	mlx_destroy_display(data->img.mlx_ptr);
+	free(data->img.mlx_ptr);
+	exit(0);
+}
 
 /*  ***** Cleaning - display the error message *****
 **  *************************

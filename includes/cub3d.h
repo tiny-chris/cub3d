@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 12:19:08 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:13:36 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,10 @@ typedef struct s_base
 	int		nblines_base;
 	t_line	*list_base;
 	int		index_start_map;
-}	t_base;
+	t_img	img;
+	t_point	p1;
+	t_point	p2;
+}			t_base;
 
 typedef struct s_img {
 	void	*mlx_ptr;
@@ -131,6 +134,10 @@ typedef struct s_point {
 	int		x;
 	int		y;
 }			t_point;
+
+// typedef struct s_data {
+	
+// }			t_data;
 
 // typedef struct s_map
 // {
@@ -175,22 +182,25 @@ void	ft_lstadd_elem(t_line **list_elem, t_line *line);
 
 /*	Init */
 
-void	ft_init_t_base_cub(char *file, t_base *base);
+void	ft_init_t_data_cub(char *file, t_data *data);
+char	**ft_get_file_content(char	*file);
 char	**ft_get_file_base(char	*file);
 
 /*	Clean	*/
 
-void	ft_quit(t_img *img);
+void	ft_quit(t_data *data);
 int		ft_err_msg(int res, char *msg1, char *msg2);
 void	*ft_malloc(int type, int size);
 
 /*	Draw line	*/
 
-void	ft_draw_vertical(t_point *p1, t_point *p2, t_img *img);
+void	ft_draw_vertical(t_data *data, t_point p1, t_point p2);
 
 /*	Utils 	*/
 
 int		ft_open_read(const char *file);
+void	my_pixel_put(t_img *img, int x, int y, int color);
+int		key_hook(int keycode, t_img *img);
 int		ft_strlen_spechar(const char *str, char spe_c);
 int		ft_len_delspace_str(char *str);
 int		ft_lines_tabstr(char **tab_str);
@@ -198,8 +208,5 @@ int		*ft_intdup(int *tab, int size);
 int		ft_atoi_cub(char *str);
 size_t	ft_is_in_set(const char *set, char c);
 int		ft_count_isinset(char *str, char c);
-
-void	my_pixel_put(t_img *img, int x, int y, int color);
-int		key_hook(int keycode, t_img *img);
 
 #endif
