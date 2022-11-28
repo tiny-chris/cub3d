@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 16:13:36 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 16:31:58 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,6 @@ typedef struct s_line
 	struct s_line	*next;
 }	t_line;
 
-/*	structure for initial data - TO BE UPDATED*/
-typedef struct s_base
-{
-	char	**file_base;
-	char	**map_base;
-	t_line	*list_elem;
-	int		nblines_base;
-	t_line	*list_base;
-	int		index_start_map;
-	t_img	img;
-	t_point	p1;
-	t_point	p2;
-}			t_base;
-
 typedef struct s_img {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -134,6 +120,21 @@ typedef struct s_point {
 	int		x;
 	int		y;
 }			t_point;
+/*	structure for initial data - TO BE UPDATED*/
+typedef struct s_base
+{
+	char	**file_base;
+	char	**map_base;
+	t_line	*list_elem;
+	int		nblines_base;
+	t_line	*list_base;
+	int		index_start_map;
+	t_img	img;
+	t_point	p1;
+	t_point	p2;
+}			t_base;
+
+
 
 // typedef struct s_data {
 	
@@ -182,25 +183,25 @@ void	ft_lstadd_elem(t_line **list_elem, t_line *line);
 
 /*	Init */
 
-void	ft_init_t_data_cub(char *file, t_data *data);
+void	ft_init_t_data_cub(char *file, t_base *data);
 char	**ft_get_file_content(char	*file);
 char	**ft_get_file_base(char	*file);
 
 /*	Clean	*/
 
-void	ft_quit(t_data *data);
+void	ft_quit(t_base *data);
 int		ft_err_msg(int res, char *msg1, char *msg2);
 void	*ft_malloc(int type, int size);
 
 /*	Draw line	*/
 
-void	ft_draw_vertical(t_data *data, t_point p1, t_point p2);
+void	ft_draw_vertical(t_base *data, t_point p1, t_point p2);
 
 /*	Utils 	*/
 
 int		ft_open_read(const char *file);
-void	my_pixel_put(t_img *img, int x, int y, int color);
-int		key_hook(int keycode, t_img *img);
+void	my_pixel_put(t_base *data, int x, int y, int color);
+int		key_hook(int keycode, t_base *data);
 int		ft_strlen_spechar(const char *str, char spe_c);
 int		ft_len_delspace_str(char *str);
 int		ft_lines_tabstr(char **tab_str);

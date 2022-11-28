@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 15:49:17 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 16:17:57 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 		- mettre un peu d’espace entre les murs et le joueurs (ex: 5 pixels)
 */
 
-void	ft_init_data(t_data *data)
+void	ft_init_data(t_base *data)
 {
 	data->img.mlx_ptr = mlx_init();
 	data->img.win_ptr = mlx_new_window(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
@@ -54,7 +54,7 @@ void	ft_init_data(t_data *data)
 	data->p2.y = 500;
 }
 
-int	ft_render_next_frame(t_data *data)
+int	ft_render_next_frame(t_base *data)
 {
 	// update line
 	data->p1.x += 5;
@@ -76,7 +76,7 @@ int	ft_render_next_frame(t_data *data)
 int	main(int argc, char **argv)
 {
 	char	**map_content;
-	t_data	data;
+	t_base	data;
 
 	(void)argv;
 	(void)argc;
