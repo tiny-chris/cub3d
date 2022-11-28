@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 01:36:24 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:22:06 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	ft_count_lines_gnl(char *file)
 	if (line)
 		free(line);
 	close(fd);
-	// dprintf(2, "val de count = %d\n", count);
 	return (count);
 }
 

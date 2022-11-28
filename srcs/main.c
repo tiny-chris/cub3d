@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/25 00:30:09 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 10:30:38 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int	main(int argc, char **argv)
 	ft_init_t_base_cub(argv[1], &base);
 	if (ft_check_file_err(&base))
 		return (EXIT_FAILURE);
-	//creer la map + init ?
-	// check 3.
 	printf("pour l'instant tout est ok\n");
 	return (0);
 }

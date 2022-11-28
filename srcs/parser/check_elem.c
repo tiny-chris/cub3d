@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 22:41:37 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:02:42 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_lstadd_elem(t_line **list_elem, t_line *line)
 {
 	t_line	*tmp;
 
-	tmp = malloc(sizeof(t_line));//protéger
+	tmp = ft_malloc(LST_LINE, 1);
 	tmp->index = line->index;
 	tmp->content = NULL;
 	tmp->ref = line->ref;
@@ -47,14 +47,11 @@ void	ft_lstadd_elem(t_line **list_elem, t_line *line)
 	tmp->texture = line->texture;
 	tmp->text_path = ft_strdup(line->text_path);
 	tmp->color = line->color;
-	dprintf(2, "je checke ici =========================\n");
 	if (tmp->color == 'C' || tmp->color == 'F')
 		tmp->col_tab = ft_intdup(line->col_tab, 3);
 	else
 		tmp->col_tab = NULL;
-	dprintf(2, "je checke ici 3 =========================\n");
 	tmp->next = NULL;
-	dprintf(2, "je checke ici 2 =========================\n");
 	ft_lstadd_back_line(list_elem, tmp);
 }
 
@@ -65,55 +62,21 @@ t_line	*ft_get_elem_base(t_base *base)
 	int		i;
 
 	line = base->list_base;
-	dprintf(2, "xxxxxxxxxxx list_base->index = %d\n", base->list_base->index);
-	dprintf(2, "xxxxxxxxxxx line->index = %d\n", line->index);
 	list_elem = NULL;
 	i = 1;
 	while (i < 7)
 	{
 		while (line)
 		{
-			dprintf(2, "xxxxxxxxxxx val de i = %d\n", i);
-			dprintf(2, "line->index = %d\n", line->index);
-			dprintf(2, "line->range = %d\n", line->range);
 			if (line->range == i)
-			{
-				dprintf(2, "line->text_path = %s\n", line->text_path);
 				ft_lstadd_elem(&list_elem, line);
-			}
 			line = line->next;
 		}
 		line = base->list_base;
 		i++;
 	}
-	dprintf(2, "TESSSSSSSSSSSSST ICIIIIIIIIII\n");
-	t_line *tmp;
-	tmp = list_elem;
-	if (tmp)
-		dprintf(2, "list_elem start path = %s\n", tmp->text_path);
-	else
-		dprintf(2, "tmp vide\n");
 	return (list_elem);
 }
-// 	dprintf(2, "TESSSSSSSSSSSSST ICIIIIIIIIII #1\n");
-// 	i = 1;
-// 	while (i < 7)
-// 	{
-// 		dprintf(2, "i = %d\n", i);
-// 		while (line)
-// 		{
-// 			dprintf(2, "line->index = %d\n", line->index);
-// 			dprintf(2, "line->range = %d\n", line->range);
-// 			if (line->range == i)
-// 				ft_lstadd_line(&list_elem, line->index, line->content, line);
-// 			line = line->next;
-// 		}
-// 		line = (*list_base);
-// 		i++;
-// 	}
-// 	dprintf(2, "TESSSSSSSSSSSSST ICIIIIIIIIII\n");
-// 	return (list_elem);
-// }
 
 static int	ft_check_count_elem(t_base *base, int range)
 {
@@ -122,7 +85,6 @@ static int	ft_check_count_elem(t_base *base, int range)
 
 	count = 0;
 	line = base->list_base;
-	// dprintf(2, "********line->index check count elem = %d\n", line->index);
 	while (line)
 	{
 		if (line->range == range)
@@ -141,15 +103,10 @@ int	ft_check_elem_err(t_base *base)
 	int	i;
 
 	i = 1;
-	dprintf(2, "**///******line->index check elem err = %d\n", base->list_base->index);
 	while (i < 7)
 	{
-		dprintf(2, "et la ? et la, et la...\n");
 		if (ft_check_count_elem(base, i))
-		{
-			//nettoyer
-			return (1);
-		}
+			return (1);//nettoyer
 		i++;
 	}
 	return (0);

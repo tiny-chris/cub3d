@@ -6,13 +6,14 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 23:22:17 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:52:39 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // QUESTION - REVOIR POUR * ou **
+// penser à nettoyer !!!!!!! après le 'exit(1)...'
 static void	ft_check_lines_order_post_elem(t_base **base, t_line **list_base)
 {
 	t_line	*line;
@@ -28,28 +29,20 @@ static void	ft_check_lines_order_post_elem(t_base **base, t_line **list_base)
 			line = line->next;
 		if (line && (line->ref == L_TEXTURE || line->ref == L_COLOR \
 			|| line->ref == L_UNEXPECT))
-		{
-			ft_err_msg(1, "TBD 2", "autres éléments (text/col/unex) après la map");
-			exit(EXIT_FAILURE);//nettoyer
-		}
+			exit(ft_err_msg(1, "TBD 2", "élém (text/col/unex) après map"));
 		while (line && line->ref == L_EMPTY)
 			line = line->next;
 		if (line && line->ref != L_EMPTY)
-		{
-			ft_err_msg(1, "TBD 3", "autres éléments (text/col/unex/map...) après empty");
-			exit(EXIT_FAILURE);//nettoyer
-		}
+			exit(ft_err_msg(1, "TBD 3", "pb text/col/unex/map... après empty"));
 	}
-	else//on est arrivé à la fin et il n'y a pas eu de map
-	{
-		ft_err_msg(1, "TBD 4", "pas de map");
-		exit(EXIT_FAILURE);//nettoyer
-	}
+	else
+		exit(ft_err_msg(1, "TBD 4", "pas de map"));
 }
 
 /*
 	check 1 : elem en haut (tant qu'on n'a pas atteint la map)
-		- si unexpected line --> error (commence par autre chose que les élém ou 1 ou vide)
+		- si unexpected line --> error (commence par autre chose que les élém 
+		ou 1 ou vide)
 		- si texture --> ajouter au nb de textures
 		- si color --> ajouter au nb de colors
 		- si nb text est différent de 4 --> erreur
@@ -62,37 +55,35 @@ static void	ft_check_lines_order_post_elem(t_base **base, t_line **list_base)
 **	check 3 : map non atteinte --> pas de map
 		--> erreur
 */
-int	ft_check_lines_order(t_base *base)
+// !!!!!!!!!!!!!!!
+//
+//	supprimer la variable "x" pour le dprintf
+//
+//	penser à nettoyer !!!!!!! après le 'exit(1)...'
+//
+// !!!!!!!!!!!!!!!
+int	ft_check_lines_order_err(t_base *base)
 {
 	t_line	*line;
 	int		nb_text;
 	int		nb_color;
-	int		x = 0;//drpintf
 
 	dprintf(2, "2e etape ****************\n");
 	line = base->list_base;
 	nb_text = 0;
 	nb_color = 0;
-	dprintf(2, "nb_text = %d et nb_color = %d\n", nb_text, nb_color);
 	while (line && line->ref != L_MAP)
 	{
-		dprintf(2, "line->ref %d = %d\n", x++, line->ref);
 		if (line->ref == L_UNEXPECT)
-			exit(EXIT_FAILURE);//nettoyer
+			exit(EXIT_FAILURE);
 		else if (line->ref == L_TEXTURE)
 			nb_text++;
 		else if (line->ref == L_COLOR)
 			nb_color++;
 		line = line->next;
 	}
-	dprintf(2, "nb_text = %d et nb_color = %d\n", nb_text, nb_color);
 	if (nb_text != 4 || nb_color != 2)
-	{
-		ft_err_msg(1, "TBD 1 - text or color", "nombre incorrect (détail text / col)");
-		exit(EXIT_FAILURE);//nettoyer
-	}
-	if (line != NULL)
-		dprintf(2, "bonus -- line->ref %d = %d\n", x++, line->ref);
+		exit(ft_err_msg(1, "TBD 1 - text or color", "à preciser ? nb incorr"));
 	ft_check_lines_order_post_elem(&base, &line);
 	return (0);
 }
@@ -105,56 +96,41 @@ int	ft_check_lines_order(t_base *base)
 
 	puis je copie dans les char ** respectifs
 */
-
-// ZZZZZZZZZ_ JE DOIS REPRENDRE ICI !!!!!!!!
 void	ft_get_file_base_detailed(t_base *base)
 {
 	t_line	*line;
 
 	line = base->list_base;
-	dprintf(2, "********line->index file base detailed = %d\n", line->index);
 	while (line && line->ref != L_MAP)
 	{
 		if (line->ref == L_TEXTURE)
 			ft_get_texture(&line);
 		else if (line->ref == L_COLOR)
 			ft_get_color(&line);
-		else//pour test
-			dprintf(2, "line / ni texture ni color\n");//pour test
 		line = line->next;
 	}
-	// line = base->list_base;// retirer aquand get_map_base OK
-	dprintf(2, "xxxxxxxxxxx list_base->index = %d\n", base->list_base->index);
-	dprintf(2, "TESSSSSSSSSSSSST LAAAAA\n");
 	base->list_elem = ft_get_elem_base(base);
-	// DEBUT AFFICHAGE - à supprimer
-		t_line	*tmp;
-		int		nb = 0;
-		tmp = base->list_elem;
-		while (tmp)
-		{
-			dprintf(2, "list_elem[%d] text_path = %s\n", ++nb, tmp->text_path);
-			if (tmp->color == 'F' || tmp->color == 'C')
-				dprintf(2, "col_tab[%d] col_tab[0] = %d\n", nb, tmp->col_tab[0]);
-			tmp = tmp->next;
-		}
-	// FIN AFFICHAGE
 	base->map_base = ft_get_map_base(base);
 	return ;
 }
+/*
+	pour tester l'affichage de la liste d'elem (t_line)
 
-int	ft_check_file_base_detailed(t_base *base)
-{
-	if (ft_check_elem_err(base))
-		return (1);
-	if (ft_check_texture_err(base))
-		return (1);
-	// if (ft_check_color_err(base))
-	// 	return (1);
-	// if (ft_check_map_err(base))
-	// 	return (1);
-	return (0);
-}
+	// DEBUT AFFICHAGE - à supprimer
+	t_line	*tmp;
+	int		nb = 0;
+	tmp = base->list_elem;
+	while (tmp)
+	{
+		dprintf(2, "list_elem[%d] text_path = %s\n", ++nb, tmp->text_path);
+		if (tmp->color == 'F' || tmp->color == 'C')
+			dprintf(2, "col_tab[%d] col_tab[0] = %d\n", nb, tmp->col_tab[0]);
+		tmp = tmp->next;
+	}
+	// FIN AFFICHAGE
+
+*/
+
 
 /*  ***** Parsing - ........ *****
 **  *************************
@@ -162,19 +138,25 @@ int	ft_check_file_base_detailed(t_base *base)
 **
 **	nb de lignes
 **	position des elements et de la map
+
+	/!\ à la pace de 'return (EXIT_FAILURE);
+	//protéger et exit
 **
 */
 int	ft_check_file_err(t_base *base)
 {
-	// (void) base;
-	// dprintf(2, "test ici 1\n");
-	if (ft_check_lines_order(base))
-		return (EXIT_FAILURE);//nettoyer ?
-	// dprintf(2, "test ici 2\n");
-	ft_get_file_base_detailed(base);
-	// dprintf(2, "test ici 3\n");
-	if (ft_check_file_base_detailed(base))
+	if (ft_check_lines_order_err(base))
 		return (EXIT_FAILURE);
+	ft_get_file_base_detailed(base);
+	if (ft_check_elem_err(base))
+		return (EXIT_FAILURE);
+	if (ft_check_texture_err(base))
+		return (EXIT_FAILURE);
+	// if (ft_check_color_err(base))
+	// 	return (EXIT_FAILURE);
+	if (ft_check_map_err(base))
+		return (EXIT_FAILURE);
+	ft_get_map_tabint(base->map_base);
 	return (EXIT_SUCCESS);
 }
 
@@ -197,8 +179,6 @@ int	ft_check_file_err(t_base *base)
 // 	}
 // 	return (TRUE);
 // }
-
-
 
 // int	ft_check_lines_order(t_base *b)
 // {

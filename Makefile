@@ -31,15 +31,18 @@ SRCS		:= \
 			parser/check_colors.c \
 			parser/check_elem.c \
 			parser/check_map.c \
+			parser/check_map_2.c \
 			parser/check_textures.c \
 			parser/get_cub_base.c \
 			parser/get_map_base.c \
 			parser/init_base.c \
 			parser/line_list.c \
-			parser/utils.c \
 			clean.c \
 			draw_line.c \
-			utils.c \
+			utils/utils.c \
+			utils/utils_2.c \
+			utils/utils_3.c \
+			utils/utils_atoi_cub.c \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 22:42:24 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:19:08 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,18 +146,23 @@ int		ft_check_isdirectory(char *file);
 int		ft_count_lines_gnl(char *file);
 
 int		ft_check_file_err(t_base *base);
-int		ft_check_lines_order(t_base *base);
+int		ft_check_lines_order_err(t_base *base);
 
 void	ft_get_file_base_detailed(t_base *base);
 void	ft_get_texture(t_line **list_base);
 void	ft_get_color(t_line **list_base);
 t_line	*ft_get_elem_base(t_base *base);
 char	**ft_get_map_base(t_base *base);
+int		**ft_get_map_tabint(char **map_base);
 
-int		ft_check_file_base_detailed(t_base *base);
 int		ft_check_elem_err(t_base *base);
 int		ft_check_texture_err(t_base *base);
-int		ft_check_map_err(char **map_base);
+int		ft_check_map_err(t_base *base);
+
+int		ft_check_map_only_allowed_set(char **map, int lines, const char *set);
+int		ft_check_map_global_struct(char **map, int lines);
+int		ft_check_map_unique_player(char **map, int lines);
+int		ft_check_map_enclosed_by_walls(char **map, int lines, int len);
 
 /*	line_list	*/
 
@@ -167,7 +172,6 @@ void	ft_lstadd_line(t_line **line, int index, char *str, t_line_type ref);
 void	ft_lstadd_elem(t_line **list_elem, t_line *line);
 // delone
 // free
-
 
 /*	Init */
 
@@ -192,6 +196,8 @@ int		ft_len_delspace_str(char *str);
 int		ft_lines_tabstr(char **tab_str);
 int		*ft_intdup(int *tab, int size);
 int		ft_atoi_cub(char *str);
+size_t	ft_is_in_set(const char *set, char c);
+int		ft_count_isinset(char *str, char c);
 
 void	my_pixel_put(t_img *img, int x, int y, int color);
 int		key_hook(int keycode, t_img *img);

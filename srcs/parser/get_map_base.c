@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_1.c                                      :+:      :+:    :+:   */
+/*   get_map_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/27 01:08:56 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:37:40 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ char	*ft_strncpy_map(char *str, int width)
 			copy_map[i++] = ' ';
 	}
 	copy_map[i] = '\0';
-	//
-		dprintf(2, "val de copy_map = %s, len = %d\n", copy_map, (int) ft_strlen(copy_map));
-	//
 	return (copy_map);
 }
 
@@ -78,15 +75,12 @@ char	**ft_get_map_base(t_base *base)
 	i = 0;
 	nb_lines = 0;
 	len_max = ft_len_max_map(line, &nb_lines);
-	dprintf(2, "********ici *********\n");
 	map_base = ft_malloc(TAB_STR2, nb_lines + 1);
 	//protégé
 	while (line && line->ref != L_MAP)
 		line = line->next;
-	dprintf(2, "********là *********\n");
 	while (line && line->ref == L_MAP)
 	{
-		dprintf(2, "********re-ici *********\n");
 		map_base[i] = ft_strncpy_map(line->content, len_max);
 		i++;
 		line = line->next;
@@ -95,11 +89,9 @@ char	**ft_get_map_base(t_base *base)
 	return (map_base);
 }
 
-int	ft_check_map_err(t_base *base)
+// A CODER --> cf. so_long
+int	**ft_get_map_tabint(char **map_base)
 {
-	char	**map_base;
-
-	map_base = base->map_base;
-	
-	return (0);
+	(void) map_base;
+	return (NULL);
 }

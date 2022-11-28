@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 03:55:04 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:34:20 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,35 +71,17 @@ void	ft_get_texture(t_line **list_base)
 
 	line = (*list_base);
 	tmp = NULL;
-	dprintf(2, "*/*/*/*/*/*line->index file base detailed = %d\n", line->index);
-	dprintf(2, "\nlen (line->content) = %d\n", (int) ft_strlen(line->content));
 	len = ft_strlen_spechar(line->content, '\n');
-	dprintf(2, "len spechar (line->content) = %d\n", len);
 	i = 0;
 	while (line->content[i] == ' ')
 		i++;
-	dprintf(2, "i (après espaces début) = %d\n", i);
-	dprintf(2, "line->content + i = %s\n", line->content + i);
 	ft_get_list_range(&line, i);
-	// if (ft_strncmp(line->content + i, "NO ", 3) == 0)
-	// 	line->texture = NO;
-	// else if (ft_strncmp(line->content + i, "SO ", 3) == 0)
-	// 	line->texture = SO;
-	// else if (ft_strncmp(line->content + i, "WE ", 3) == 0)
-	// 	line->texture = WE;
-	// else if (ft_strncmp(line->content + i, "EA ", 3) == 0)
-	// 	line->texture = EA;
-	dprintf(2, "line->texture (NO=0, SO=1...) = %d, range = %d\n", line->texture, line->range);
 	i += 3;
-	dprintf(2, "i (après += 3) = %d\n", i);
 	tmp = ft_substr(line->content, i, len - i);
 	//protéger
 	if (tmp)
-		dprintf(2, "tmp = %s, len = %d vs ft_strlen = %d\n", tmp, len - i, (int) ft_strlen(tmp));
 	line->text_path = ft_strtrim(tmp, " ");
 	//proteger
-	if (tmp)
-		dprintf(2, "line->text_path = %s, ft_strlen = %d\n", line->text_path, (int) ft_strlen(line->text_path));
 	free(tmp);//DELONE
 	tmp = NULL;
 }
