@@ -21,6 +21,8 @@ NAME		:= cub3D
 
 LIBFT		:=	lib/libft/libft.a
 
+MLX			:= lib/mlx/libmlx.a
+
 SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
@@ -53,9 +55,9 @@ OBJS		:= $(subst $(SRC_DIR),$(OBJ_DIR),$(OBJS))
 
 CC			:=	cc
 CFLAGS		:=	-Wall -Wextra -Werror -g
-CPPFLAGS	:=	-I lib/libft -I includes
+CPPFLAGS	:=	-I lib/libft -I includes -I lib/mlx
 LDFLAGS		:=	-L lib/libft
-LDLIBS		:=	-lft
+LDLIBS		:=	-lft -lXext -lX11 -lm -lz
 
 #------------------------------------------------#
 #   UTENSILS                                     #
@@ -65,7 +67,6 @@ LDLIBS		:=	-lft
 RM			:= rm -rf
 MAKE		:= $(MAKE) --silent --jobs --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
-
 
 #------------------------------------------------#
 #   RECIPES                                      #
@@ -84,6 +85,9 @@ all:		$(NAME)
 $(LIBFT):
 	$(MAKE) -C $(dir $(LIBFT))
 
+$(MLX):
+	$(MAKE) -C $(dir $(MLX))
+
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 	$(info CREATED $(NAME))
@@ -95,6 +99,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	$(MAKE) -C $(dir $(LIBFT)) clean
+	$(MAKE) -C $(dir $(MLX)) clean
 	$(RM) -r $(OBJ_DIR)
 	@echo "REMOVED object files"
 
