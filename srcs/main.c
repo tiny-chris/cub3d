@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 18:15:03 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 19:44:15 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,22 @@
 		- mettre un peu d’espace entre les murs et le joueurs (ex: 5 pixels)
 */
 
+void	ft_init_player(t_data *data)
+{
+	data->player.x = WIN_WIDTH / 2;
+	data->player.y = WIN_HEIGHT / 2;
+	data->player.width = 5;
+	data->player.height = 5;
+	data->player.turnDirection = 0;
+	data->player.walkDirection = 0;
+	data->player.rotationAngle = M_PI / 2;
+	data->player.turnSpeed = 2 * (M_PI / 180); // ou 45 * (M_PI / 180)
+	data->player.walkSpeed = 2.0;
+}
+
 void	ft_init_data(t_data *data)
 {
+	// init data mlx
 	data->img.mlx_ptr = mlx_init();
 	data->img.win_ptr = mlx_new_window(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
 	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
@@ -47,7 +61,10 @@ void	ft_init_data(t_data *data)
 	data->img.addr = mlx_get_data_addr(data->img.img, &(data->img.bits_per_pixel), \
 				&(data->img.line_lenght), &(data->img.endian));
 	if (!data->img.addr)
-		return ; // On free ? 
+		return ; // On free ?
+	// init player
+	ft_init_player(data);
+	// tests points
 	data->p1.x = 10;
 	data->p1.y = 100;
 	data->p2.x = 10;

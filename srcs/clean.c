@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 18:14:14 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 19:06:53 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_quit(t_data *data)
 **  <SUMMARY>	Print an error message on stderr (if any)
 **				and return the provided error value
 */
+
 int	ft_err_msg(int res, char *msg1, char *msg2)
 {
 	if (!msg1 && !msg2)
