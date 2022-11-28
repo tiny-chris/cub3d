@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 02:44:56 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:26:59 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	ft_init_t_base_cub_0(t_base *base)
 {
 	base->file_base = NULL;
 	base->map_base = NULL;
-	// base->elem_base = NULL;
 	base->list_elem = NULL;
 	base->nblines_base = -1;
 	base->list_base = NULL;

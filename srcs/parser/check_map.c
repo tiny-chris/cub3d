@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 13:07:46 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:39:32 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ int	ft_check_map_global_struct(char **map, int lines)
 
 	i = 1;
 	if (!ft_only_charset_in_str(map[0], "1 "))
-		return (1);
+		return (ft_err_msg(0, NULL, "map's 1st line is incorrect"));
 	if (ft_count_isinset(map[0], '1') < 1)
-		return (1);
+		return (ft_err_msg(0, NULL, "map's 1st line is incorrect"));
 	if (!ft_only_charset_in_str(map[lines - 1], "1 "))
-		return (1);
+		return (ft_err_msg(0, NULL, "map's last line is incorrect"));
 	if (ft_count_isinset(map[lines - 1], '1') < 1)
-		return (1);
+		return (ft_err_msg(0, NULL, "map's last line is incorrect"));
 	if (!ft_only_spechar_at_str_ends(map, '1'))
-		return (1);
-	return (0);
+		return (ft_err_msg(0, NULL, "map's middle lines are incorrect"));
+	return (1);
 }
 
 /*  ***** Check - map only contains a set of allowed characters *****
