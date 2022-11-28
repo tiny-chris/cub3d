@@ -6,13 +6,13 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:23:34 by lmelard           #+#    #+#             */
-/*   Updated: 2022/11/28 16:23:25 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 18:14:42 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_draw_vertical(t_base *data, t_point p1, t_point p2)
+void	ft_draw_vertical(t_data *data, t_point p1, t_point p2)
 {
 	if (p1.y > p2.y)
 	{

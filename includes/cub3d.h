@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 16:31:58 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 18:16:47 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ typedef struct s_point {
 	int		x;
 	int		y;
 }			t_point;
+
 /*	structure for initial data - TO BE UPDATED*/
-typedef struct s_base
-{
+typedef struct s_base {
 	char	**file_base;
 	char	**map_base;
 	t_line	*list_elem;
@@ -134,11 +134,12 @@ typedef struct s_base
 	t_point	p2;
 }			t_base;
 
-
-
-// typedef struct s_data {
-	
-// }			t_data;
+typedef struct s_data {
+	t_base	base;
+	t_img	img;
+	t_point	p1;
+	t_point	p2;
+}			t_data;
 
 // typedef struct s_map
 // {
@@ -189,19 +190,20 @@ char	**ft_get_file_base(char	*file);
 
 /*	Clean	*/
 
-void	ft_quit(t_base *data);
+void	ft_quit(t_data *data);
 int		ft_err_msg(int res, char *msg1, char *msg2);
 void	*ft_malloc(int type, int size);
 
 /*	Draw line	*/
 
-void	ft_draw_vertical(t_base *data, t_point p1, t_point p2);
+void	ft_draw_vertical(t_data *data, t_point p1, t_point p2);
 
 /*	Utils 	*/
 
+void	my_pixel_put(t_data *data, int x, int y, int color);
+int		key_hook(int keycode, t_data *data);
+
 int		ft_open_read(const char *file);
-void	my_pixel_put(t_base *data, int x, int y, int color);
-int		key_hook(int keycode, t_base *data);
 int		ft_strlen_spechar(const char *str, char spe_c);
 int		ft_len_delspace_str(char *str);
 int		ft_lines_tabstr(char **tab_str);

@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 16:22:03 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 18:14:14 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	tout free avant d'exit ou bien faire un garbage collector aussiiiiii
 */
 
-void	ft_quit(t_base *data)
+void	ft_quit(t_data *data)
 {
 	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
 	mlx_destroy_window(data->img.mlx_ptr, data->img.win_ptr);

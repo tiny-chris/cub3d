@@ -6,20 +6,20 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 16:31:03 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 18:13:27 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_hook(int keycode, t_base *data)
+int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		ft_quit(data);
 	return (0);
 }
 
-void	my_pixel_put(t_base *data, int x, int y, int color)
+void	my_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
