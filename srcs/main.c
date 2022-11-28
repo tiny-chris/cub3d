@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 16:17:57 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 17:18:43 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_render_next_frame(t_base *data)
 int	main(int argc, char **argv)
 {
 	char	**map_content;
-	t_base	data;
+	t_base	data; // remettre t_data
 
 	(void)argv;
 	(void)argc;
