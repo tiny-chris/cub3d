@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 19:44:15 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 14:18:46 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_init_player(t_data *data)
 	data->player.turnDirection = 0;
 	data->player.walkDirection = 0;
 	data->player.rotationAngle = M_PI / 2;
-	data->player.turnSpeed = 2 * (M_PI / 180); // ou 45 * (M_PI / 180)
+	data->player.turnSpeed =  45 * (M_PI / 180); // 2 * (M_PI / 180) dans le js; 
 	data->player.walkSpeed = 2.0;
 }
 
@@ -65,11 +65,50 @@ void	ft_init_data(t_data *data)
 	// init player
 	ft_init_player(data);
 	// tests points
-	data->p1.x = 10;
-	data->p1.y = 100;
-	data->p2.x = 10;
-	data->p2.y = 500;
+	// data->p1.x = 10;
+	// data->p1.y = 100;
+	// data->p2.x = 10;
+	// data->p2.y = 500;
 }
+
+void	ft_render_map(t_data *data)
+{
+	int	i;
+	int	j;
+	int	tilex;
+	int	tiley;
+
+	i = 0;
+	j = 0;
+	tilex = 0;
+	tiley = 0;
+	while (i < data->base.nbrows)
+	{
+		while (j < data->base.nblines_base)
+		{
+			tilex = ;
+			tiley = ;
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+}
+
+// version javascript
+
+// render() {
+// 		for (var i = 0; i < MAP_NUM_ROWS; i++) {
+// 			for (var j = 0; j < MAP_NUM_COLS; j++) {
+// 				var tileX = j * TILE_size;
+// 				var tileY = i * TILE_size;
+// 				var tileColor = this.grid[i][j] == 1 ? "#222" : "#fff";
+// 				stroke("#222");
+// 				fill(tileColor);
+// 				rect(MINIMAP_SCALE_FACTOR * tileX, MINIMAP_SCALE_FACTOR * tileY, MINIMAP_SCALE_FACTOR * TILE_size, MINIMAP_SCALE_FACTOR * TILE_size);
+// 			}
+// 		}
+// 	}
 
 int	ft_render_next_frame(t_data *data)
 {
