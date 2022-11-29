@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 14:32:40 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 14:56:26 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,41 @@ void	ft_init_data(t_data *data)
 	// data->p2.y = 500;
 }
 
+void	ft_draw_rect(t_data *data, t_point tile)
+{
+	t_point	tile2;
+	t_point	tile3;
+	t_point	tile4;
+	
+	tile2.x = tile.x + TILE_SIZE;
+	tile2.y = tile.y;
+	tile3.x = tile.x;
+	tile3.y = tile.y + TILE_SIZE;
+	tile4.x = tile.x + TILE_SIZE;
+	tile4.y = tile.y + TILE_SIZE;
+	ft_draw_horizontal(data, tile, tile2, COLOR_MAP_NOWALL);
+	ft_draw_vertical(data, tile, tile3, COLOR_MAP_NOWALL);
+	ft_draw_horizontal(data, tile, tile4, COLOR_MAP_NOWALL);
+	ft_draw_vertical(data, tile2, tile4, COLOR_MAP_NOWALL);
+}
+
 void	ft_render_map(t_data *data)
 {
-	int	i;
-	int	j;
-	int	tilex;
-	int	tiley;
+	int		i;
+	int		j;
+	t_point	tile;
 
 	i = 0;
 	j = 0;
-	tilex = 0;
-	tiley = 0;
+	tile.x = 0;
+	tile.y = 0;
 	while (i < data->base.nbrows)
 	{
 		while (j < data->base.nblines_base)
 		{
-			tilex = ;
-			tiley = ;
+			tilex = j * TILE_SIZE;
+			tiley = i * TILE_SIZE;
+			ft_draw_rect(data, tile);
 			j++;
 		}
 		i++;

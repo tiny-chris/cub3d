@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 14:31:39 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 14:57:00 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,8 +199,8 @@ void		ft_lstadd_elem(t_line **list_elem, t_line *line);
 
 /*	Init */
 
-void	ft_init_t_base_cub(char *file, t_base *base);
-void	ft_init_t_game(t_base *base);
+void		ft_init_t_base_cub(char *file, t_base *base);
+void		ft_init_t_game(t_base *base);
 void		ft_init_t_data_cub(char *file, t_base *data);
 char		**ft_get_file_content(char	*file);
 char		**ft_get_file_base(char	*file);
@@ -215,6 +215,9 @@ void		*ft_malloc(int type, int size);
 
 void		ft_draw_vertical(t_data *data, t_point p1, t_point p2, int color);
 void		ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color);
+void		ft_draw_rect(t_data *data, t_point tile);
+void		ft_render_map(t_data *data);
+int			ft_render_next_frame(t_data *data);
 
 /*	Utils 	*/
 
