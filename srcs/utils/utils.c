@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 16:43:05 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/28 19:06:59 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	ft_lines_tabstr(char **tab_str)
 **  and returns a pointer to it.
 **	i.e. duplicate a table of int
 */
+
 int	*ft_intdup(int *tab, int size)
 {
 	int	i;
