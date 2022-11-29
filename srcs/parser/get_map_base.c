@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 11:44:37 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:43:14 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ int	ft_len_max_map(t_line *list_base, int *lines)
 	return (len_max);
 }
 
-char	*ft_strncpy_map(char *str, int width)
+char	*ft_strncpy_map(char *str, int size)
 {
 	char	*copy_map;
 	int		i;
 	int		len;
 
-	if (!str || width == 0)
+	if (!str || size == 0)
 		return (NULL);//revoir
-	copy_map = ft_malloc(TAB_STR1, (width + 1));
+	copy_map = ft_malloc(TAB_STR1, (size + 1));
 	len = ft_strlen_spechar(str, '\n');
 	i = 0;
 	while (i < len)
@@ -50,9 +50,9 @@ char	*ft_strncpy_map(char *str, int width)
 		copy_map[i] = str[i];
 		i++;
 	}
-	if (len < width)
+	if (len < size)
 	{
-		while (i < width)
+		while (i < size)
 			copy_map[i++] = ' ';
 	}
 	copy_map[i] = '\0';
@@ -95,13 +95,13 @@ int	**ft_get_map_game_int(t_base *base)
 	int	i;
 	int	j;
 
-	map = ft_malloc(TAB_INT2, base->game->height);
+	map = ft_malloc(TAB_INT2, base->game->rows);
 	i = 0;
-	while (i < base->game->height)
+	while (i < base->game->rows)
 	{
-		map[i] = ft_malloc(TAB_INT1, base->game->width);
+		map[i] = ft_malloc(TAB_INT1, base->game->cols);
 		j = 0;
-		while (j < base->game->width)
+		while (j < base->game->cols)
 		{
 			if (base->map_base[i][j] == ' ')
 				map[i][j] = -1;

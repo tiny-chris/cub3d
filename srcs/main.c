@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 15:25:21 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 15:51:08 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_draw_rect(t_data *data, t_point tile)
 	t_point	tile2;
 	t_point	tile3;
 	t_point	tile4;
-	
+
 	tile2.x = tile.x + TILE_SIZE;
 	tile2.y = tile.y;
 	tile3.x = tile.x;
@@ -74,9 +74,9 @@ void	ft_render_map(t_data *data)
 	j = 0;
 	tile.x = 0;
 	tile.y = 0;
-	while (i < data->base.game->width)
+	while (i < data->base.game->cols)
 	{
-		while (j < data->base.game->height)
+		while (j < data->base.game->rows)
 		{
 			tile.x = i * TILE_SIZE;
 			tile.y = j * TILE_SIZE;
@@ -125,12 +125,10 @@ int	ft_render_next_frame(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	data; 
+	t_data	data;
 
-	// (void)argv;
-	// (void)argc;
 	if (ft_check_arg_err(argc, argv[1]))
-	return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	ft_init_t_base_cub(argv[1], &data.base);
 	if (ft_check_file_err(&data.base))
 		return (EXIT_FAILURE);
@@ -175,13 +173,13 @@ int	main(int argc, char **argv)
 // 	dprintf(1, "MAP INT** : \n");
 // 	i = 0;
 // 	int j;
-// 	dprintf(1, "game->height = %d game->width = %d\n", base->game->height, base->game->width);
+// 	dprintf(1, "game->rows = %d game->cols = %d\n", base->game->rows, base->game->cols);
 // 	dprintf(1, "player: y = %d, x = %d et position = %c\n", base->game->p_y, base->game->p_x, base->game->p_direction);
-// 	while (i < base->game->height)
+// 	while (i < base->game->rows)
 // 	{
 // 		dprintf(1, "\n");
 // 		j = 0;
-// 		while (j < base->game->width)
+// 		while (j < base->game->cols)
 // 		{
 // 			dprintf(1, "%d ", base->game->map[i][j]);
 // 			j++;

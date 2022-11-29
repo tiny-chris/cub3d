@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 15:08:53 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 15:40:01 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ typedef struct s_point {
 
 typedef struct s_game {
 	int				**map;
-	int				height; // lines
-	int				width; // rows
+	int				rows;//height;
+	int				cols;//width;
 	int				p_y;
 	int				p_x;
 	char			p_direction;

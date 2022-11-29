@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 13:59:16 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:40:35 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	ft_init_t_game_0(t_base *base)
 		return ;//ajuster
 	}
 	game->map = NULL;
-	game->height = -1;
-	game->width = -1;
+	game->rows = -1;
+	game->cols = -1;
 	game->p_y = -1;
 	game->p_x = -1;
 	game->p_direction = '\0';
@@ -97,8 +97,8 @@ void	ft_init_t_game(t_base *base)
 	t_game	*game;
 
 	game = base->game;
-	game->height = ft_lines_tabstr(base->map_base);
-	game->width = ft_strlen_spechar(base->map_base[0], '\n');
+	game->rows = ft_lines_tabstr(base->map_base);
+	game->cols = ft_strlen_spechar(base->map_base[0], '\n');
 	game->map = ft_get_map_game_int(base);
 	game->p_y = ft_get_player_y(base);
 	game->p_x = ft_get_player_x(base, game->p_y);
