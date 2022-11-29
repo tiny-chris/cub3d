@@ -6,12 +6,17 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 12:40:22 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:39:30 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// 	/*
+// 		- check bien 1 de chaque
+
+// 		- check que la color existe
+// 	*/
 char	*ft_get_str_color(t_line *line, int i, int len)
 {
 	char	*str_color;
@@ -104,19 +109,4 @@ void	ft_get_color(t_line **list_base)
 	//proteger
 	line->text_path = ft_get_str_color(line, i, len);
 	line->col_tab = ft_get_tab_int(line->text_path);
-}
-
-// void	ft_check_colors(t_line *line)
-// {
-// 	// 2.
-// 	/*
-// 		- check bien 1 de chaque
-
-// 		- check que la color existe
-// 	*/
-// }
-int	ft_check_color_err(t_base *base)
-{
-	(void) base;
-	return (0);
 }

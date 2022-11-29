@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 12:34:20 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:40:50 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,4 @@ void	ft_get_texture(t_line **list_base)
 	//proteger
 	free(tmp);//DELONE
 	tmp = NULL;
-}
-
-int	ft_check_texture_err(t_base *base)
-{
-	t_line	*line;
-
-	line = base->list_elem;
-	while (line)
-	{
-		if (line->range >= 1 && line->range < 5)
-		{
-			if (!ft_check_filename(line->text_path, ".xpm"))
-				exit (EXIT_FAILURE);//nettoyer !!
-			if (ft_check_isdirectory(line->text_path))
-				exit (EXIT_FAILURE);//nettoyer !!
-		}
-		line = line->next;
-	}
-	return (EXIT_SUCCESS);
 }

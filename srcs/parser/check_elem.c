@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 13:02:42 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:14:39 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,35 @@ static int	ft_check_count_elem(t_base *base, int range)
 	return (0);
 }
 
+/*  ***** Parsing - check texture elements *****
+**  *************************
+**  <SUMMARY>	Check if path is not a directory
+**	<RETURN>	- EXIT_FAILURE: if is a directory
+**				- XIT_SUCCESS, otherwise
+*/
 int	ft_check_elem_err(t_base *base)
 {
-	int	i;
+	int		i;
+	t_line	*line;
 
+	line = base->list_elem;
 	i = 1;
 	while (i < 7)
 	{
 		if (ft_check_count_elem(base, i))
-			return (1);//nettoyer
+			return (EXIT_FAILURE);//nettoyer
 		i++;
 	}
-	return (0);
+	while (line)
+	{
+		if (line->range >= 1 && line->range < 5)
+		{
+			if (!ft_check_filename(line->text_path, ".xpm"))// a tester ????
+				exit (EXIT_FAILURE);//nettoyer !!
+			if (ft_check_isdirectory(line->text_path))
+				exit (EXIT_FAILURE);//nettoyer !!
+		}
+		line = line->next;
+	}
+	return (EXIT_SUCCESS);
 }

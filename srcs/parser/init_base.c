@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 15:26:59 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:25:20 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_init_t_base_cub_0(t_base *base)
 	base->list_elem = NULL;
 	base->nblines_base = -1;
 	base->list_base = NULL;
-	base->index_start_map = -1;
+	base->game = NULL;
 }
 
 static void	ft_init_list_base(t_base *b, t_line_type ref)
@@ -71,4 +71,50 @@ void	ft_init_t_base_cub(char *file, t_base *base)
 	base->nblines_base = i;
 	dprintf(2, "nblines_base = %d\n", base->nblines_base);
 	ft_init_list_base(base, L_UNEXPECT);
+}
+
+static void	ft_init_t_game_0(t_game *game)
+{
+	dprintf(1, "YOYOOYOYOYOYOY\n");
+	dprintf(1, "game = %p\n", game);
+	game->height = -1;
+	game->map = NULL;
+	game->width = -1;
+	game->p_y = -1;
+	game->p_x = -1;
+	game->p_direction = '\0';
+}
+
+// void	ft_init_t_game(t_base *base)
+// {
+// 	t_game	*game;
+
+// 	game = base->game;
+// 	ft_init_t_game_0(game);
+// 	game->map = ft_get_map_game_int(base);
+// 	game->height = ft_lines_tabstr(base->map_base);
+// 	dprintf(1, "game->height = %d\n", game->height);
+// 	game->width = ft_strlen_spechar(base->map_base[0], '\n');
+// 	game->p_y = ft_get_player_y(base);
+// 	game->p_x = ft_get_player_x(base, game->p_y);
+// 	game->p_direction = base->map_base[game->p_y][game->p_x];
+// }
+
+void	ft_init_t_game(t_base *base)
+{
+	t_game	*game;
+
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return ;
+	dprintf(1, "YTESTESTESTE\n");
+	ft_init_t_game_0(game);
+	game->map = ft_get_map_game_int(base);
+	game->height = ft_lines_tabstr(base->map_base);
+	dprintf(1, "game->height = %d\n", game->height);
+	game->width = ft_strlen_spechar(base->map_base[0], '\n');
+	game->p_y = ft_get_player_y(base);
+	game->p_x = ft_get_player_x(base, game->p_y);
+	game->p_direction = base->map_base[game->p_y][game->p_x];
+	base->game = game;
 }

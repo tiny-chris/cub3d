@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 12:37:40 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:44:37 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,31 @@ char	**ft_get_map_base(t_base *base)
 	return (map_base);
 }
 
-// A CODER --> cf. so_long
-int	**ft_get_map_tabint(char **map_base)
+int	**ft_get_map_game_int(t_base *base)
 {
-	(void) map_base;
-	return (NULL);
+	int	**map;
+	int	i;
+	int	j;
+
+	map = ft_malloc(TAB_INT2, base->game->height);
+	i = 0;
+	while (i < base->game->height)
+	{
+		map[i] = ft_malloc(TAB_INT1, base->game->width);
+		j = 0;
+		while (j < base->game->width)
+		{
+			if (base->map_base[i][j] == ' ')
+				map[i][j] = -1;
+			else if (base->map_base[i][j] == '0')
+				map[i][j] = 0;
+			else if (base->map_base[i][j] == '1')
+				map[i][j] = 1;
+			else
+				map[i][j] = 2;
+			j++;
+		}
+		i++;
+	}
+	return (map);
 }

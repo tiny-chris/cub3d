@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 12:22:06 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:35:08 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_check_argc(int argc)
 **	<RETURN>	- if yes	--> return 1
 **  			- if no     --> return 0 + display error message
 **	<REMARKS>	only '.cub' is not a correct filename
-**
 */
 int	ft_check_filename(char *file, char *ext)
 {
@@ -106,6 +105,7 @@ int	ft_count_lines_gnl(char *file)
 	return (count);
 }
 
+// // Other version of counting lines
 // int	ft_count_lines_gnl(char *file)
 // {
 // 	char	*buffer;
@@ -137,9 +137,10 @@ int	ft_count_lines_gnl(char *file)
 // 	return (count + 1);
 // }
 
-/*  ***** Parsing - file checking on existence, extension, global content *****
+/*  ***** Parsing - check argc *****
 **  *************************
-**  <SUMMARY>	Main checking function that gathers tests function
+**  <SUMMARY>	Main checking function that gathers tests function on:
+**	file existence, extension, global content
 **	<RETURN>	- EXIT_FAILURE if any error
 **				- EXIT_SUCCESS to continue the program
 */

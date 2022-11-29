@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/26 00:15:13 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:43:43 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 **  <SUMMARY>	Get the file content in a char **
 **				and fill it by readingthe file (1 string = 1 line)
 */
-
-// AJOUTER LE DECOMPTE DU \n COMME DANS SO_LONG --> traité ailleurs !!
-//int	ft_strlen_spechar(const char *str, char spe_c)
-
 char	**ft_get_file_base(char	*file)
 {
 	char	**file_base;
@@ -34,7 +30,6 @@ char	**ft_get_file_base(char	*file)
 		return (NULL);//adjust en erreur et on exit
 	i = 0;
 	file_base = ft_malloc(TAB_STR2, (lines + 1));
-	//check si pb malloc
 	file_base[i] = get_next_line(fd);
 	while (file_base[i])
 	{
@@ -45,17 +40,45 @@ char	**ft_get_file_base(char	*file)
 	close (fd);
 	if (!file_base)
 		return (ft_err_msg(EXIT_FAILURE, file, ER_MAP_EMPTY), NULL);
-	// /*
-	// **	DEBUT - affichage
-	// */
-	// i = 0;
-	// while (i < lines)
-	// {
-	// 	dprintf(2, "line[%d] = %s\n", i, file_base[i]);
-	// 	i++;
-	// }
-	// /*
-	// **	FIN - affichage
-	// */
 	return (file_base);
+}
+
+int	ft_get_player_y(t_base *base)
+{
+	char	**map;
+	int		i;
+	int		j;
+
+	map = base->map_base;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' \
+				|| map[i][j] == 'E')
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (-1);
+}
+
+int	ft_get_player_x(t_base *base, int i)
+{
+	char	**map;
+	int		j;
+
+	map = base->map_base;
+	j = 0;
+	while (map[i][j])
+	{
+		if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' \
+			|| map[i][j] == 'E')
+			return (j);
+		j++;
+	}
+	return (-1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 18:16:47 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 12:13:37 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ typedef enum e_texture
 	EA,
 }	t_texture;
 
-typedef struct s_bin
-{
+typedef struct s_bin {
 	void			*ptr;
 	int				type;
 	int				size;
@@ -93,8 +92,7 @@ typedef struct s_bin
 
 /*	structure for parsing	*/
 
-typedef struct s_line
-{
+typedef struct s_line {
 	int				index;
 	char			*content;
 	t_line_type		ref;
@@ -121,18 +119,25 @@ typedef struct s_point {
 	int		y;
 }			t_point;
 
+typedef struct s_game {
+	int				**map;
+	int				height;
+	int				width;
+	int				p_y;
+	int				p_x;
+	char			p_direction;
+}	t_game;
+
 /*	structure for initial data - TO BE UPDATED*/
-typedef struct s_base {
+typedef struct s_base
+{
 	char	**file_base;
 	char	**map_base;
 	t_line	*list_elem;
 	int		nblines_base;
 	t_line	*list_base;
-	int		index_start_map;
-	t_img	img;
-	t_point	p1;
-	t_point	p2;
-}			t_base;
+	t_game	*game;
+}	t_base;
 
 typedef struct s_data {
 	t_base	base;
@@ -162,10 +167,11 @@ void	ft_get_texture(t_line **list_base);
 void	ft_get_color(t_line **list_base);
 t_line	*ft_get_elem_base(t_base *base);
 char	**ft_get_map_base(t_base *base);
-int		**ft_get_map_tabint(char **map_base);
+int		**ft_get_map_game_int(t_base *base);
+int		ft_get_player_y(t_base *base);
+int		ft_get_player_x(t_base *base, int i);
 
 int		ft_check_elem_err(t_base *base);
-int		ft_check_texture_err(t_base *base);
 int		ft_check_map_err(t_base *base);
 
 int		ft_check_map_only_allowed_set(char **map, int lines, const char *set);
@@ -184,6 +190,8 @@ void	ft_lstadd_elem(t_line **list_elem, t_line *line);
 
 /*	Init */
 
+void	ft_init_t_base_cub(char *file, t_base *base);
+void	ft_init_t_game(t_base *base);
 void	ft_init_t_data_cub(char *file, t_base *data);
 char	**ft_get_file_content(char	*file);
 char	**ft_get_file_base(char	*file);
