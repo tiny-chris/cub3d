@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 15:08:53 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 15:34:40 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ typedef struct s_point {
 typedef struct s_game {
 	int				**map;
 	int				height; // lines
-	int				width; // rows
+	int				width; // cols
 	int				p_y;
 	int				p_x;
 	char			p_direction;
@@ -189,11 +189,11 @@ void		ft_get_color(t_line **list_base);
 t_line		*ft_get_elem_base(t_base *base);
 char		**ft_get_map_base(t_base *base);
 int			**ft_get_map_game_int(t_base *base);
-int		ft_get_player_y(t_base *base);
-int		ft_get_player_x(t_base *base, int i);
+int			ft_get_player_y(t_base *base);
+int			ft_get_player_x(t_base *base, int i);
 
-int		ft_check_elem_err(t_base *base);
-int		ft_check_map_err(t_base *base);
+int			ft_check_elem_err(t_base *base);
+int			ft_check_map_err(t_base *base);
 
 int			ft_check_map_only_allowed_set(char **map, int lines, const char *set);
 int			ft_check_map_global_struct(char **map, int lines);
