@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 14:57:00 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 15:08:53 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ typedef struct s_point {
 
 typedef struct s_game {
 	int				**map;
-	int				height;
-	int				width;
+	int				height; // lines
+	int				width; // rows
 	int				p_y;
 	int				p_x;
 	char			p_direction;
@@ -146,6 +146,18 @@ typedef struct s_base
 	t_line	*list_base;
 	t_game	*game;
 }	t_base;
+
+typedef struct s_player {
+	float			x;
+	float			y;
+	float			width; // radius ?
+	float			height; // radius ?
+	int				turnDirection; // -1 for left +1 for right
+	int				walkDirection; // -1 for back +1 for front
+	float			rotationAngle;
+	float			turnSpeed;
+	float			walkSpeed;
+}				t_player;
 
 typedef struct s_data {
 	t_base			base;

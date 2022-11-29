@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 14:56:26 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 15:25:21 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ void	ft_render_map(t_data *data)
 	j = 0;
 	tile.x = 0;
 	tile.y = 0;
-	while (i < data->base.nbrows)
+	while (i < data->base.game->width)
 	{
-		while (j < data->base.nblines_base)
+		while (j < data->base.game->height)
 		{
-			tilex = j * TILE_SIZE;
-			tiley = i * TILE_SIZE;
+			tile.x = i * TILE_SIZE;
+			tile.y = j * TILE_SIZE;
 			ft_draw_rect(data, tile);
 			j++;
 		}
@@ -106,8 +106,8 @@ void	ft_render_map(t_data *data)
 int	ft_render_next_frame(t_data *data)
 {
 	// update line
-	data->p1.x += 5;
-	data->p2.x += 5;
+	// data->p1.x += 5;
+	// data->p2.x += 5;
 	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img.img)
@@ -117,7 +117,8 @@ int	ft_render_next_frame(t_data *data)
 	if (!data->img.addr)
 		return (0); // On free ? 
 	// render line
-	ft_draw_vertical(data, data->p1, data->p2);
+	//ft_draw_vertical(data, data->p1, data->p2);
+	ft_render_map(data);
 	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);
 	return (1);
 }
@@ -126,8 +127,14 @@ int	main(int argc, char **argv)
 {
 	t_data	data; 
 
-	(void)argv;
-	(void)argc;
+	// (void)argv;
+	// (void)argc;
+	if (ft_check_arg_err(argc, argv[1]))
+	return (EXIT_FAILURE);
+	ft_init_t_base_cub(argv[1], &data.base);
+	if (ft_check_file_err(&data.base))
+		return (EXIT_FAILURE);
+	ft_init_t_game(&data.base);
 	ft_init_data(&data);
 	mlx_key_hook(data.img.win_ptr, key_hook, &data); 
 	mlx_hook(data.img.win_ptr, 17, 1L << 17, (void *)ft_quit, &data); // clic sur la croix
