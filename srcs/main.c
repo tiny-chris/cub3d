@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 18:33:37 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 19:15:52 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ void	ft_init_data(t_data *data)
 		return ; // On free ?
 	// init player
 	ft_init_player(data);
-	// tests points
-	// data->p1.x = 10;
-	// data->p1.y = 100;
-	// data->p2.x = 10;
-	// data->p2.y = 500;
 }
 
 void	ft_draw_rect(t_data *data, t_point tile, int color)
@@ -76,13 +71,12 @@ void	ft_draw_rect(t_data *data, t_point tile, int color)
 	while (count < TILE_SIZE)
 	{
 		ft_draw_horizontal(data, tile_cpy, tile2_cpy, color);
-		tile_cpy.y++;
-		tile2_cpy.y++;
+		tile_cpy.y += 1;
+		tile2_cpy.y += 1;
 		count++;
 	}
 	ft_draw_horizontal(data, tile_cpy, tile2_cpy, color_cpy);
 	ft_draw_vertical(data, tile, tile3, color_cpy);
-	//ft_draw_horizontal(data, tile3, tile4, color_cpy);
 	ft_draw_vertical(data, tile2, tile4, color_cpy);
 }
 
@@ -103,8 +97,8 @@ void	ft_render_map(t_data *data)
 	{
 		while (j < data->base.game->rows)
 		{
-			//printf("i = %d\n j = %d\n", i, j);
-			//printf("map[j][i] = %d\n", map[j][i]);
+			// printf("i = %d\n j = %d\n", i, j);
+			// printf("map[j][i] = %d\n", map[j][i]);
 			if (map[j][i] != -1)
 			{
 				if (map[j][i] == 1)
@@ -190,8 +184,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	// (void)argv;
-	// (void)argc;
 	if (ft_check_arg_err(argc, argv[1]))
 		return (EXIT_FAILURE);
 	ft_init_t_base_cub(argv[1], &data.base);

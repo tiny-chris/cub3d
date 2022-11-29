@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 18:14:18 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 19:16:15 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@
 
 /*	define	*/
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1800
+# define WIN_HEIGHT 1600
 
 # define COLOR_LOW 0x007733FF
 # define COLOR_BLACK 0x000000
 # define COLOR_WHITE 0xFFFFFF
 
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 

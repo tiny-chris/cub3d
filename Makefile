@@ -54,7 +54,7 @@ OBJS		:= $(subst $(SRC_DIR),$(OBJ_DIR),$(OBJS))
 
 
 CC			:=	cc
-CFLAGS		:=	-Wall -Wextra -Werror -g
+CFLAGS		:=	-Wall -Wextra -Werror -g3
 CPPFLAGS	:=	-I lib/libft -I includes -I lib/mlx
 LDFLAGS		:=	-L lib/libft
 LDLIBS		:=	-lft -lXext -lX11 -lm -lz
