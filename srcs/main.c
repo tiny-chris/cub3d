@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 12:14:18 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:01:09 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@
 // 	return (0);
 // }
 
+/*
+	CETTE FONCTION SERT UNIQUEMENT A L"AFFICHAGE DONC A SUPPRIMER ENSUITE
+*/
 void	ZZ_PRINT_BASE_DATA(t_base *base)
 {
 	t_line	*elem;
@@ -142,7 +145,6 @@ int	main(int argc, char **argv)
 	ft_init_t_base_cub(argv[1], &base);
 	if (ft_check_file_err(&base))
 		return (EXIT_FAILURE);
-	dprintf(1, "map char** to int** :\n");
 	ft_init_t_game(&base);
 	ZZ_PRINT_BASE_DATA(&base);
 	printf("pour l'instant tout est ok\n");
