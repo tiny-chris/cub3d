@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 17:31:50 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 18:33:37 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,44 @@ void	ft_init_data(t_data *data)
 	// data->p2.y = 500;
 }
 
-void	ft_draw_rect(t_data *data, t_point tile)
+void	ft_draw_rect(t_data *data, t_point tile, int color)
 {
-	int		color;
 	t_point	tile2;
 	t_point	tile3;
 	t_point	tile4;
+	t_point	tile_cpy;
+	t_point	tile2_cpy;
+	int		color_cpy;
+	int		count;
 	
-	//map = data->base.game->map;
-//	printf("map[tile.x][tile.y] = %d\n", map[tile.x][tile.y]);
-	// if (map && map[tile.x][tile.y] == 1)
-	// {
-	// 	printf("test\n");
-	// 	color = COLOR_MAP_WALL;
-	// }
-	// else
-	// 	color = COLOR_MAP_NOWALL;
-	color = COLOR_MAP_NOWALL;
 	tile2.x = tile.x + TILE_SIZE;
 	tile2.y = tile.y;
 	tile3.x = tile.x;
 	tile3.y = tile.y + TILE_SIZE;
 	tile4.x = tile.x + TILE_SIZE;
 	tile4.y = tile.y + TILE_SIZE;
-	ft_draw_horizontal(data, tile, tile2, color);
-	ft_draw_vertical(data, tile, tile3, color);
-	ft_draw_horizontal(data, tile3, tile4, color);
-	ft_draw_vertical(data, tile2, tile4, color);
+	tile_cpy.x = tile.x;
+	tile_cpy.y = tile.y;
+	tile2_cpy.x = tile2.x;
+	tile2_cpy.y = tile2.y;
+	count = 0;
+
+	color_cpy = COLOR_WHITE;
+	if (color == COLOR_WHITE)
+		color_cpy = COLOR_BLACK;
+	ft_draw_horizontal(data, tile_cpy, tile2_cpy, color_cpy);
+	count++;
+	while (count < TILE_SIZE)
+	{
+		ft_draw_horizontal(data, tile_cpy, tile2_cpy, color);
+		tile_cpy.y++;
+		tile2_cpy.y++;
+		count++;
+	}
+	ft_draw_horizontal(data, tile_cpy, tile2_cpy, color_cpy);
+	ft_draw_vertical(data, tile, tile3, color_cpy);
+	//ft_draw_horizontal(data, tile3, tile4, color_cpy);
+	ft_draw_vertical(data, tile2, tile4, color_cpy);
 }
 
 void	ft_render_map(t_data *data)
@@ -81,6 +92,7 @@ void	ft_render_map(t_data *data)
 	int		j;
 	t_point	tile;
 	int 	**map;
+	int		color;
 
 	i = 0;
 	j = 0;
@@ -91,11 +103,18 @@ void	ft_render_map(t_data *data)
 	{
 		while (j < data->base.game->rows)
 		{
-			printf("i = %d\n j = %d\n", i, j);
-			printf("map[i][j] = %d\n", map[i][j]);
-			tile.x = i * TILE_SIZE;
-			tile.y = j * TILE_SIZE;
-			ft_draw_rect(data, tile);
+			//printf("i = %d\n j = %d\n", i, j);
+			//printf("map[j][i] = %d\n", map[j][i]);
+			if (map[j][i] != -1)
+			{
+				if (map[j][i] == 1)
+					color = COLOR_BLACK;
+				else
+					color = COLOR_WHITE;
+				tile.x = i * TILE_SIZE;
+				tile.y = j * TILE_SIZE;
+				ft_draw_rect(data, tile, color);
+			}
 			j++;
 		}
 		i++;
@@ -152,13 +171,13 @@ void	ZZ_PRINT_BASE_DATA(t_base *base)
 	dprintf(1, "MAP INT** : \n");
 	i = 0;
 	int j;
-	dprintf(1, "game->height = %d game->width = %d\n", base->game->height, base->game->width);
+	dprintf(1, "game->rows = %d game->cols = %d\n", base->game->rows, base->game->cols);
 	dprintf(1, "player: y = %d, x = %d et position = %c\n", base->game->p_y, base->game->p_x, base->game->p_direction);
-	while (i < base->game->height)
+	while (i < base->game->rows)
 	{
 		dprintf(1, "\n");
 		j = 0;
-		while (j < base->game->width)
+		while (j < base->game->cols)
 		{
 			dprintf(1, "%d ", base->game->map[i][j]);
 			j++;

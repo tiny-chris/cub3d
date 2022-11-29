@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 17:31:15 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/29 18:14:18 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define WIN_HEIGHT 600
 
 # define COLOR_LOW 0x007733FF
-# define COLOR_MAP_WALL 0x000000
-# define COLOR_MAP_NOWALL 0xFFFFFF
+# define COLOR_BLACK 0x000000
+# define COLOR_WHITE 0xFFFFFF
 
 # define TILE_SIZE 64
 
@@ -227,7 +227,7 @@ void		*ft_malloc(int type, int size);
 
 void		ft_draw_vertical(t_data *data, t_point p1, t_point p2, int color);
 void		ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color);
-void		ft_draw_rect(t_data *data, t_point tile);
+void		ft_draw_rect(t_data *data, t_point tile, int color);
 void		ft_render_map(t_data *data);
 int			ft_render_next_frame(t_data *data);
 
