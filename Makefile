@@ -41,6 +41,8 @@ SRCS		:= \
 			parser/line_list.c \
 			clean.c \
 			draw_line.c \
+			render_map.c \
+			init.c \
 			utils/utils.c \
 			utils/utils_2.c \
 			utils/utils_3.c \

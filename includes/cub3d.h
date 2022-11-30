@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 19:16:15 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 14:34:35 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@
 # define COLOR_LOW 0x007733FF
 # define COLOR_BLACK 0x000000
 # define COLOR_WHITE 0xFFFFFF
+# define COLOR_RED 0xFF0000
 
-# define TILE_SIZE 32
+# define TILE_SIZE 16
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 
@@ -209,13 +210,18 @@ void		ft_lstadd_elem(t_line **list_elem, t_line *line);
 // delone
 // free
 
-/*	Init */
+/*	Init parser */
 
 void		ft_init_t_base_cub(char *file, t_base *base);
 void		ft_init_t_game(t_base *base);
 void		ft_init_t_data_cub(char *file, t_base *data);
 char		**ft_get_file_content(char	*file);
 char		**ft_get_file_base(char	*file);
+
+/*	Init	*/
+
+void		ft_init_player(t_data *data);
+void		ft_init_data(t_data *data);
 
 /*	Clean	*/
 
@@ -227,6 +233,9 @@ void		*ft_malloc(int type, int size);
 
 void		ft_draw_vertical(t_data *data, t_point p1, t_point p2, int color);
 void		ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color);
+
+/*	Render map	*/
+
 void		ft_draw_rect(t_data *data, t_point tile, int color);
 void		ft_render_map(t_data *data);
 int			ft_render_next_frame(t_data *data);
