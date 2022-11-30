@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 17:33:59 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 17:49:28 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define COLOR_BLACK 0x000000
 # define COLOR_WHITE 0xFFFFFF
 # define COLOR_RED 0xFF0000
+# define COLOR_BLUE 0x0000FF
 
 # define TILE_SIZE 16
 

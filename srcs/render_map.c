@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/11/30 14:57:14 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 18:08:06 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ void	ft_draw_rect(t_data *data, t_point tile, int color, int size)
 void	ft_render_player(t_data *data)
 {
 	t_point	p;
+	t_point	p2;
 
 	p.x = data->player.x;
 	p.y = data->player.y;
+	p2.x = p.x + (cos(data->player.rotationAngle) * 20);
+	p2.y = p.y + (sin(data->player.rotationAngle) * 20);
 	ft_draw_rect(data, p, COLOR_RED, data->player.width);
+	ft_draw_line(data, p, p2, COLOR_BLUE);
 }
 
 void	ft_render_map(t_data *data)
