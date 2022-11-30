@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 19:07:51 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 19:10:39 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 int	key_hook(int keycode, t_data *data)
 {
-	if (keycode == 65307)
+	if (keycode == KEY_ESC || keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		ft_quit(data);
+	// else if (keycode == KEY_UP) // UP
+	// else if (keycode == KEY_DOWN) // DOWN
+	// else if (keycode == KEY_LEFT) // LEFT
+	// else if (keycode == KEY_RIGHT) // RIGHT
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 17:49:28 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 19:00:45 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 # include "libft.h"
 # include "../lib/mlx/mlx.h"
+# include <X11/keysym.h>
 
-# include <errno.h>//	perror, errno
-# include <fcntl.h>//	open,
-# include <stdio.h>//	printf, perror
+# include <errno.h>	//	perror, errno
+# include <fcntl.h>	//	open,
+# include <stdio.h>	//	printf, perror
 # include <stdlib.h>//	malloc, free
 # include <string.h>//	strerror
 # include <sys/types.h>
@@ -49,6 +50,15 @@
 # define ER_MAP_ISDIR "is a directory"
 
 /*	enum	*/
+
+typedef enum e_keycode
+{
+	KEY_ESC			= 65307,
+	KEY_UP			= 65362,
+	KEY_DOWN		= 65364,
+	KEY_LEFT		= 65361,
+	KEY_RIGHT		= 65363,
+}	t_keycode;
 
 typedef enum e_bool
 {
