@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 14:34:35 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 14:45:31 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ void		ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color);
 
 /*	Render map	*/
 
-void		ft_draw_rect(t_data *data, t_point tile, int color);
+void		ft_draw_rect(t_data *data, t_point tile, int color, int size);
 void		ft_render_map(t_data *data);
 int			ft_render_next_frame(t_data *data);
 
