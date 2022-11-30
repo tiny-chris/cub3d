@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 20:09:05 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 20:12:03 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include "../lib/mlx/mlx.h"
-# include <X11/keysym.h>
+# include <X11/keysym.h> // a supprimer
 
 # include <errno.h>	//	perror, errno
 # include <fcntl.h>	//	open,
@@ -58,7 +58,6 @@ typedef enum e_keycode
 	KEY_DOWN		= 65364,
 	KEY_LEFT		= 65361,
 	KEY_RIGHT		= 65363,
-	//KEY_RELEASE		= 3,
 }	t_keycode;
 
 typedef enum e_bool
