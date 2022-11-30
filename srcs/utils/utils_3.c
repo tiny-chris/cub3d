@@ -6,20 +6,61 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 19:10:39 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 20:08:39 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	ft_key_release(int keycode, t_data *data)
+{
+	if (keycode == KEY_UP) // UP
+	{
+		data->player.walkDirection = 0;
+		printf("walkdir %d\n", data->player.walkDirection);
+	}
+	else if (keycode == KEY_DOWN) // DOWN
+	{
+		data->player.walkDirection = 0;
+		printf("walkdir %d\n", data->player.walkDirection);
+	}
+	else if (keycode == KEY_LEFT) // LEFT
+	{
+		data->player.turnDirection = 0;
+		printf("turndir %d\n", data->player.turnDirection);
+	}
+	else if (keycode == KEY_RIGHT) // RIGHT
+	{
+		data->player.turnDirection = 0;
+		printf("turndir %d\n", data->player.turnDirection);
+	}
+	return (0);
+}
+
 int	key_hook(int keycode, t_data *data)
 {
-	if (keycode == KEY_ESC || keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT || keycode == KEY_RIGHT)
+	if (keycode == KEY_ESC)
 		ft_quit(data);
-	// else if (keycode == KEY_UP) // UP
-	// else if (keycode == KEY_DOWN) // DOWN
-	// else if (keycode == KEY_LEFT) // LEFT
-	// else if (keycode == KEY_RIGHT) // RIGHT
+	else if (keycode == KEY_UP) // UP
+	{
+		data->player.walkDirection = 1;
+		printf("walkdir %d\n", data->player.walkDirection);
+	}
+	else if (keycode == KEY_DOWN) // DOWN
+	{
+		data->player.walkDirection = -1;
+		printf("walkdir %d\n", data->player.walkDirection);
+	}
+	else if (keycode == KEY_LEFT) // LEFT
+	{
+		data->player.turnDirection = -1;
+		printf("turndir %d\n", data->player.turnDirection);
+	}
+	else if (keycode == KEY_RIGHT) // RIGHT
+	{
+		data->player.turnDirection = 1;
+		printf("turndir %d\n", data->player.turnDirection);
+	}
 	return (0);
 }
 

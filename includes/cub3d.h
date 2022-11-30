@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 19:00:45 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 20:09:05 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef enum e_keycode
 	KEY_DOWN		= 65364,
 	KEY_LEFT		= 65361,
 	KEY_RIGHT		= 65363,
+	//KEY_RELEASE		= 3,
 }	t_keycode;
 
 typedef enum e_bool
@@ -130,23 +131,23 @@ typedef struct s_img {
 	int				bits_per_pixel;
 	int				line_lenght;
 	int				endian;
-}					t_img;
+}				t_img;
 
 typedef struct s_point {
 	int				x;
 	int				y;
-}					t_point;
+}				t_point;
 
 /*	Structure for initial data - TO BE UPDATED	*/
 
 typedef struct s_game {
 	int				**map;
-	int				rows;//height;
-	int				cols;//width;
+	int				rows;	//height;
+	int				cols;	//width;
 	int				p_y;
 	int				p_x;
 	char			p_direction;
-}	t_game;
+}				t_game;
 
 /*	structure for initial data - TO BE UPDATED*/
 typedef struct s_base
@@ -162,10 +163,10 @@ typedef struct s_base
 typedef struct s_player {
 	float			x;
 	float			y;
-	float			width; // radius ?
-	float			height; // radius ?
-	int				turnDirection; // -1 for left +1 for right
-	int				walkDirection; // -1 for back +1 for front
+	float			width; 			// radius ?
+	float			height; 		// radius ?
+	int				turnDirection; 	// -1 for left +1 for right
+	int				walkDirection; 	// -1 for back +1 for front
 	float			rotationAngle;
 	float			turnSpeed;
 	float			walkSpeed;
@@ -260,6 +261,7 @@ int			ft_render_next_frame(t_data *data);
 
 void		my_pixel_put(t_data *data, int x, int y, int color);
 int			key_hook(int keycode, t_data *data);
+int			ft_key_release(int keycode, t_data *data);
 
 int			ft_open_read(const char *file);
 int			ft_strlen_spechar(const char *str, char spe_c);
