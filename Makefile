@@ -40,7 +40,9 @@ SRCS		:= \
 			parser/init_base.c \
 			parser/line_list.c \
 			clean.c \
-			draw_line.c \
+			draw/draw_line.c \
+			draw/big_slope.c \
+			draw/small_slope.c \
 			render_map.c \
 			init.c \
 			utils/utils.c \

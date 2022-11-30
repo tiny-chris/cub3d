@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 14:45:31 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 17:33:59 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,7 @@ char		**ft_get_file_base(char	*file);
 
 void		ft_init_player(t_data *data);
 void		ft_init_data(t_data *data);
+float		ft_get_rotation_angle(t_game *game);
 
 /*	Clean	*/
 
@@ -231,8 +232,12 @@ void		*ft_malloc(int type, int size);
 
 /*	Draw line	*/
 
+float		ft_abs(float nbr);
+void		ft_draw_line(t_data *data, t_point p1, t_point p2, int color);
 void		ft_draw_vertical(t_data *data, t_point p1, t_point p2, int color);
 void		ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color);
+void		ft_big_slope(t_data *data, t_point p1, t_point p2, int color, float m);
+void		ft_small_slope(t_data *data, t_point p1, t_point p2, int color, float m);
 
 /*	Render map	*/
 

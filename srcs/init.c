@@ -6,26 +6,41 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/11/30 14:32:25 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 15:26:07 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+float	ft_get_rotation_angle(t_game *game)
+{
+	float	rotationAngle;
+
+	rotationAngle = 0;
+	if (game->p_direction == 'N')
+		rotationAngle = M_PI / 2;
+	else if (game->p_direction == 'S')
+		rotationAngle = (3 * M_PI) / 2;
+	else if (game->p_direction == 'E')
+		rotationAngle = 2 * M_PI;
+	else if (game->p_direction == 'W')
+		rotationAngle = M_PI;
+	return (rotationAngle);
+}
 
 void	ft_init_player(t_data *data)
 {
 	t_game	*game;
 
 	game = data->base.game;
-	// data->player.x = WIN_WIDTH / 2;
-	// data->player.y = WIN_HEIGHT / 2;
 	data->player.x = game->p_x * TILE_SIZE;
 	data->player.y = game->p_y * TILE_SIZE;
-	data->player.width = 5;
-	data->player.height = 5;
+	data->player.width = 4;
+	data->player.height = 4; // ne garder que width ?
 	data->player.turnDirection = 0;
 	data->player.walkDirection = 0;
-	data->player.rotationAngle = M_PI / 2;
+	data->player.rotationAngle = ft_get_rotation_angle(game);
+	printf("\ndata->playerotationangle %f\n", data->player.rotationAngle);
 	data->player.turnSpeed =  45 * (M_PI / 180); // 2 * (M_PI / 180) dans le js; 
 	data->player.walkSpeed = 2.0;
 }

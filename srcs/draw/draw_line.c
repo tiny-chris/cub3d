@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:23:34 by lmelard           #+#    #+#             */
-/*   Updated: 2022/11/29 15:14:07 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/11/30 17:36:48 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,30 @@ void	ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color)
 			p1.x += 1;
 		}
 	}
+}
+
+float	ft_abs(float nbr)
+{
+	if (nbr < 0)
+		nbr = nbr * -1;
+	return (nbr);
+}
+
+void	ft_draw_line(t_data *data, t_point p1, t_point p2, int color)
+{
+	float	dx;
+	float	dy;
+	float	m;
+
+	dx = ft_abs(p2.x - p1.x);
+	dy = ft_abs(p2.y - p1.y);
+	m = dy / dx;
+	if (dy == 0)
+		ft_draw_horizontal(data, p1, p2, color);
+	else if (dx == 0)
+		ft_draw_horizontal(data, p1, p2, color);
+	else if (dx >= dy)
+		ft_small_slope(data, p1, p2, color, m);
+	else
+		ft_big_slope(data, p1, p2, color, m);
 }
