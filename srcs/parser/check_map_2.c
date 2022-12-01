@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 15:28:29 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:29:08 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	ft_check_map_unique_player(char **map, int lines)
 		i++;
 	}
 	if (count == 0)
-		return (ft_err_msg(0, NULL, "no player"));
+		return (ft_err_msg_1(0, NULL, NULL, "no player"));
 	if (count > 1)
-		return (ft_err_msg(0, NULL, "more than one player: not allowed"));
+		return (ft_err_msg_1(0, NULL, NULL, "more than one player: not allowed"));
 	return (1);
 }
 
@@ -64,14 +64,14 @@ int	ft_check_map_enclosed_by_walls(char **map, int lines, int len)
 		{
 			if (map[i][j] == '0' \
 				&& !ft_cell_enclosed_by_charset(map, i, j, " "))
-				return (ft_err_msg(0, NULL, "not fully enclosed 1"));
+				return (ft_err_msg_1(0, NULL, NULL, "not fully enclosed 1"));
 			else if ((map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'W' || map[i][j] == 'E') \
 				&& !ft_cell_enclosed_by_charset(map, i, j, " "))
-				return (ft_err_msg(0, NULL, "player is not inside map"));
+				return (ft_err_msg_1(0, NULL, NULL, "player is not inside map"));
 			else if ((j < (len - 1) && map[i][j] == ' ') \
 				&& !ft_cell_enclosed_by_charset(map, i, j, "0NSWE"))
-				return (ft_err_msg(0, NULL, "not fully enclosed 2"));
+				return (ft_err_msg_1(0, NULL, NULL, "not fully enclosed 2"));
 			j++;
 		}
 		i++;

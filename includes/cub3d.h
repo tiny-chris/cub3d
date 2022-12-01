@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 20:12:03 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:56:33 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 
 /*	define	*/
 
+# ifndef OPEN_MAX
+#  define OPEN_MAX 1024
+# endif
+
 # define WIN_WIDTH 1800
 # define WIN_HEIGHT 1600
 
@@ -42,11 +46,12 @@
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 
-# define ER_NO_AG "missing argument\nUsage: ./cub3D <map_path>.cub"
-# define ER_TOO_AG "too many arguments\nUsage: ./cub3D <map_path>.cub"
-# define ER_MALLOC "memory allocation failed"
-# define ER_MAP_EMPTY "no such file or empty file"
-# define ER_MAP_EXT "incorrect file extension\nUsage: ./cub3D <map_path>.cub"
+# define USAGE_CUB "\nUsage: ./cub3D <map_path>.cub"
+# define ER_NO_AG "Missing argument"
+# define ER_TOO_AG "Too many arguments"
+# define ER_MALLOC "Memory allocation failed"
+# define ER_MAP_EMPTY "No such file or empty file"
+# define ER_MAP_EXT "has an incorrect file extension"
 # define ER_MAP_ISDIR "is a directory"
 
 /*	enum	*/
@@ -75,6 +80,7 @@ typedef enum e_sizetype
 	TAB_STR2		= 500,
 	TAB_STRS		= 600,
 	LST_LINE		= 700,
+	LST_GAME		= 800,
 }	t_sizetype;
 
 typedef enum s_flag
@@ -120,7 +126,7 @@ typedef struct s_line {
 	char			color;
 	int				*col_tab;
 	struct s_line	*next;
-}				t_line;
+}	t_line;
 
 typedef struct s_img {
 	void			*mlx_ptr;
@@ -130,12 +136,12 @@ typedef struct s_img {
 	int				bits_per_pixel;
 	int				line_lenght;
 	int				endian;
-}				t_img;
+}	t_img;
 
 typedef struct s_point {
 	int				x;
 	int				y;
-}				t_point;
+}	t_point;
 
 /*	Structure for initial data - TO BE UPDATED	*/
 
@@ -146,7 +152,7 @@ typedef struct s_game {
 	int				p_y;
 	int				p_x;
 	char			p_direction;
-}				t_game;
+}	t_game;
 
 /*	structure for initial data - TO BE UPDATED*/
 typedef struct s_base
@@ -162,10 +168,10 @@ typedef struct s_base
 typedef struct s_player {
 	float			x;
 	float			y;
-	float			width; 			// radius ?
-	float			height; 		// radius ?
-	int				turnDirection; 	// -1 for left +1 for right
-	int				walkDirection; 	// -1 for back +1 for front
+	float			width;			// radius ?
+	float			height;			// radius ?
+	int				turnDirection;	// -1 for left +1 for right
+	int				walkDirection;	// -1 for back +1 for front
 	float			rotationAngle;
 	float			turnSpeed;
 	float			walkSpeed;
@@ -218,8 +224,10 @@ t_line		*ft_lstlast_line(t_line *lst);
 void		ft_lstadd_back_line(t_line **line, t_line *new);
 void		ft_lstadd_line(t_line **line, int index, char *str, t_line_type ref);
 void		ft_lstadd_elem(t_line **list_elem, t_line *line);
-// delone
+void		ft_lstdelone_line(t_line *node);
 // free
+
+/*	game_list*/
 
 /*	Init parser */
 
@@ -238,8 +246,29 @@ float		ft_get_rotation_angle(t_game *game);
 /*	Clean	*/
 
 void		ft_quit(t_data *data);
-int			ft_err_msg(int res, char *msg1, char *msg2);
+int			ft_clean(int res);
+int			ft_err_msg_1(int res, char *msg1, char *msg2, char *msg3);
+int			ft_err_msg_2(int res, int i, char *msg1, char *msg2);
+void		ft_close_fd(void);
+
+// void		*ft_free_tabint(int **tab_int, int size);
+void		*ft_free_tabint2(int **tab_int, int size, int type);
+// void		*ft_free_tabint_bin(int **tab_int, int size, int type);
+void		ft_free_strs(char *str1, char *str2, char *str3);
+void		ft_free_ints(int *t_int1, int *t_int2, int *t_int3);
+// void		*ft_free_tabstr(char **tab_str);
+void		*ft_free_tabstr2(char **tab_str, int type);
+// void		*ft_free_tabstr_bin(char **tab_str, int type);
+
+/*	Handle malloc*/
+
 void		*ft_malloc(int type, int size);
+void		*ft_magic_malloc(int flag_type, void *ptr, int size);
+int			ft_lstadd_bin(t_bin **bin_head, void *ptr, int type, int size);
+void		ft_free_ptr_type(void *ptr, int type, int size);
+void		ft_lstdelone_bin(t_bin *node);
+void		ft_lstclearone_bin(t_bin **bin_head, void *ptr);
+void		ft_free_bin(t_bin **bin_head);
 
 /*	Draw line	*/
 

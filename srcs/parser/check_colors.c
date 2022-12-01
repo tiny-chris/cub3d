@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 11:39:30 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:27:02 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ char	*ft_get_str_color(t_line *line, int i, int len)
 	char	*tmp;
 
 	str_color = ft_substr(line->content, i, len - i);
-	//protéger
+	ft_magic_malloc(ADD, str_color, 0);
 	tmp = ft_strtrim(str_color, " ");
-	//protéger
-	free (str_color);//DELONE
-	str_color = ft_malloc(TAB_STR1, ft_len_delspace_str(tmp) + 1);
+	ft_magic_malloc(ADD, tmp, 0);
+	ft_magic_malloc(DELONE, str_color, 0);
+	len = ft_len_delspace_str(tmp);
+	str_color = ft_magic_malloc(MALLOC + TAB_STR1, NULL, len + 1);
 	i = 0;
 	len = 0;
 	while (tmp[i])
@@ -40,6 +41,7 @@ char	*ft_get_str_color(t_line *line, int i, int len)
 		i++;
 	}
 	str_color[len] = '\0';
+	ft_magic_malloc(DELONE, tmp, 0);
 	return (str_color);
 }
 
@@ -61,24 +63,24 @@ int	*ft_get_tab_int(char *text_path)
 	i = -1;
 	tab = NULL;
 	tab_str = ft_split2(text_path, ',');
-	//protéger
+	ft_magic_malloc(ADD + TAB_STRS, tab_str, 0);
 	if (ft_lines_tabstr(tab_str) != 3)
 	{
-		ft_err_msg(1, NULL, "error on nb of colors references");
+		ft_err_msg_1(1, NULL, NULL, "error on nb of colors references");
 		exit (EXIT_FAILURE);//nettoyer
 	}
-	tab = ft_malloc(TAB_INT1, 3);//protégé
+	tab = ft_magic_malloc(MALLOC + TAB_INT1, NULL, 3);
 	while (++i < 3)
 	{
 		n = ft_atoi_cub(tab_str[i]);
 		if (n < 0 || n > 255)
 		{
-			ft_err_msg(1, NULL, "error on colors values");
+			ft_err_msg_1(1, NULL, NULL, "error on colors values");
 			exit (EXIT_FAILURE);//nettoyer
 		}
 		tab[i] = n;
 	}
-	free(tab_str);//DELONE
+	ft_magic_malloc(DELONE, tab_str, 0);
 	tab_str = NULL;
 	return (tab);
 }

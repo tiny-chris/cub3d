@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 11:43:43 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:23:46 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*  ***** Initialising - get file content *****
 **  *************************
 **  <SUMMARY>	Get the file content in a char **
-**				and fill it by readingthe file (1 string = 1 line)
+**				and fill it by reading the file (1 string = 1 line)
 */
 char	**ft_get_file_base(char	*file)
 {
@@ -24,12 +24,12 @@ char	**ft_get_file_base(char	*file)
 	int		lines;
 	int		i;
 
+	fd = ft_open_read(file);
 	lines = ft_count_lines_gnl(file);
-	fd = open(file, O_RDONLY);
-	if (fd < 0 || lines == 0)
-		return (NULL);//adjust en erreur et on exit
+	if (lines == 0)
+		exit (ft_err_msg_1(1, "TBD", NULL, NULL));
 	i = 0;
-	file_base = ft_malloc(TAB_STR2, (lines + 1));
+	file_base = ft_magic_malloc(MALLOC + TAB_STR2, NULL, (lines + 1));
 	file_base[i] = get_next_line(fd);
 	while (file_base[i])
 	{
@@ -39,7 +39,10 @@ char	**ft_get_file_base(char	*file)
 	file_base[i] = NULL;
 	close (fd);
 	if (!file_base)
-		return (ft_err_msg(EXIT_FAILURE, file, ER_MAP_EMPTY), NULL);
+	{
+		ft_err_msg_1(EXIT_FAILURE, file, ER_MAP_EMPTY, NULL);
+		exit (ft_clean(1));
+	}
 	return (file_base);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 19:06:59 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:00:00 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_open_read(const char *file)
 		ft_putendl_fd(strerror(errno), 2);
 		ft_putendl_fd("fd: ", 2);
 		perror(file);
-		exit(val_exit); // ou exit(errno);
+		exit(ft_clean(val_exit)); // ou exit(errno);
 	}
 	return (fd);
 }
@@ -89,7 +89,6 @@ int	ft_lines_tabstr(char **tab_str)
 **  and returns a pointer to it.
 **	i.e. duplicate a table of int
 */
-
 int	*ft_intdup(int *tab, int size)
 {
 	int	i;
@@ -98,7 +97,7 @@ int	*ft_intdup(int *tab, int size)
 	i = 0;
 	copy = (int *)malloc(sizeof(int) * size);
 	if (copy == NULL)
-		return (0);
+		return (NULL);
 	while (i < size)
 	{
 		copy[i] = tab[i];

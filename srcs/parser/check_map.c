@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/28 14:39:32 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:29:46 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,16 @@ int	ft_only_charset_in_str(char *str, const char *set)
 // inside : commence par un 1 et finit par un 1
 int	ft_check_map_global_struct(char **map, int lines)
 {
-	int	i;
-
-	i = 1;
 	if (!ft_only_charset_in_str(map[0], "1 "))
-		return (ft_err_msg(0, NULL, "map's 1st line is incorrect"));
+		return (ft_err_msg_1(0, NULL, NULL, "map's 1st line is incorrect"));
 	if (ft_count_isinset(map[0], '1') < 1)
-		return (ft_err_msg(0, NULL, "map's 1st line is incorrect"));
+		return (ft_err_msg_1(0, NULL, NULL, "map's 1st line is incorrect"));
 	if (!ft_only_charset_in_str(map[lines - 1], "1 "))
-		return (ft_err_msg(0, NULL, "map's last line is incorrect"));
+		return (ft_err_msg_1(0, NULL, NULL, "map's last line is incorrect"));
 	if (ft_count_isinset(map[lines - 1], '1') < 1)
-		return (ft_err_msg(0, NULL, "map's last line is incorrect"));
+		return (ft_err_msg_1(0, NULL, NULL, "map's last line is incorrect"));
 	if (!ft_only_spechar_at_str_ends(map, '1'))
-		return (ft_err_msg(0, NULL, "map's middle lines are incorrect"));
+		return (ft_err_msg_1(0, NULL, NULL, "map's middle lines are incorrect"));
 	return (1);
 }
 
@@ -91,12 +88,12 @@ int	ft_check_map_only_allowed_set(char **map, int lines, const char *set)
 	int	i;
 
 	if (!map || !set || lines <= 0)
-		return (ft_err_msg(0, NULL, "map is empty / set is empty"));
+		return (ft_err_msg_1(0, NULL, NULL, "map is empty / set is empty"));
 	i = 0;
 	while (map[i])
 	{
 		if (!ft_only_charset_in_str(map[i], set))
-			return (ft_err_msg(0, NULL, "map does contain not allowed char"));
+			return (ft_err_msg_1(0, NULL, NULL, "map does contain not allowed char"));
 		i++;
 	}
 	return (1);

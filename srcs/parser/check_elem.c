@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 12:14:39 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:28:17 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ void	ft_lstadd_elem(t_line **list_elem, t_line *line)
 {
 	t_line	*tmp;
 
-	tmp = ft_malloc(LST_LINE, 1);
+	tmp = ft_magic_malloc(MALLOC + LST_LINE, NULL, 1);
 	tmp->index = line->index;
 	tmp->content = NULL;
 	tmp->ref = line->ref;
 	tmp->range = line->range;
 	tmp->texture = line->texture;
 	tmp->text_path = ft_strdup(line->text_path);
+	ft_magic_malloc(ADD + TAB_STR1, tmp->text_path, 0);
 	tmp->color = line->color;
 	if (tmp->color == 'C' || tmp->color == 'F')
+	{
 		tmp->col_tab = ft_intdup(line->col_tab, 3);
+		ft_magic_malloc(ADD + TAB_INT1, tmp->col_tab, 3);
+	}
 	else
 		tmp->col_tab = NULL;
 	tmp->next = NULL;
@@ -92,9 +96,9 @@ static int	ft_check_count_elem(t_base *base, int range)
 		line = line->next;
 	}
 	if (count < 1)
-		return (ft_err_msg(1, NULL, "one or more elements are missing"));
+		return (ft_err_msg_1(1, NULL, NULL, "one or more elements are missing"));
 	else if (count > 1)
-		return (ft_err_msg(1, NULL, "one or more duplicate elements"));
+		return (ft_err_msg_1(1, NULL, NULL, "one or more duplicate elements"));
 	return (0);
 }
 
@@ -121,7 +125,7 @@ int	ft_check_elem_err(t_base *base)
 	{
 		if (line->range >= 1 && line->range < 5)
 		{
-			if (!ft_check_filename(line->text_path, ".xpm"))// a tester ????
+			if (!ft_check_filename(line->text_path, ".xpm"))
 				exit (EXIT_FAILURE);//nettoyer !!
 			if (ft_check_isdirectory(line->text_path))
 				exit (EXIT_FAILURE);//nettoyer !!

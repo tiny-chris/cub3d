@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 20:09:51 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:10:25 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ void	ZZ_PRINT_BASE_DATA(t_base *base)
 	dprintf(1, "MAP CHAR** : \n");
 	while (base->map_base[i])
 	{
-		dprintf(1, "l.%d = %s\n", i, base->map_base[i]);
+		int l = 0;
+		if (i < 10)
+			dprintf(1, "l.%d%d = %s\n", l, i, base->map_base[i]);
+		else
+			dprintf(1, "l.%d = %s\n", i, base->map_base[i]);
 		i++;
 	}
 	dprintf(1, "\n");
@@ -64,10 +68,10 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (ft_check_arg_err(argc, argv[1]))
-		return (EXIT_FAILURE);
+		return (ft_clean(EXIT_FAILURE));
 	ft_init_t_base_cub(argv[1], &data.base);
 	if (ft_check_file_err(&data.base))
-		return (EXIT_FAILURE);
+		return (ft_clean(EXIT_FAILURE));
 	ft_init_t_game(&data.base);
 	ZZ_PRINT_BASE_DATA(&data.base);
 	ft_init_data(&data);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/29 15:40:35 by cgaillag         ###   ########.fr       */
+/*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
+/*   Updated: 2022/12/01 17:24:18 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@ static void	ft_init_t_game_0(t_base *base)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-	{
-		base->game = NULL;
-		return ;//ajuster
-	}
+	game = ft_magic_malloc(MALLOC + LST_GAME, NULL, 1);
 	game->map = NULL;
 	game->rows = -1;
 	game->cols = -1;
@@ -79,16 +74,19 @@ static void	ft_init_list_base(t_base *b, t_line_type ref)
 void	ft_init_t_base_cub(char *file, t_base *base)
 {
 	int	i;
+	int	val_exit;
 
 	i = 0;
 	ft_init_t_base_cub_0(base);
 	base->file_base = ft_get_file_base(file);
 	if (!base->file_base)
-		exit (EXIT_FAILURE);//nettoyer et mesg erreur
+	{
+		val_exit = ft_err_msg_1(1, "TBD 2", NULL, "a revoir");
+		exit(ft_clean(val_exit));
+	}
 	while (base->file_base[i])
 		i++;
 	base->nblines_base = i;
-	dprintf(2, "nblines_base = %d\n", base->nblines_base);
 	ft_init_list_base(base, L_UNEXPECT);
 }
 
@@ -104,4 +102,3 @@ void	ft_init_t_game(t_base *base)
 	game->p_x = ft_get_player_x(base, game->p_y);
 	game->p_direction = base->map_base[game->p_y][game->p_x];
 }
-                   
