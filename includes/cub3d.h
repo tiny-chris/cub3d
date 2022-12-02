@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 14:47:09 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:00:57 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define COLOR_RED 0xFF0000
 # define COLOR_BLUE 0x0000FF
 
-# define TILE_SIZE 16
+# define TILE_SIZE 32
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 

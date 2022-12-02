@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 14:24:54 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 18:33:36 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,7 @@ int	ft_render_next_frame(t_data *data)
 		return (0); // On free ? 
 	// render line
 	ft_render_map(data);
-	if (data->player.turnDirection != 0)
-		ft_update_player(data);
-	if (data->player.walkDirection != 0)
+	if (data->player.turnDirection != 0 || data->player.walkDirection != 0)
 		ft_update_player(data);
 	ft_render_player(data);
 	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);

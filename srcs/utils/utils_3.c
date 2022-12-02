@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/11/30 20:08:39 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 15:55:51 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ int	ft_key_release(int keycode, t_data *data)
 	if (keycode == KEY_UP) // UP
 	{
 		data->player.walkDirection = 0;
-		printf("walkdir %d\n", data->player.walkDirection);
+		//printf("walkdir %d\n", data->player.walkDirection);
 	}
 	else if (keycode == KEY_DOWN) // DOWN
 	{
 		data->player.walkDirection = 0;
-		printf("walkdir %d\n", data->player.walkDirection);
+		//printf("walkdir %d\n", data->player.walkDirection);
 	}
 	else if (keycode == KEY_LEFT) // LEFT
 	{
 		data->player.turnDirection = 0;
-		printf("turndir %d\n", data->player.turnDirection);
+		//printf("turndir %d\n", data->player.turnDirection);
 	}
 	else if (keycode == KEY_RIGHT) // RIGHT
 	{
 		data->player.turnDirection = 0;
-		printf("turndir %d\n", data->player.turnDirection);
+		//printf("turndir %d\n", data->player.turnDirection);
 	}
 	return (0);
 }
@@ -44,22 +44,22 @@ int	key_hook(int keycode, t_data *data)
 	else if (keycode == KEY_UP) // UP
 	{
 		data->player.walkDirection = 1;
-		printf("walkdir %d\n", data->player.walkDirection);
+		//printf("walkdir %d\n", data->player.walkDirection);
 	}
 	else if (keycode == KEY_DOWN) // DOWN
 	{
 		data->player.walkDirection = -1;
-		printf("walkdir %d\n", data->player.walkDirection);
+		//printf("walkdir %d\n", data->player.walkDirection);
 	}
 	else if (keycode == KEY_LEFT) // LEFT
 	{
 		data->player.turnDirection = -1;
-		printf("turndir %d\n", data->player.turnDirection);
+		//printf("turndir %d\n", data->player.turnDirection);
 	}
 	else if (keycode == KEY_RIGHT) // RIGHT
 	{
 		data->player.turnDirection = 1;
-		printf("turndir %d\n", data->player.turnDirection);
+		//printf("turndir %d\n", data->player.turnDirection);
 	}
 	return (0);
 }

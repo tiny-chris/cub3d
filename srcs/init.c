@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 14:06:04 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:16:21 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_init_player(t_data *data)
 	data->player.turnDirection = 0;
 	data->player.walkDirection = 0;
 	data->player.rotationAngle = ft_get_rotation_angle(game);
-	printf("\ndata->playerotationangle %f\n", data->player.rotationAngle);
+	//printf("\ndata->playerotationangle %f\n", data->player.rotationAngle);
 	data->player.turnSpeed =  10 * (M_PI / 180); // 2 * (M_PI / 180) dans le js; 
 	data->player.walkSpeed = 2.0;
 }
