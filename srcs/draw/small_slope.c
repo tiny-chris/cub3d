@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:35:43 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 19:14:44 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:42:37 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,6 @@ static void	ft_decreasing_x(t_data *data, t_point p1, t_point p2, int color, flo
 		}
 		p1.x -= 1;
 	}
-	// while (p2.x <= p1.x)
-	// {
-	// 	my_pixel_put(data, p1.x, p1.y, color);
-	// 	error = error + m;
-	// 	if (error >= 0.5)
-	// 	{
-	// 		if (p1.y < p2.y)
-	// 		{
-	// 			p1.y += 1;
-	// 			error = error - 1.0;
-	// 		}
-	// 		else
-	// 		{
-	// 			p1.y -= 1;
-	// 			error = error + 1.0;
-	// 		}
-	// 	}
-	// 	p1.x -= 1;
-	// }
 }
 
 static void	ft_increasing_x(t_data *data, t_point p1, t_point p2, int color, float m)
