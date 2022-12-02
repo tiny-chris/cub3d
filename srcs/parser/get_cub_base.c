@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/01 17:23:46 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/02 19:38:22 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**ft_get_file_base(char	*file)
 	if (!file_base)
 	{
 		ft_err_msg_1(EXIT_FAILURE, file, ER_MAP_EMPTY, NULL);
-		exit (ft_clean(1));
+		exit (ft_clean_base(1));
 	}
 	return (file_base);
 }

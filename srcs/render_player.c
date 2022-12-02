@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 14:55:31 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:37:17 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 // update() {
 // 	// TO DO:
-// 	// update player position based on turnDirecion and walkdirection
-// 	this.rotationAngle += this.turnDirection * this.rotationSpeed;
-	
-// 	var moveStep = this.walkDirection * this.moveSpeed;
+// 	// update player position based on turnDirecion and walk_direction
+// 	this.rotationAngle += this.turn_direction * this.rotationSpeed;
+
+// 	var moveStep = this.walk_direction * this.moveSpeed;
 // 	//this.x += Math.cos(this.rotationAngle) * moveStep;
 // 	//this.y += Math.sin(this.rotationAngle) * moveStep;
 // 	var	newPlayerX = this.x + Math.cos(this.rotationAngle) * moveStep;
@@ -33,7 +33,6 @@
 // 	}
 // }
 
-
 // hasWallAt(x, y) {
 // 		if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
 // 			return true;
@@ -42,13 +41,13 @@
 // 		var mapGridIndexY = Math.floor(y / TILE_size);
 // 		return this.grid[mapGridIndexY][mapGridIndexX] != 0; 
 
-
 t_bool	ft_check_wall(t_data *data, t_player newplayer)
 {
 	int	mapgridindex_x;
 	int	mapgridindex_y;
-	
-	if (newplayer.x < 0 || newplayer.x > WIN_WIDTH || newplayer.y < 0 || newplayer.y > WIN_HEIGHT)	
+
+	if (newplayer.x < 0 || newplayer.x > WIN_WIDTH || newplayer.y < 0 \
+		|| newplayer.y > WIN_HEIGHT)
 		return (TRUE);
 	mapgridindex_x = floor(newplayer.x / TILE_SIZE);
 	mapgridindex_y = floor(newplayer.y / TILE_SIZE);
@@ -57,20 +56,20 @@ t_bool	ft_check_wall(t_data *data, t_player newplayer)
 	return (FALSE);
 }
 
-void	ft_update_player(t_data *data)
+void	ft_update_player(t_data *d)
 {
 	float		movestep;
 	t_player	newplayer;
 
 	movestep = 0;
-	data->player.rotationAngle += data->player.turnDirection * data->player.turnSpeed;
-	movestep = data->player.walkDirection * data->player.walkSpeed;
-	newplayer.x = data->player.x + cos(data->player.rotationAngle) * movestep;
-	newplayer.y = data->player.y - sin(data->player.rotationAngle) * movestep;
-	if (ft_check_wall(data, newplayer) == FALSE)
+	d->player.rotation_angle -= d->player.turn_direction * d->player.turn_speed;
+	movestep = d->player.walk_direction * d->player.walk_speed;
+	newplayer.x = d->player.x + cos(d->player.rotation_angle) * movestep;
+	newplayer.y = d->player.y - sin(d->player.rotation_angle) * movestep;
+	if (ft_check_wall(d, newplayer) == FALSE)
 	{
-		data->player.x  = newplayer.x;
-		data->player.y = newplayer.y;
+		d->player.x = newplayer.x;
+		d->player.y = newplayer.y;
 	}
 }
 
@@ -81,8 +80,38 @@ void	ft_render_player(t_data *data)
 
 	p.x = data->player.x;
 	p.y = data->player.y;
-	p2.x = p.x + (cos(data->player.rotationAngle) * 20);
-	p2.y = p.y - (sin(data->player.rotationAngle) * 20);
+	p2.x = p.x + (cos(data->player.rotation_angle) * DIR_LEN);
+	p2.y = p.y - (sin(data->player.rotation_angle) * DIR_LEN);
 	ft_draw_rect(data, p, COLOR_RED, data->player.width);
 	ft_draw_line(data, p, p2, COLOR_BLUE);
 }
+
+	// deg_rotation_angle = (data->player.rotation_angle * 180 / M_PI);
+	// while (deg_rotation_angle > (2 * M_PI))
+	// 	(deg_rotation_angle -= (2 * M_PI));
+	// dprintf(2, "deg_rotation_angle = %f\n", deg_rotation_angle);
+	// if (deg_rotation_angle < 0)
+	// {
+	// 	ft_putendl_fd("OUCHHHHHHHHHH rot angle negatif\n", 2);
+	// 	ft_quit(data);
+	// }
+	// if (deg_rotation_angle >= 0 && deg_rotation_angle < 90)
+	// {
+	// 	p2.x = p.x + (cos(deg_rotation_angle) * LINE_DIR);
+	// 	p2.y = p.y - (sin(deg_rotation_angle) * LINE_DIR);
+	// }
+	// else if (deg_rotation_angle >= 90 && deg_rotation_angle < 180)
+	// {
+	// 	p2.x = p.x - (sin(deg_rotation_angle - 90) * LINE_DIR);
+	// 	p2.y = p.y - (cos(deg_rotation_angle - 90) * LINE_DIR);
+	// }
+	// else if (deg_rotation_angle >= 180 && deg_rotation_angle < 270)
+	// {
+	// 	p2.x = p.x - (cos(deg_rotation_angle - 180) * LINE_DIR);
+	// 	p2.y = p.y + (sin(deg_rotation_angle - 180) * LINE_DIR);
+	// }
+	// else
+	// {
+	// 	p2.x = p.x + (sin(deg_rotation_angle - 270) * LINE_DIR);
+	// 	p2.y = p.y + (cos(deg_rotation_angle - 270) * LINE_DIR);
+	// }

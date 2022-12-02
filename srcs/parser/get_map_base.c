@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/01 14:17:57 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/02 19:38:06 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,12 @@ int	**ft_get_map_game_int(t_base *base)
 		{
 			if (base->map_base[i][j] == ' ')
 				map[i][j] = -1;
-			else if (base->map_base[i][j] == '0')
-				map[i][j] = 0;
 			else if (base->map_base[i][j] == '1')
 				map[i][j] = 1;
+			// else if (base->map_base[i][j] == '0')
+			// 	map[i][j] = 0;
 			else
-				map[i][j] = 2;
+				map[i][j] = 0;
 			j++;
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 15:55:51 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:36:13 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ int	ft_key_release(int keycode, t_data *data)
 {
 	if (keycode == KEY_UP) // UP
 	{
-		data->player.walkDirection = 0;
-		//printf("walkdir %d\n", data->player.walkDirection);
+		data->player.walk_direction = 0;
+		printf("walkdir %d\n", data->player.walk_direction);
 	}
 	else if (keycode == KEY_DOWN) // DOWN
 	{
-		data->player.walkDirection = 0;
-		//printf("walkdir %d\n", data->player.walkDirection);
+		data->player.walk_direction = 0;
+		printf("walkdir %d\n", data->player.walk_direction);
 	}
 	else if (keycode == KEY_LEFT) // LEFT
 	{
-		data->player.turnDirection = 0;
-		//printf("turndir %d\n", data->player.turnDirection);
+		data->player.turn_direction = 0;
+		printf("turndir %d\n", data->player.turn_direction);
 	}
 	else if (keycode == KEY_RIGHT) // RIGHT
 	{
-		data->player.turnDirection = 0;
-		//printf("turndir %d\n", data->player.turnDirection);
+		data->player.turn_direction = 0;
+		printf("turndir %d\n", data->player.turn_direction);
 	}
 	return (0);
 }
@@ -43,23 +43,23 @@ int	key_hook(int keycode, t_data *data)
 		ft_quit(data);
 	else if (keycode == KEY_UP) // UP
 	{
-		data->player.walkDirection = 1;
-		//printf("walkdir %d\n", data->player.walkDirection);
+		data->player.walk_direction = 1;
+		printf("walkdir %d\n", data->player.walk_direction);
 	}
 	else if (keycode == KEY_DOWN) // DOWN
 	{
-		data->player.walkDirection = -1;
-		//printf("walkdir %d\n", data->player.walkDirection);
+		data->player.walk_direction = -1;
+		printf("walkdir %d\n", data->player.walk_direction);
 	}
 	else if (keycode == KEY_LEFT) // LEFT
 	{
-		data->player.turnDirection = -1;
-		//printf("turndir %d\n", data->player.turnDirection);
+		data->player.turn_direction = -1;
+		printf("turndir %d\n", data->player.turn_direction);
 	}
 	else if (keycode == KEY_RIGHT) // RIGHT
 	{
-		data->player.turnDirection = 1;
-		//printf("turndir %d\n", data->player.turnDirection);
+		data->player.turn_direction = 1;
+		printf("turndir %d\n", data->player.turn_direction);
 	}
 	return (0);
 }

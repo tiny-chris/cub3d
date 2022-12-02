@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/01 17:20:49 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/02 19:38:36 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ static void	ft_check_lines_order_post_elem(t_line **list_base)
 			line = line->next;
 		if (line && (line->ref == L_TEXTURE || line->ref == L_COLOR \
 			|| line->ref == L_UNEXPECT))
-			exit(ft_clean(ft_err_msg_1(1, "TBD 2", NULL, "élém (text/col/unex) après map")));
+			exit(ft_clean_base(ft_err_msg_1(1, "TBD 2", NULL, "élém (text/col/unex) après map")));
 		while (line && line->ref == L_EMPTY)
 			line = line->next;
 		if (line && line->ref != L_EMPTY)
 		{
 			ft_err_msg_1(1, "TBD 3", NULL, "pb text/col/unex/map... après empty");
-			exit(ft_clean(1));
+			exit(ft_clean_base(1));
 		}
 	}
 	else
 	{
 		ft_err_msg_1(1, "TBD 4", NULL, "pas de map");
-		exit(ft_clean(1));
+		exit(ft_clean_base(1));
 	}
 }
 
@@ -68,7 +68,7 @@ int	ft_check_lines_order_err(t_base *base)
 		{
 			ft_err_msg_2(1, line->index, NULL, "incorrect line****");
 			// exit(ft_err_msg(1, ft_substr(line->content, 0, ft_strlen_spechar(line->content, '\n')), "incorrect line****"));//
-			exit(ft_clean(1));
+			exit(ft_clean_base(1));
 		}
 		else if (line->ref == L_TEXTURE)
 			nb_text++;
@@ -79,7 +79,7 @@ int	ft_check_lines_order_err(t_base *base)
 	if (nb_text != 4 || nb_color != 2)
 	{
 		ft_err_msg_1(1, "TBD 1 - text or color", NULL, "à preciser ? nb incorr");
-		exit(ft_clean(1));
+		exit(ft_clean_base(1));
 	}
 	ft_check_lines_order_post_elem(&line);
 	return (0);

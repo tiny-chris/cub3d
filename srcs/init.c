@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 19:16:21 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:39:05 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 float	ft_get_rotation_angle(t_game *game)
 {
-	float	rotationAngle;
+	float	rotation_angle;
 
-	rotationAngle = 0;
+	rotation_angle = 0;
 	if (game->p_direction == 'N')
-		rotationAngle = M_PI / 2;
+		rotation_angle = M_PI / 2;
 	else if (game->p_direction == 'S')
-		rotationAngle = (3 * M_PI) / 2;
+		rotation_angle = (3 * M_PI) / 2;
 	else if (game->p_direction == 'E')
-		rotationAngle = 2 * M_PI;
+		rotation_angle = 2 * M_PI;
 	else if (game->p_direction == 'W')
-		rotationAngle = M_PI;
-	return (rotationAngle);
+		rotation_angle = M_PI;
+	return (rotation_angle);
 }
 
 void	ft_init_player(t_data *data)
@@ -37,19 +37,23 @@ void	ft_init_player(t_data *data)
 	data->player.y = game->p_y * TILE_SIZE;
 	data->player.width = 4;
 	data->player.height = 4; // ne garder que width ?
-	data->player.turnDirection = 0;
-	data->player.walkDirection = 0;
-	data->player.rotationAngle = ft_get_rotation_angle(game);
-	//printf("\ndata->playerotationangle %f\n", data->player.rotationAngle);
-	data->player.turnSpeed =  10 * (M_PI / 180); // 2 * (M_PI / 180) dans le js; 
-	data->player.walkSpeed = 2.0;
+	data->player.turn_direction = 0;
+	data->player.walk_direction = 0;
+	data->player.rotation_angle = ft_get_rotation_angle(game);
+	printf("\ndata->playerotationangle %f\n", data->player.rotation_angle);
+	data->player.turn_speed =  10 * (M_PI / 180); // 2 * (M_PI / 180) dans le js; 
+	data->player.walk_speed = 2.0;
 }
 
 void	ft_init_data(t_data *data)
 {
 	// init data mlx
 	data->img.mlx_ptr = mlx_init();
+	// if (data->img.mlx_ptr == NULL)
+	// 	ft_clean_game(data);//ajouter le nettoyage mlx
 	data->img.win_ptr = mlx_new_window(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
+	// if (data->img.win_ptr == NULL)
+	// 	ft_clean_game(data);//ajouter le nettoyage mlx
 	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img.img)
 		return ; // On free ?

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 19:00:57 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:39:43 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 #  define OPEN_MAX 1024
 # endif
 
+# define DIR_LEN 20
+
 # define WIN_WIDTH 1800
 # define WIN_HEIGHT 1600
 
@@ -42,7 +44,7 @@
 # define COLOR_RED 0xFF0000
 # define COLOR_BLUE 0x0000FF
 
-# define TILE_SIZE 32
+# define TILE_SIZE 16
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 
@@ -68,7 +70,7 @@ typedef enum e_keycode
 typedef enum e_bool
 {
 	TRUE,
-	FALSE, 
+	FALSE,
 }	t_bool;
 
 typedef enum e_sizetype
@@ -170,11 +172,11 @@ typedef struct s_player {
 	float			y;
 	float			width;			// radius ?
 	float			height;			// radius ?
-	int				turnDirection;	// -1 for left +1 for right
-	int				walkDirection;	// -1 for back +1 for front
-	float			rotationAngle;
-	float			turnSpeed;
-	float			walkSpeed;
+	int				turn_direction;	// -1 for left +1 for right
+	int				walk_direction;	// -1 for back +1 for front
+	float			rotation_angle;
+	float			turn_speed;
+	float			walk_speed;
 }				t_player;
 
 typedef struct s_data {
@@ -183,7 +185,7 @@ typedef struct s_data {
 	t_point			p1;
 	t_point			p2;
 	t_player		player;
-}					t_data;
+}	t_data;
 
 // typedef struct s_map
 // {
@@ -246,7 +248,8 @@ float		ft_get_rotation_angle(t_game *game);
 /*	Clean	*/
 
 void		ft_quit(t_data *data);
-int			ft_clean(int res);
+int			ft_clean_base(int res);
+void		ft_clean_cub(t_data *data, int res);
 int			ft_err_msg_1(int res, char *msg1, char *msg2, char *msg3);
 int			ft_err_msg_2(int res, int i, char *msg1, char *msg2);
 void		ft_close_fd(void);
@@ -288,7 +291,7 @@ int			ft_render_next_frame(t_data *data);
 /*	Render player	*/
 
 void		ft_render_player(t_data *data);
-void		ft_update_player(t_data *data);
+void		ft_update_player(t_data *d);
 
 /*	Utils 	*/
 

@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/01 17:00:00 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/02 19:36:55 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_open_read(const char *file)
 		ft_putendl_fd(strerror(errno), 2);
 		ft_putendl_fd("fd: ", 2);
 		perror(file);
-		exit(ft_clean(val_exit)); // ou exit(errno);
+		exit(ft_clean_base(val_exit)); // ou exit(errno);
 	}
 	return (fd);
 }

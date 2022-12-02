@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/01 17:24:18 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/02 19:37:55 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_init_t_base_cub(char *file, t_base *base)
 	if (!base->file_base)
 	{
 		val_exit = ft_err_msg_1(1, "TBD 2", NULL, "a revoir");
-		exit(ft_clean(val_exit));
+		exit(ft_clean_base(val_exit));
 	}
 	while (base->file_base[i])
 		i++;
