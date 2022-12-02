@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:23:34 by lmelard           #+#    #+#             */
-/*   Updated: 2022/11/30 17:36:48 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/02 14:10:01 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_draw_line(t_data *data, t_point p1, t_point p2, int color)
 	if (dy == 0)
 		ft_draw_horizontal(data, p1, p2, color);
 	else if (dx == 0)
-		ft_draw_horizontal(data, p1, p2, color);
+		ft_draw_vertical(data, p1, p2, color);
 	else if (dx >= dy)
 		ft_small_slope(data, p1, p2, color, m);
 	else

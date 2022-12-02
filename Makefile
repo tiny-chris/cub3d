@@ -45,6 +45,7 @@ SRCS		:= \
 			draw/big_slope.c \
 			draw/small_slope.c \
 			render_map.c \
+			render_player.c \
 			init.c \
 			utils/utils.c \
 			utils/utils_2.c \
