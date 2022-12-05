@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 19:37:17 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:22:31 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@
 // 		var mapGridIndexY = Math.floor(y / TILE_size);
 // 		return this.grid[mapGridIndexY][mapGridIndexX] != 0; 
 
-t_bool	ft_check_wall(t_data *data, t_player newplayer)
+t_bool	ft_check_wall(t_data *data, float x, float y)
 {
 	int	mapgridindex_x;
 	int	mapgridindex_y;
 
-	if (newplayer.x < 0 || newplayer.x > WIN_WIDTH || newplayer.y < 0 \
-		|| newplayer.y > WIN_HEIGHT)
+	if (x < 0 || x > WIN_WIDTH || y < 0 \
+		|| y > WIN_HEIGHT)
 		return (TRUE);
-	mapgridindex_x = floor(newplayer.x / TILE_SIZE);
-	mapgridindex_y = floor(newplayer.y / TILE_SIZE);
+	mapgridindex_x = floor(x / TILE_SIZE);
+	mapgridindex_y = floor(y / TILE_SIZE);
 	if (data->base.game->map[mapgridindex_y][mapgridindex_x] != 0)
 		return (TRUE);
 	return (FALSE);
@@ -66,7 +66,7 @@ void	ft_update_player(t_data *d)
 	movestep = d->player.walk_direction * d->player.walk_speed;
 	newplayer.x = d->player.x + cos(d->player.rotation_angle) * movestep;
 	newplayer.y = d->player.y - sin(d->player.rotation_angle) * movestep;
-	if (ft_check_wall(d, newplayer) == FALSE)
+	if (ft_check_wall(d, newplayer.x, newplayer.y) == FALSE)
 	{
 		d->player.x = newplayer.x;
 		d->player.y = newplayer.y;

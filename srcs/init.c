@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 19:39:05 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/05 14:36:00 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ void	ft_init_data(t_data *data)
 	if (!data->img.addr)
 		return ; // On free ?
 	// init player
+	data->nbr_rays = WIN_WIDTH; // init toute la structure TO DO
 	ft_init_player(data);
 }

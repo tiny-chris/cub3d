@@ -51,6 +51,7 @@ SRCS		:= \
 			utils/utils_2.c \
 			utils/utils_3.c \
 			utils/utils_atoi_cub.c \
+			rays/cast_rays.c \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 19:37:29 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:56:34 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,13 @@ int	ft_render_next_frame(t_data *data)
 		return (0); // On free ? 
 	// render line
 	ft_render_map(data);
-	if (data->player.turn_direction != 0)
+	if (data->player.turn_direction != 0 || data->player.walk_direction != 0)
+	{
 		ft_update_player(data);
-	if (data->player.walk_direction != 0)
-		ft_update_player(data);
+		ft_cast_all_rays(data);
+	}
+	// if (data->player.walk_direction != 0)
+	// 	ft_update_player(data);
 	ft_render_player(data);
 	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);
 	return (1);

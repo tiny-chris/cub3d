@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 19:39:43 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:01:04 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/stat.h>
 # include <unistd.h>//	close, read, write, exit
 # include <math.h>
+# include <limits.h>
 
 /*	define	*/
 
@@ -141,8 +142,8 @@ typedef struct s_img {
 }	t_img;
 
 typedef struct s_point {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 }	t_point;
 
 /*	Structure for initial data - TO BE UPDATED	*/
@@ -177,13 +178,43 @@ typedef struct s_player {
 	float			rotation_angle;
 	float			turn_speed;
 	float			walk_speed;
-}				t_player;
+}	t_player;
+
+typedef	struct s_hit {
+	float	x_intercept;
+	float	y_intercept;
+	float	x_step;
+	float	y_step;
+	int		found_wall_hit;
+	float	next_touch_x;
+	float	next_touch_y;
+	float	x_to_check;
+	float	y_to_check;
+	float	hit_distance;
+	t_point	wall_hit;
+}	t_hit;
+
+
+typedef struct	s_ray {
+	float			ray_angle;
+	float			wall_hit_x;
+	float			wall_hit_y;
+	float			distance;
+	int				wall_hit_vertical;
+	int				is_ray_facing_up;
+	int				is_ray_facing_down;
+	int				is_ray_facing_left;
+	int				is_ray_facing_right;
+//	int				wall_hit_content;
+}	t_ray;
 
 typedef struct s_data {
 	t_base			base;
+	int				nbr_rays; // a calculer = WIN_WIDTH
+	t_ray			rays[WIN_WIDTH];
 	t_img			img;
-	t_point			p1;
-	t_point			p2;
+	t_point			p1; //
+	t_point			p2; //
 	t_player		player;
 }	t_data;
 
@@ -292,6 +323,7 @@ int			ft_render_next_frame(t_data *data);
 
 void		ft_render_player(t_data *data);
 void		ft_update_player(t_data *d);
+t_bool		ft_check_wall(t_data *data, float x, float y);
 
 /*	Utils 	*/
 
@@ -307,5 +339,17 @@ int			*ft_intdup(int *tab, int size);
 int			ft_atoi_cub(char *str);
 size_t		ft_is_in_set(const char *set, char c);
 int			ft_count_isinset(char *str, char c);
+
+/*	Cast Rays	*/
+
+void	ft_cast_all_rays(t_data *data);
+void	ft_cast_ray(t_data *data, float ray_angle, int strip_id);
+void	ft_fill_ray(t_data *data, int strip_id, t_hit horz, t_hit vert);
+float	ft_distance_btw_points(t_player player, t_point wall_hit);
+void	ft_init_horz_vert(t_hit *horz);
+void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert);
+void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_hit *horz);
+float	ft_normalize_angle(float ray_angle);
+void	ft_ray_orientation(t_data *data, float ray_angle, int strip_id);
 
 #endif
