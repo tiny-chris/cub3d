@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/06 18:16:49 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/06 19:27:08 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 typedef enum e_keycode
 {
 	KEY_ESC				= 65307,
-	KEY_MOVING_UP		= 119, //87,
+	KEY_MOVING_UP		= 119,
 	KEY_MOVING_DOWN		= 115,
 	KEY_MOVING_LEFT		= 97,
 	KEY_MOVING_RIGHT	= 100,
