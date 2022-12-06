@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/05 15:22:31 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/06 13:59:40 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,18 @@ t_bool	ft_check_wall(t_data *data, float x, float y)
 	if (x < 0 || x > WIN_WIDTH || y < 0 \
 		|| y > WIN_HEIGHT)
 		return (TRUE);
-	mapgridindex_x = floor(x / TILE_SIZE);
-	mapgridindex_y = floor(y / TILE_SIZE);
-	if (data->base.game->map[mapgridindex_y][mapgridindex_x] != 0)
+	if (x == 0)
+		mapgridindex_x = 0;
+	else
+		mapgridindex_x = floor(x / TILE_SIZE);
+	if (y == 0)
+		mapgridindex_y = 0;
+	else
+		mapgridindex_y = floor(y / TILE_SIZE);
+	if (mapgridindex_x < data->base.game->cols && mapgridindex_y < data->base.game->rows \
+		&& data->base.game->map[mapgridindex_y][mapgridindex_x] != 0)
+		return (TRUE);
+	if (mapgridindex_x >= data->base.game->cols && mapgridindex_y >= data->base.game->rows)
 		return (TRUE);
 	return (FALSE);
 }

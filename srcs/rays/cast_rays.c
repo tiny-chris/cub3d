@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:20:02 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/05 18:01:52 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/06 14:05:27 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,19 @@ void	ft_cast_ray(t_data *data, float ray_angle, int strip_id)
 	data->rays[strip_id].ray_angle = ray_angle;
 }
 
+void	ft_init_ray(t_data *data, float ray_angle, int strip_id)
+{
+	data->rays[strip_id].ray_angle = ray_angle;
+	data->rays[strip_id].wall_hit_x = 0;
+	data->rays[strip_id].wall_hit_y = 0;
+	data->rays[strip_id].distance = 0;
+	data->rays[strip_id].wall_hit_vertical = FALSE;
+	data->rays[strip_id].is_ray_facing_up = FALSE;
+	data->rays[strip_id].is_ray_facing_down = FALSE;
+	data->rays[strip_id].is_ray_facing_left = FALSE;
+	data->rays[strip_id].is_ray_facing_right = FALSE;
+}
+
 void	ft_cast_all_rays(t_data *data)
 {
 	float	ray_angle;
@@ -176,6 +189,7 @@ void	ft_cast_all_rays(t_data *data)
 	ray_angle = data->player.rotation_angle - (FOV_ANGLE / 2);
 	while (strip_id < data->nbr_rays)
 	{
+		ft_init_ray(data, ray_angle, strip_id);
 		ft_cast_ray(data, ray_angle, strip_id);
 		strip_id++;
 	}
