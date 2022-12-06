@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/05 18:01:04 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/06 14:20:13 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,9 @@ typedef struct s_base
 }	t_base;
 
 typedef struct s_player {
-	float			x;
-	float			y;
+	// float			x;
+	// float			y;
+	t_point			p;
 	float			width;			// radius ?
 	float			height;			// radius ?
 	int				turn_direction;	// -1 for left +1 for right
@@ -197,8 +198,9 @@ typedef	struct s_hit {
 
 typedef struct	s_ray {
 	float			ray_angle;
-	float			wall_hit_x;
-	float			wall_hit_y;
+	// float			wall_hit_x;
+	// float			wall_hit_y;
+	t_point			wall_hit;
 	float			distance;
 	int				wall_hit_vertical;
 	int				is_ray_facing_up;

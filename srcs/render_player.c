@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/06 13:59:40 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:15:44 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void	ft_update_player(t_data *d)
 	movestep = 0;
 	d->player.rotation_angle -= d->player.turn_direction * d->player.turn_speed;
 	movestep = d->player.walk_direction * d->player.walk_speed;
-	newplayer.x = d->player.x + cos(d->player.rotation_angle) * movestep;
-	newplayer.y = d->player.y - sin(d->player.rotation_angle) * movestep;
-	if (ft_check_wall(d, newplayer.x, newplayer.y) == FALSE)
+	newplayer.p.x = d->player.p.x + cos(d->player.rotation_angle) * movestep;
+	newplayer.p.y = d->player.p.y - sin(d->player.rotation_angle) * movestep;
+	if (ft_check_wall(d, newplayer.p.x, newplayer.p.y) == FALSE)
 	{
-		d->player.x = newplayer.x;
-		d->player.y = newplayer.y;
+		d->player.p.x = newplayer.p.x;
+		d->player.p.y = newplayer.p.y;
 	}
 }
 
@@ -87,8 +87,8 @@ void	ft_render_player(t_data *data)
 	t_point	p;
 	t_point	p2;
 
-	p.x = data->player.x;
-	p.y = data->player.y;
+	p.x = data->player.p.x;
+	p.y = data->player.p.y;
 	p2.x = p.x + (cos(data->player.rotation_angle) * DIR_LEN);
 	p2.y = p.y - (sin(data->player.rotation_angle) * DIR_LEN);
 	ft_draw_rect(data, p, COLOR_RED, data->player.width);

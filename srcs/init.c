@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/05 14:36:00 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/06 14:12:13 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	ft_init_player(t_data *data)
 	t_game	*game;
 
 	game = data->base.game;
-	data->player.x = game->p_x * TILE_SIZE;
-	data->player.y = game->p_y * TILE_SIZE;
+	// data->player.x = game->p_x * TILE_SIZE;
+	// data->player.y = game->p_y * TILE_SIZE;
+	data->player.p.x = game->p_x * TILE_SIZE;
+	data->player.p.y = game->p_y * TILE_SIZE;
 	data->player.width = 4;
 	data->player.height = 4; // ne garder que width ?
 	data->player.turn_direction = 0;

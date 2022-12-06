@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:20:02 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/06 14:05:27 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:35:39 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ float	ft_normalize_angle(float ray_angle)
 
 void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_hit *horz)
 {
-	horz->y_intercept = floor(data->player.y / TILE_SIZE) * TILE_SIZE;
+	horz->y_intercept = floor(data->player.p.y / TILE_SIZE) * TILE_SIZE;
 	if (data->rays[strip_id].is_ray_facing_down == TRUE)
 		horz->y_intercept += TILE_SIZE;
-	horz->x_intercept = data->player.x + (horz->y_intercept - data->player.y) / tan(ray_angle);
+	horz->x_intercept = data->player.p.x + (horz->y_intercept - data->player.p.y) / tan(ray_angle);
 	horz->y_step = TILE_SIZE;
 	if (data->rays[strip_id].is_ray_facing_up == TRUE)
 		horz->y_step *= -1;
@@ -71,14 +71,14 @@ void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_h
 
 void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert)
 {
-	vert->x_intercept = floor(data->player.x / TILE_SIZE) * TILE_SIZE;
+	vert->x_intercept = floor(data->player.p.x / TILE_SIZE) * TILE_SIZE;
 	if (data->rays[strip_id].is_ray_facing_right == TRUE)
 		vert->x_intercept += TILE_SIZE;
-	vert->y_intercept = data->player.y + (vert->x_intercept - data->player.x) / tan(ray_angle);
+	vert->y_intercept = data->player.p.y + (vert->x_intercept - data->player.p.x) * tan(ray_angle);
 	vert->x_step = TILE_SIZE;
 	if (data->rays[strip_id].is_ray_facing_left == TRUE)
 		vert->x_step *= -1;
-	vert->y_step = TILE_SIZE / tan(ray_angle);
+	vert->y_step = TILE_SIZE * tan(ray_angle);
 	if (data->rays[strip_id].is_ray_facing_up == TRUE && vert->x_step > 0)
 		vert->y_step *= -1;
 	if (data->rays[strip_id].is_ray_facing_down == TRUE && vert->x_step < 0)
@@ -126,7 +126,7 @@ float	ft_distance_btw_points(t_player player, t_point wall_hit)
 {
 	float	distance;
 
-	distance = sqrt((wall_hit.x - player.x) * (wall_hit.x - player.x) + (wall_hit.y - player.y) * (wall_hit.y - player.y));
+	distance = sqrt((wall_hit.x - player.p.x) * (wall_hit.x - player.p.x) + (wall_hit.y - player.p.y) * (wall_hit.y - player.p.y));
 	return (distance);
 }
 
@@ -135,15 +135,15 @@ void	ft_fill_ray(t_data *data, int strip_id, t_hit horz, t_hit vert)
 	if (vert.hit_distance < horz.hit_distance)
 	{
 		data->rays[strip_id].distance = vert.hit_distance;
-		data->rays[strip_id].wall_hit_x = vert.wall_hit.x;
-		data->rays[strip_id].wall_hit_y = vert.wall_hit.y;
+		data->rays[strip_id].wall_hit.x = vert.wall_hit.x;
+		data->rays[strip_id].wall_hit.y = vert.wall_hit.y;
 		data->rays[strip_id].wall_hit_vertical = TRUE;
 	}
 	else
 	{
 		data->rays[strip_id].distance = horz.hit_distance;
-		data->rays[strip_id].wall_hit_x = horz.wall_hit.x;
-		data->rays[strip_id].wall_hit_y = horz.wall_hit.y;
+		data->rays[strip_id].wall_hit.x = horz.wall_hit.x;
+		data->rays[strip_id].wall_hit.y = horz.wall_hit.y;
 		data->rays[strip_id].wall_hit_vertical = FALSE;
 	}
 }
@@ -170,8 +170,8 @@ void	ft_cast_ray(t_data *data, float ray_angle, int strip_id)
 void	ft_init_ray(t_data *data, float ray_angle, int strip_id)
 {
 	data->rays[strip_id].ray_angle = ray_angle;
-	data->rays[strip_id].wall_hit_x = 0;
-	data->rays[strip_id].wall_hit_y = 0;
+	data->rays[strip_id].wall_hit.x = 0;
+	data->rays[strip_id].wall_hit.y = 0;
 	data->rays[strip_id].distance = 0;
 	data->rays[strip_id].wall_hit_vertical = FALSE;
 	data->rays[strip_id].is_ray_facing_up = FALSE;
@@ -191,7 +191,7 @@ void	ft_cast_all_rays(t_data *data)
 	{
 		ft_init_ray(data, ray_angle, strip_id);
 		ft_cast_ray(data, ray_angle, strip_id);
+		//ft_draw_line(data, data->player.p, data->rays[strip_id].wall_hit, COLOR_RED);
 		strip_id++;
 	}
-	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:23:34 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/02 19:03:21 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/06 14:36:55 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color)
 
 float	ft_abs(float nbr)
 {
-	if (nbr < 0)
+	if (nbr && nbr < 0)
 		nbr = nbr * -1;
 	return (nbr);
 }
@@ -67,6 +67,7 @@ void	ft_draw_line(t_data *data, t_point p1, t_point p2, int color)
 
 	dx = (p2.x - p1.x);
 	dy = (p2.y - p1.y);
+	// dprintf(2, "p1.x = %f, p1.y = %f et p2.x = %f, p2.y = %f\n", p1.x, p1.y, p2.x, p2.y);
 	m = dy / dx;
 	if (dy == 0)
 		ft_draw_horizontal(data, p1, p2, color);

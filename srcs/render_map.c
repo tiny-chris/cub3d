@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/05 17:56:34 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/06 14:38:15 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	ft_render_map(t_data *data)
 
 int	ft_render_next_frame(t_data *data)
 {
+	int	strip_id;
+
+	strip_id = 0;
 	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img.img)
@@ -81,10 +84,16 @@ int	ft_render_next_frame(t_data *data)
 		return (0); // On free ? 
 	// render line
 	ft_render_map(data);
+	ft_cast_all_rays(data);
 	if (data->player.turn_direction != 0 || data->player.walk_direction != 0)
 	{
 		ft_update_player(data);
 		ft_cast_all_rays(data);
+	}
+	while (strip_id < WIN_WIDTH)
+	{
+		ft_draw_line(data, data->player.p, data->rays[strip_id].wall_hit, COLOR_RED);
+		strip_id++;
 	}
 	// if (data->player.walk_direction != 0)
 	// 	ft_update_player(data);
