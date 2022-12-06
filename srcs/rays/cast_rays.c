@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:20:02 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/06 14:35:39 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:08:54 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,18 +167,18 @@ void	ft_cast_ray(t_data *data, float ray_angle, int strip_id)
 	data->rays[strip_id].ray_angle = ray_angle;
 }
 
-void	ft_init_ray(t_data *data, float ray_angle, int strip_id)
-{
-	data->rays[strip_id].ray_angle = ray_angle;
-	data->rays[strip_id].wall_hit.x = 0;
-	data->rays[strip_id].wall_hit.y = 0;
-	data->rays[strip_id].distance = 0;
-	data->rays[strip_id].wall_hit_vertical = FALSE;
-	data->rays[strip_id].is_ray_facing_up = FALSE;
-	data->rays[strip_id].is_ray_facing_down = FALSE;
-	data->rays[strip_id].is_ray_facing_left = FALSE;
-	data->rays[strip_id].is_ray_facing_right = FALSE;
-}
+// void	ft_init_ray(t_data *data, float ray_angle, int strip_id)
+// {
+// 	data->rays[strip_id].ray_angle = ray_angle;
+// 	data->rays[strip_id].wall_hit.x = 0;
+// 	data->rays[strip_id].wall_hit.y = 0;
+// 	data->rays[strip_id].distance = 0;
+// 	data->rays[strip_id].wall_hit_vertical = FALSE;
+// 	data->rays[strip_id].is_ray_facing_up = FALSE;
+// 	data->rays[strip_id].is_ray_facing_down = FALSE;
+// 	data->rays[strip_id].is_ray_facing_left = FALSE;
+// 	data->rays[strip_id].is_ray_facing_right = FALSE;
+// }
 
 void	ft_cast_all_rays(t_data *data)
 {
@@ -187,11 +187,11 @@ void	ft_cast_all_rays(t_data *data)
 	
 	strip_id = 0;
 	ray_angle = data->player.rotation_angle - (FOV_ANGLE / 2);
-	while (strip_id < data->nbr_rays)
+	while (strip_id < WIN_WIDTH)
 	{
-		ft_init_ray(data, ray_angle, strip_id);
+		// ft_init_ray(data, ray_angle, strip_id);
 		ft_cast_ray(data, ray_angle, strip_id);
-		//ft_draw_line(data, data->player.p, data->rays[strip_id].wall_hit, COLOR_RED);
 		strip_id++;
+		//printf("stripid %d\n", strip_id);
 	}
 }
