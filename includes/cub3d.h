@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/06 19:27:08 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/07 19:54:26 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,16 @@ typedef	struct s_hit {
 	t_point	wall_hit;
 }	t_hit;
 
+typedef struct s_cast
+{
+	t_hit	horz;
+	t_hit	vert;
+	t_bool	ray_facing_down;
+	t_bool	ray_facing_up;
+	t_bool	ray_facing_left;
+	t_bool	ray_facing_right;
+}	t_cast;
+
 
 typedef struct	s_ray {
 	float			ray_angle;
@@ -342,12 +352,20 @@ int			ft_count_isinset(char *str, char c);
 
 void	ft_cast_all_rays(t_data *data);
 void	ft_cast_ray(t_data *data, float ray_angle, int strip_id);
-void	ft_fill_ray(t_data *data, int strip_id, t_hit horz, t_hit vert);
-float	ft_distance_btw_points(t_player player, t_point wall_hit);
-void	ft_init_horz_vert(t_hit *horz);
-void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert);
-void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_hit *horz);
+void	ft_fill_ray(t_data *data, int strip_id, t_cast *cast, float ray_angle);
+float	ft_distance_btw_points(t_player player, t_point wall_hit); 
+void	ft_init_cast(t_cast *cast);
+void	ft_init_hit(t_hit *hit);
+void	ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast);
+void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast);
 float	ft_normalize_angle(float ray_angle);
-void	ft_ray_orientation(t_data *data, float ray_angle, int strip_id);
+void	ft_ray_orientation(t_cast *cast, float ray_angle);
+// void	ft_fill_ray(t_data *data, int strip_id, t_hit *horz, t_hit *vert);
+// void	ft_init_horz_vert(t_hit *horz);
+// void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert);
+// void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_hit *horz);
+// void	ft_ray_orientation(t_data *data, float ray_angle, int strip_id);
+
+
 
 #endif
