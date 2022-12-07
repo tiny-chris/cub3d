@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/07 19:54:26 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/07 20:12:07 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,6 +360,8 @@ void	ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast);
 void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast);
 float	ft_normalize_angle(float ray_angle);
 void	ft_ray_orientation(t_cast *cast, float ray_angle);
+void	ft_get_horz_steps(t_data *data, float ray_angle, t_cast *cast);
+void	ft_get_vert_steps(t_data *data, float ray_angle, t_cast *cast);
 // void	ft_fill_ray(t_data *data, int strip_id, t_hit *horz, t_hit *vert);
 // void	ft_init_horz_vert(t_hit *horz);
 // void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert);

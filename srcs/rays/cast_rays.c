@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:20:02 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/07 19:56:47 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/07 20:12:02 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ float	ft_normalize_angle(float ray_angle)
 	return (ray_angle);
 }
 
-void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast)
+void	ft_get_horz_steps(t_data *data, float ray_angle, t_cast *cast)
 {
 	cast->horz.y_intercept = floor(data->player.p.y / TILE_SIZE) * TILE_SIZE;
 	if (cast->ray_facing_down == TRUE)
@@ -46,7 +46,11 @@ void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast)
 		cast->horz.x_step *= -1;
 	if (cast->ray_facing_right == TRUE && cast->horz.x_step < 0)
 		cast->horz.x_step *= -1;
-	//
+}
+
+void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast)
+{
+	ft_get_horz_steps(data, ray_angle, cast);
 	cast->horz.next_touch_x = cast->horz.x_intercept;
 	cast->horz.next_touch_y = cast->horz.y_intercept;
 	while (cast->horz.next_touch_x >= 0 && cast->horz.next_touch_x <= WIN_WIDTH && cast->horz.next_touch_y >= 0 && cast->horz.next_touch_y <= WIN_HEIGHT)
@@ -70,7 +74,7 @@ void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast)
 	}
 }
 
-void	ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast)
+void	ft_get_vert_steps(t_data *data, float ray_angle, t_cast *cast)
 {
 	cast->vert.x_intercept = floor(data->player.p.x / TILE_SIZE) * TILE_SIZE;
 	if (cast->ray_facing_right == TRUE)
@@ -84,7 +88,11 @@ void	ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast)
 		cast->vert.y_step *= -1;
 	if (cast->ray_facing_down == TRUE && cast->vert.y_step < 0) //
 		cast->vert.y_step *= -1;
-	//
+}
+
+void	ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast)
+{
+	ft_get_vert_steps(data, ray_angle, cast);
 	cast->vert.next_touch_x = cast->vert.x_intercept;
 	cast->vert.next_touch_y = cast->vert.y_intercept;
 	while (cast->vert.next_touch_x >= 0 && cast->vert.next_touch_x <= WIN_WIDTH && cast->vert.next_touch_y >= 0 && cast->vert.next_touch_y <= WIN_HEIGHT)
