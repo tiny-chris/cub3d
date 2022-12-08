@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:10:01 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:27:37 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,9 @@ int	main(int argc, char **argv)
 	ZZ_PRINT_BASE_DATA(&data.base);
 	// ft_exit_base(0);// à replacer/ajuster correctement --> pour tester le parsing
 	ft_init_data(&data);
-	mlx_hook(data.img.win_ptr, 2, 1L << 0, (void *)key_hook, &data);
+	mlx_hook(data.img.win_ptr, 2, 1L << 0, (void *)ft_key_hook, &data);
 	mlx_hook(data.img.win_ptr, 3, 1L << 1, (void *)ft_key_release, &data);
-	// mlx_key_hook(data.img.win_ptr, key_hook, &data);
-	// mlx_hook(data.img.win_ptr, 17, 1L << 17, (void *)ft_quit, &data); // clic sur la croix
+	mlx_hook(data.img.win_ptr, 17, 1L << 17, (void *)ft_quit, &data); // clic sur la croix
 	mlx_loop_hook(data.img.mlx_ptr, ft_render_next_frame, &data);
 	mlx_loop(data.img.mlx_ptr);
 	return (0);

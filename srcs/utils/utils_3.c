@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 19:36:13 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:16:02 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,54 @@
 
 int	ft_key_release(int keycode, t_data *data)
 {
-	if (keycode == KEY_UP) // UP
-	{
+	if (keycode == KEY_MOVING_UP)
 		data->player.walk_direction = 0;
-		printf("walkdir %d\n", data->player.walk_direction);
-	}
-	else if (keycode == KEY_DOWN) // DOWN
-	{
+	else if (keycode == KEY_MOVING_DOWN)
 		data->player.walk_direction = 0;
-		printf("walkdir %d\n", data->player.walk_direction);
-	}
-	else if (keycode == KEY_LEFT) // LEFT
-	{
+	else if (keycode == KEY_MOVING_RIGHT)
+		data->player.side_direction = 0;
+	else if (keycode == KEY_MOVING_LEFT)
+		data->player.side_direction = 0;
+	else if (keycode == KEY_CAMERA_LEFT)
 		data->player.turn_direction = 0;
-		printf("turndir %d\n", data->player.turn_direction);
-	}
-	else if (keycode == KEY_RIGHT) // RIGHT
-	{
+	else if (keycode == KEY_CAMERA_RIGHT)
 		data->player.turn_direction = 0;
-		printf("turndir %d\n", data->player.turn_direction);
-	}
 	return (0);
 }
 
-int	key_hook(int keycode, t_data *data)
+int	ft_key_hook(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
 		ft_quit(data);
-	else if (keycode == KEY_UP) // UP
+	else if (keycode == KEY_MOVING_UP)
 	{
 		data->player.walk_direction = 1;
-		printf("walkdir %d\n", data->player.walk_direction);
+		//printf("up = %d\n", data->player.walk_direction);
 	}
-	else if (keycode == KEY_DOWN) // DOWN
+	else if (keycode == KEY_MOVING_DOWN)
 	{
 		data->player.walk_direction = -1;
-		printf("walkdir %d\n", data->player.walk_direction);
+		//printf("down = %d\n", data->player.walk_direction);
 	}
-	else if (keycode == KEY_LEFT) // LEFT
+	else if (keycode == KEY_MOVING_RIGHT)
+	{
+		data->player.side_direction = -1;
+		//printf("right = %d\n", data->player.side_direction);
+	}
+	else if (keycode == KEY_MOVING_LEFT)
+	{
+		data->player.side_direction = 1;
+		//printf("left = %d\n",data->player.side_direction);
+	}
+	else if (keycode == KEY_CAMERA_LEFT)
 	{
 		data->player.turn_direction = -1;
-		printf("turndir %d\n", data->player.turn_direction);
+		//printf("camera left = %d\n", data->player.turn_direction);
 	}
-	else if (keycode == KEY_RIGHT) // RIGHT
+	else if (keycode == KEY_CAMERA_RIGHT)
 	{
 		data->player.turn_direction = 1;
-		printf("turndir %d\n", data->player.turn_direction);
+		//printf("camera right = %d\n", data->player.turn_direction);
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:24:07 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:26:36 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define COLOR_RED 0xFF0000
 # define COLOR_BLUE 0x0000FF
 
-# define TILE_SIZE 16
+# define TILE_SIZE 32
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 
@@ -54,11 +54,13 @@
 
 typedef enum e_keycode
 {
-	KEY_ESC			= 65307,
-	KEY_UP			= 65362,
-	KEY_DOWN		= 65364,
-	KEY_LEFT		= 65361,
-	KEY_RIGHT		= 65363,
+	KEY_ESC				= 65307,
+	KEY_MOVING_UP		= 119,
+	KEY_MOVING_DOWN		= 115,
+	KEY_MOVING_LEFT		= 97,
+	KEY_MOVING_RIGHT	= 100,
+	KEY_CAMERA_LEFT		= 65361,
+	KEY_CAMERA_RIGHT	= 65363,
 }	t_keycode;
 
 typedef enum e_bool
@@ -163,13 +165,12 @@ typedef struct s_base
 }	t_base;
 
 typedef struct s_player {
-	// float			x;
-	// float			y;
 	t_point			p;
 	float			width;			// radius ?
 	float			height;			// radius ?
-	int				turn_direction;	// -1 for left +1 for right
+	int				turn_direction;	// -1 for looking left +1 for looking right
 	int				walk_direction;	// -1 for back +1 for front
+	int				side_direction; // -1 for left +1 for right
 	float			rotation_angle;
 	float			turn_speed;
 	float			walk_speed;
@@ -188,6 +189,16 @@ typedef	struct s_hit {
 	float	hit_distance;
 	t_point	wall_hit;
 }	t_hit;
+
+typedef struct s_cast
+{
+	t_hit	horz;
+	t_hit	vert;
+	t_bool	ray_facing_down;
+	t_bool	ray_facing_up;
+	t_bool	ray_facing_left;
+	t_bool	ray_facing_right;
+}	t_cast;
 
 
 typedef struct	s_ray {
@@ -307,7 +318,7 @@ t_bool		ft_check_wall(t_data *data, float x, float y);
 /*	Utils 	*/
 
 void		my_pixel_put(t_data *data, int x, int y, int color);
-int			key_hook(int keycode, t_data *data);
+int			ft_key_hook(int keycode, t_data *data);
 int			ft_key_release(int keycode, t_data *data);
 
 int			ft_open_read(char *file);
@@ -323,12 +334,22 @@ int			ft_count_isinset(char *str, char c);
 
 void	ft_cast_all_rays(t_data *data);
 void	ft_cast_ray(t_data *data, float ray_angle, int strip_id);
-void	ft_fill_ray(t_data *data, int strip_id, t_hit horz, t_hit vert);
-float	ft_distance_btw_points(t_player player, t_point wall_hit);
-void	ft_init_horz_vert(t_hit *horz);
-void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert);
-void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_hit *horz);
+void	ft_fill_ray(t_data *data, int strip_id, t_cast *cast, float ray_angle);
+float	ft_distance_btw_points(t_player player, t_point wall_hit); 
+void	ft_init_cast(t_cast *cast);
+void	ft_init_hit(t_hit *hit);
+void	ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast);
+void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast);
 float	ft_normalize_angle(float ray_angle);
-void	ft_ray_orientation(t_data *data, float ray_angle, int strip_id);
+void	ft_ray_orientation(t_cast *cast, float ray_angle);
+void	ft_get_horz_steps(t_data *data, float ray_angle, t_cast *cast);
+void	ft_get_vert_steps(t_data *data, float ray_angle, t_cast *cast);
+// void	ft_fill_ray(t_data *data, int strip_id, t_hit *horz, t_hit *vert);
+// void	ft_init_horz_vert(t_hit *horz);
+// void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert);
+// void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_hit *horz);
+// void	ft_ray_orientation(t_data *data, float ray_angle, int strip_id);
+
+
 
 #endif
