@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/01 17:29:08 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:03:50 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	ft_check_map_unique_player(char **map, int lines)
 		i++;
 	}
 	if (count == 0)
-		return (ft_err_msg_1(0, NULL, NULL, "no player"));
+		return (ft_msg_1(0, ER_MAP_ERR, NULL, ER_PLY_MISS));
 	if (count > 1)
-		return (ft_err_msg_1(0, NULL, NULL, "more than one player: not allowed"));
+		return (ft_msg_1(0, ER_MAP_ERR, NULL, ER_PLY_TOO));
 	return (1);
 }
 
-int	ft_cell_enclosed_by_charset(char **map, int i, int j, char *set)
+static int	ft_cell_enclosed_by_charset(char **map, int i, int j, char *set)
 {
 	if (ft_is_in_set(set, map[i - 1][j]))
 		return (0);
@@ -64,14 +64,14 @@ int	ft_check_map_enclosed_by_walls(char **map, int lines, int len)
 		{
 			if (map[i][j] == '0' \
 				&& !ft_cell_enclosed_by_charset(map, i, j, " "))
-				return (ft_err_msg_1(0, NULL, NULL, "not fully enclosed 1"));
+				return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_WAL_ZERO));
 			else if ((map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'W' || map[i][j] == 'E') \
 				&& !ft_cell_enclosed_by_charset(map, i, j, " "))
-				return (ft_err_msg_1(0, NULL, NULL, "player is not inside map"));
+				return (ft_msg_1(0, ER_MAP_ERR, NULL, ER_PLY_OUT));
 			else if ((j < (len - 1) && map[i][j] == ' ') \
 				&& !ft_cell_enclosed_by_charset(map, i, j, "0NSWE"))
-				return (ft_err_msg_1(0, NULL, NULL, "not fully enclosed 2"));
+				return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_WAL_SPACE));
 			j++;
 		}
 		i++;
@@ -93,7 +93,7 @@ int	ft_check_map_enclosed_by_walls(char **map, int lines, int len)
 // 			if (map[i][0] == ' ')
 // 				while (j < && map[i][j] && map[i][j] == ' ')
 // 					j++;
-// 			if (map[i][j] == '0' 
+// 			if (map[i][j] == '0'
 // 				&& ft_cell_enclosed_by_charset(map, i, j, " "))
 // 				return (ft_err_msg(0, NULL, "not fully enclosed"));
 // 			// {

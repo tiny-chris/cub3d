@@ -26,32 +26,33 @@ MLX			:= lib/mlx/libmlx.a
 SRC_DIR		:= srcs
 SRCS		:= \
 			main.c \
-			bin_collect/bin_coll.c \
-			bin_collect/bin_list.c \
+			clean/bin_coll.c \
+			clean/bin_list.c \
+			clean/clean.c \
+			clean/clean_free_tabs.c \
+			clean/clean_msg.c \
+			draw/big_slope.c \
+			draw/draw_line.c \
+			draw/small_slope.c \
 			parser/check_1_arg.c \
 			parser/check_2_file.c \
-			parser/check_colors.c \
 			parser/check_elem.c \
 			parser/check_map.c \
 			parser/check_map_2.c \
-			parser/check_textures.c \
-			parser/get_cub_base.c \
-			parser/get_map_base.c \
 			parser/init_base.c \
 			parser/line_list.c \
-			clean.c \
-			clean_2.c \
-			draw/draw_line.c \
-			draw/big_slope.c \
-			draw/small_slope.c \
-			render_map.c \
-			render_player.c \
-			init.c \
+			parser/update_base_1.c \
+			parser/update_base_2_elem.c \
+			parser/update_base_3_map.c \
+			parser/update_base_game.c \
+			rays/cast_rays.c \
 			utils/utils.c \
 			utils/utils_2.c \
 			utils/utils_3.c \
 			utils/utils_atoi_cub.c \
-			rays/cast_rays.c \
+			init.c \
+			render_map.c \
+			render_player.c \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/01 16:54:37 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:02:59 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 **  <SUMMARY>	Check if the number of arguments is correct (argc == 2)
 **	Otherwise display an error message for too many or not enough arguments
 */
-int	ft_check_argc(int argc)
+static int	ft_check_argc(int argc)
 {
 	if (argc < 2)
-		ft_err_msg_1(1, NULL, ER_NO_AG, USAGE_CUB);
+		ft_msg_2(1, NULL, ER_ARG_MISS, USAGE_CUB);
 	else if (argc > 2)
-		ft_err_msg_1(1, NULL, ER_TOO_AG, USAGE_CUB);
+		ft_msg_2(1, NULL, ER_ARG_TOO, USAGE_CUB);
 	return (argc);
 }
 
@@ -49,11 +49,9 @@ int	ft_check_filename(char *file, char *ext)
 			ft_magic_malloc(ADD + TAB_STR1, start, 0);
 			if (ft_strncmp(start, ext, ext_len) == 0)
 				if (file[ft_strlen(file) - ext_len - 1] != '/')
-					return (free((char *)start), 1);
-			free((char *)start);
+					return (1);
 		}
 	}
-	ft_err_msg_1(1, file, ER_MAP_EXT, USAGE_CUB);
 	return (0);
 }
 
@@ -72,7 +70,6 @@ int	ft_check_isdirectory(char *file)
 	if (dir >= 0)
 	{
 		close(dir);
-		ft_err_msg_1(1, file, NULL, ER_MAP_ISDIR);
 		return (1);
 	}
 	return (0);
@@ -112,7 +109,7 @@ int	ft_count_lines_gnl(char *file)
 // 	int		count;
 // 	int		nbyte;
 
-// 	buffer = ft_malloc(TAB_STR1, 1);
+// 	buffer = ft_magic_malloc(MALLOC + TAB_STR1, NULL, 1);
 // 	fd = ft_open_read(file);
 // 	count = 0;
 // 	nbyte = 1;
@@ -148,12 +145,12 @@ int	ft_check_arg_err(int argc, char *file)
 	if (ft_check_argc(argc) != 2)
 		return (EXIT_FAILURE);
 	if (!file)
-		return (ft_err_msg_1(EXIT_FAILURE, file, NULL, ER_MAP_EMPTY));
+		return (ft_msg_1(EXIT_FAILURE, file, NULL, ER_FOD_INEX));
 	if (!ft_check_filename(file, ".cub"))
-		return (EXIT_FAILURE);
+		return (ft_msg_2(EXIT_FAILURE, file, ER_FIL_EXT, USAGE_CUB));
 	if (ft_check_isdirectory(file))
-		return (EXIT_FAILURE);
+		return (ft_msg_1(EXIT_FAILURE, file, NULL, ER_FIL_ISDIR));
 	if (ft_count_lines_gnl(file) == 0)
-		return (ft_err_msg_1(EXIT_FAILURE, file, NULL, ER_MAP_EMPTY));
+		return (ft_msg_1(EXIT_FAILURE, file, NULL, ER_FIL_EMPTY));
 	return (EXIT_SUCCESS);
 }

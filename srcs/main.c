@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 19:38:55 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:10:01 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	ZZ_PRINT_BASE_DATA(t_base *base)
 {
 	t_line	*elem;
 
-	elem = base->list_elem;
+	elem = base->list_base;
 	dprintf(1, "ELEM : \n");
 	while (elem)
 	{
-		if (elem->ref == L_TEXTURE)
-			dprintf(1, "TEXTURE	--> ref %d: %d str = %s\n", elem->ref, elem->texture, elem->text_path);
-		else if (elem->ref == L_COLOR)
+		if (elem->type == L_TEXTURE)
+			dprintf(1, "TEXTURE	--> type %d: %d str = %s\n", elem->type, elem->texture, elem->tex_path);
+		else if (elem->type == L_COLOR)
 		{
-			dprintf(1, "COLOR	--> ref %d: %c str = %s\n", elem->ref, elem->color, elem->text_path);
+			dprintf(1, "COLOR	--> type %d: %c str = %s\n", elem->type, elem->color, elem->tex_path);
 			dprintf(1, "color tab = %d - %d - %d\n", elem->col_tab[0], elem->col_tab[1], elem->col_tab[2]);
 		}
 		elem = elem->next;
@@ -48,19 +48,20 @@ void	ZZ_PRINT_BASE_DATA(t_base *base)
 	dprintf(1, "MAP INT** : \n");
 	i = 0;
 	int j;
-	dprintf(1, "game->rows = %d game->cols = %d\n", base->game->rows, base->game->cols);
-	dprintf(1, "player: y = %d, x = %d et position = %c\n", base->game->p_y, base->game->p_x, base->game->p_direction);
-	while (i < base->game->rows)
+	dprintf(1, "game->rows = %d game->cols = %d\n", base->rows, base->cols);
+	dprintf(1, "player: y = %d, x = %d et position = %c\n", base->p_y, base->p_x, base->p_direction);
+	while (i < base->rows)
 	{
 		dprintf(1, "\n");
 		j = 0;
-		while (j < base->game->cols)
+		while (j < base->cols)
 		{
-			dprintf(1, "%d ", base->game->map[i][j]);
+			dprintf(1, "%d ", base->map[i][j]);
 			j++;
 		}
 		i++;
 	}
+	dprintf(1, "\nAll seems ok\n");
 }
 
 int	main(int argc, char **argv)
@@ -68,12 +69,13 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (ft_check_arg_err(argc, argv[1]))
-		return (ft_clean_base(EXIT_FAILURE));
-	ft_init_t_base_cub(argv[1], &data.base);
+		ft_exit_base(EXIT_FAILURE);
+	ft_init_t_base(argv[1], &data.base);
 	if (ft_check_file_err(&data.base))
-		return (ft_clean_base(EXIT_FAILURE));
-	ft_init_t_game(&data.base);
+		ft_exit_base(EXIT_FAILURE);
+	ft_update_t_base_game(&data.base);
 	ZZ_PRINT_BASE_DATA(&data.base);
+	// ft_exit_base(0);// à replacer/ajuster correctement --> pour tester le parsing
 	ft_init_data(&data);
 	mlx_hook(data.img.win_ptr, 2, 1L << 0, (void *)key_hook, &data);
 	mlx_hook(data.img.win_ptr, 3, 1L << 1, (void *)ft_key_release, &data);

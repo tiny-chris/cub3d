@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/06 14:38:15 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:26:30 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	ft_render_map(t_data *data)
 	j = 0;
 	tile.x = 0;
 	tile.y = 0;
-	map = data->base.game->map;
-	while (i < data->base.game->cols)
+	map = data->base.map;
+	while (i < data->base.cols)
 	{
-		while (j < data->base.game->rows)
+		while (j < data->base.rows)
 		{
 			if (map[j][i] != -1)
 			{

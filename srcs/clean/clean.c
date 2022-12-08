@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 19:39:14 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:58:32 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,55 +17,20 @@
 **	la structure envoyee en paramettre pointe vers d'autres structures pour
 **	tout free avant d'exit ou bien faire un garbage collector aussiiiiii
 */
-
 void	ft_quit(t_data *data)
 {
-	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
-	mlx_destroy_window(data->img.mlx_ptr, data->img.win_ptr);
-	mlx_loop_end(data->img.mlx_ptr);
-	mlx_destroy_display(data->img.mlx_ptr);
-	free(data->img.mlx_ptr);
-	exit(0);
-}
-
-/*  ***** Cleaning - display the error message *****
-**  *************************
-**  <SUMMARY>	Print an error message on stderr (if any)
-**				and return the provided error value
-*/
-int	ft_err_msg_1(int res, char *msg1, char *msg2, char *msg3)
-{
-	if (!msg1 && !msg2)
-		return (res);
-	write(2, "Error\n", 6);
-	if (msg1)
+	if (data->img.img)
+		mlx_destroy_image(data->img.mlx_ptr, data->img.img);
+	if (data->img.win_ptr)
+		mlx_destroy_window(data->img.mlx_ptr, data->img.win_ptr);
+	if (data->img.mlx_ptr != 0)
 	{
-		ft_putstr_fd(msg1, STDERR_FILENO);
-		write(STDERR_FILENO, ": ", 2);
+		mlx_loop_end(data->img.mlx_ptr);
+		mlx_destroy_display(data->img.mlx_ptr);
+		free(data->img.mlx_ptr);
 	}
-	ft_putstr_fd(msg2, STDERR_FILENO);
-	ft_putendl_fd(msg3, STDERR_FILENO);
-	return (res);
-}
-
-int	ft_err_msg_2(int res, int i, char *msg1, char *msg2)
-{
-	if (!msg1 && !msg2)
-		return (res);
-	write(2, "Error\n", 6);
-	if (i >= 0)
-	{
-		ft_putstr_fd("line[", STDERR_FILENO);
-		write(STDERR_FILENO, ft_itoa(i), 1);
-		write(STDERR_FILENO, "]: ", 3);
-	}
-	if (msg1)
-	{
-		ft_putstr_fd(msg1, STDERR_FILENO);
-		write(STDERR_FILENO, ": ", 2);
-	}
-	ft_putendl_fd(msg2, STDERR_FILENO);
-	return (res);
+	(void) data;
+	ft_exit_base(0);
 }
 
 void	ft_close_fd(void)
@@ -77,17 +42,24 @@ void	ft_close_fd(void)
 		close (fd++);
 }
 
-int	ft_clean_base(int res)
+// int	ft_clean_base(int res)
+// {
+// 	ft_magic_malloc(0, NULL, 0);
+// 	ft_close_fd();
+// 	return (res);
+// }
+
+void	ft_exit_base(int res)
 {
 	ft_magic_malloc(0, NULL, 0);
 	ft_close_fd();
-	return (res);
+	exit(res);
 }
 
 /*	Function **CLEAN GAME** that frees struct 'data'
 **	***********
 **	Actions:
-**	1. clean struct 'game' that contains 'char **map' if not NULL (via sub fct) 
+**	1. clean struct 'game' that contains 'char **map' if not NULL (via sub fct)
 **	2. destroy all graphical elements if not NULL:
 **		- images (init images for 01CEP): pointer on mlx + void *img
 **		- window: pointer on mlx + pointer on window

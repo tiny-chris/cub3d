@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/02 19:36:55 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:24:20 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,13 @@
 **	<PARAM>		char *file (to open)
 **	<RETURN>	a file descriptor or -1, if could not open the file
 */
-int	ft_open_read(const char *file)
+int	ft_open_read(char *file)
 {
 	int	fd;
-	int	val_exit;
 
-	fd = open(file, O_RDONLY);
+	fd = open((const char *) file, O_RDONLY);
 	if (fd < 0)
-	{
-		val_exit = errno;
-		ft_putendl_fd(strerror(errno), 2);
-		ft_putendl_fd("fd: ", 2);
-		perror(file);
-		exit(ft_clean_base(val_exit)); // ou exit(errno);
-	}
+		ft_exit_base(ft_msg_1(errno, ER_FIL_OPEN, file, ER_FOD_INEX));
 	return (fd);
 }
 

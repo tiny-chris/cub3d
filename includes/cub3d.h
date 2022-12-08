@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/06 14:20:13 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:24:07 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "../lib/mlx/mlx.h"
 # include <X11/keysym.h> // a supprimer
+# include "error_msg.h"
 
 # include <errno.h>	//	perror, errno
 # include <fcntl.h>	//	open,
@@ -48,14 +49,6 @@
 # define TILE_SIZE 16
 
 # define FOV_ANGLE (60 * (M_PI / 180))
-
-# define USAGE_CUB "\nUsage: ./cub3D <map_path>.cub"
-# define ER_NO_AG "Missing argument"
-# define ER_TOO_AG "Too many arguments"
-# define ER_MALLOC "Memory allocation failed"
-# define ER_MAP_EMPTY "No such file or empty file"
-# define ER_MAP_EXT "has an incorrect file extension"
-# define ER_MAP_ISDIR "is a directory"
 
 /*	enum	*/
 
@@ -93,14 +86,14 @@ typedef enum s_flag
 	DELONE			= 3000,
 }	t_flag;
 
-typedef enum e_line_type
+typedef enum e_l_type
 {
 	L_TEXTURE		= 10,
 	L_COLOR			= 20,
 	L_MAP			= 30,
 	L_EMPTY			= 50,
 	L_UNEXPECT		= -1,
-}	t_line_type;
+}	t_l_type;
 
 typedef enum e_texture
 {
@@ -122,10 +115,10 @@ typedef struct s_bin {
 typedef struct s_line {
 	int				index;
 	char			*content;
-	t_line_type		ref;
+	t_l_type		type;
 	int				range;
 	t_texture		texture;
-	char			*text_path;
+	char			*tex_path;
 	char			color;
 	int				*col_tab;
 	struct s_line	*next;
@@ -148,24 +141,25 @@ typedef struct s_point {
 
 /*	Structure for initial data - TO BE UPDATED	*/
 
-typedef struct s_game {
-	int				**map;
-	int				rows;	//height;
-	int				cols;	//width;
-	int				p_y;
-	int				p_x;
-	char			p_direction;
-}	t_game;
-
 /*	structure for initial data - TO BE UPDATED*/
 typedef struct s_base
 {
-	char	**file_base;
-	char	**map_base;
-	t_line	*list_elem;
-	int		nblines_base;
-	t_line	*list_base;
-	t_game	*game;
+	char			**file_base;
+	char			**map_base;
+	t_line			*list_base;
+	int				nblines_base;
+	char			*tex_no;
+	char			*tex_so;
+	char			*tex_we;
+	char			*tex_ea;
+	unsigned long	col_c_hex;
+	unsigned long	col_f_hex;
+	int				**map;
+	int				rows;
+	int				cols;
+	int				p_y;
+	int				p_x;
+	char			p_direction;
 }	t_base;
 
 typedef struct s_player {
@@ -220,72 +214,56 @@ typedef struct s_data {
 	t_player		player;
 }	t_data;
 
-// typedef struct s_map
-// {
-// 	/* data */
-// } t_map;
-
 /*	Parse	*/
 
+	/*	Init parser */
+
+void		ft_init_t_base(char *file, t_base *base);
+void		ft_update_t_base(t_base *base);
+void		ft_update_t_base_game(t_base *base);
+
 int			ft_check_arg_err(int argc, char *file);
-int			ft_check_argc(int argc);
 int			ft_check_filename(char *file, char *ext);
 int			ft_check_isdirectory(char *file);
 int			ft_count_lines_gnl(char *file);
-
 int			ft_check_file_err(t_base *base);
-int			ft_check_lines_order_err(t_base *base);
+int			ft_check_lines_order_err(t_base *base);\
 
-void		ft_get_file_base_detailed(t_base *base);
 void		ft_get_texture(t_line **list_base);
 void		ft_get_color(t_line **list_base);
-t_line		*ft_get_elem_base(t_base *base);
 char		**ft_get_map_base(t_base *base);
 int			**ft_get_map_game_int(t_base *base);
-int			ft_get_player_y(t_base *base);
-int			ft_get_player_x(t_base *base, int i);
 
 int			ft_check_elem_err(t_base *base);
 int			ft_check_map_err(t_base *base);
-
-int			ft_check_map_only_allowed_set(char **map, int lines, const char *set);
+int			ft_check_map_only_set(char **map, int lines, const char *set);
 int			ft_check_map_global_struct(char **map, int lines);
 int			ft_check_map_unique_player(char **map, int lines);
 int			ft_check_map_enclosed_by_walls(char **map, int lines, int len);
 
 /*	line_list	*/
 
-t_line		*ft_lstlast_line(t_line *lst);
 void		ft_lstadd_back_line(t_line **line, t_line *new);
-void		ft_lstadd_line(t_line **line, int index, char *str, t_line_type ref);
-void		ft_lstadd_elem(t_line **list_elem, t_line *line);
+void		ft_lstadd_line(t_line **line, int index, char *str, t_l_type type);
+void		ft_lstadd_new_line(t_line **new_list, t_line *line);
 void		ft_lstdelone_line(t_line *node);
 // free
-
-/*	game_list*/
-
-/*	Init parser */
-
-void		ft_init_t_base_cub(char *file, t_base *base);
-void		ft_init_t_game(t_base *base);
-void		ft_init_t_data_cub(char *file, t_base *data);
-char		**ft_get_file_content(char	*file);
-char		**ft_get_file_base(char	*file);
 
 /*	Init	*/
 
 void		ft_init_player(t_data *data);
 void		ft_init_data(t_data *data);
-float		ft_get_rotation_angle(t_game *game);
+// float		ft_get_rotation_angle(t_game *game);
+float		ft_get_rotation_angle(t_base *base);
 
 /*	Clean	*/
 
-void		ft_quit(t_data *data);
-int			ft_clean_base(int res);
-void		ft_clean_cub(t_data *data, int res);
-int			ft_err_msg_1(int res, char *msg1, char *msg2, char *msg3);
-int			ft_err_msg_2(int res, int i, char *msg1, char *msg2);
 void		ft_close_fd(void);
+void		ft_exit_base(int res);
+void		ft_quit(t_data *data);
+
+int			ft_msg_1(int res, char *msg1, char *msg2, char *msg3);
+int			ft_msg_2(int res, char *msg1, char *msg2, char *msg3);
 
 // void		*ft_free_tabint(int **tab_int, int size);
 void		*ft_free_tabint2(int **tab_int, int size, int type);
@@ -298,7 +276,6 @@ void		*ft_free_tabstr2(char **tab_str, int type);
 
 /*	Handle malloc*/
 
-void		*ft_malloc(int type, int size);
 void		*ft_magic_malloc(int flag_type, void *ptr, int size);
 int			ft_lstadd_bin(t_bin **bin_head, void *ptr, int type, int size);
 void		ft_free_ptr_type(void *ptr, int type, int size);
@@ -333,7 +310,7 @@ void		my_pixel_put(t_data *data, int x, int y, int color);
 int			key_hook(int keycode, t_data *data);
 int			ft_key_release(int keycode, t_data *data);
 
-int			ft_open_read(const char *file);
+int			ft_open_read(char *file);
 int			ft_strlen_spechar(const char *str, char spe_c);
 int			ft_len_delspace_str(char *str);
 int			ft_lines_tabstr(char **tab_str);

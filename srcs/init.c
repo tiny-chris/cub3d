@@ -6,42 +6,42 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/06 14:12:13 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:25:56 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	ft_get_rotation_angle(t_game *game)
+float	ft_get_rotation_angle(t_base *base)
 {
 	float	rotation_angle;
 
 	rotation_angle = 0;
-	if (game->p_direction == 'N')
+	if (base->p_direction == 'N')
 		rotation_angle = M_PI / 2;
-	else if (game->p_direction == 'S')
+	else if (base->p_direction == 'S')
 		rotation_angle = (3 * M_PI) / 2;
-	else if (game->p_direction == 'E')
+	else if (base->p_direction == 'E')
 		rotation_angle = 2 * M_PI;
-	else if (game->p_direction == 'W')
+	else if (base->p_direction == 'W')
 		rotation_angle = M_PI;
 	return (rotation_angle);
 }
 
 void	ft_init_player(t_data *data)
 {
-	t_game	*game;
+	t_base	*base;
 
-	game = data->base.game;
+	base = &data->base;
 	// data->player.x = game->p_x * TILE_SIZE;
 	// data->player.y = game->p_y * TILE_SIZE;
-	data->player.p.x = game->p_x * TILE_SIZE;
-	data->player.p.y = game->p_y * TILE_SIZE;
+	data->player.p.x = base->p_x * TILE_SIZE;
+	data->player.p.y = base->p_y * TILE_SIZE;
 	data->player.width = 4;
 	data->player.height = 4; // ne garder que width ?
 	data->player.turn_direction = 0;
 	data->player.walk_direction = 0;
-	data->player.rotation_angle = ft_get_rotation_angle(game);
+	data->player.rotation_angle = ft_get_rotation_angle(base);
 	printf("\ndata->playerotationangle %f\n", data->player.rotation_angle);
 	data->player.turn_speed =  10 * (M_PI / 180); // 2 * (M_PI / 180) dans le js; 
 	data->player.walk_speed = 2.0;
