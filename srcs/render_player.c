@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 14:27:10 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/08 16:41:18 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_bool	ft_check_wall(t_data *data, float x, float y)
 	int	mapgridindex_x;
 	int	mapgridindex_y;
 
+	mapgridindex_x = 0;
+	mapgridindex_y = 0;
 	if (x < 0 || x > WIN_WIDTH || y < 0 \
 		|| y > WIN_HEIGHT)
 		return (TRUE);
@@ -89,6 +91,8 @@ void	ft_update_player(t_data *d)
 	t_player	newplayer;
 
 	movestep = 0;
+	newplayer.p.x = 0;
+	newplayer.p.y = 0;
 	d->player.rotation_angle += d->player.turn_direction * d->player.turn_speed;
 	if (d->player.walk_direction != 0)
 	{

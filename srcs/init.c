@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 15:57:30 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:43:57 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ static int	ft_init_t_img(t_img *img, int win_width, int win_height, char *name)
 void	ft_init_data(t_data *data)
 {
 	// if (!ft_init_t_img(&(data->cub), WIN_WIDTH, WIN_HEIGHT, "CUB3D"))
+	// 	ft_quit(data);
+	// if (!ft_init_t_img(&(data->img), WIN_WIDTH, \
+	// 	WIN_HEIGHT, "minimap"))
 	// 	ft_quit(data);
 	if (!ft_init_t_img(&(data->img), data->base.cols * TILE_SIZE, \
 		data->base.rows * TILE_SIZE, "minimap"))
