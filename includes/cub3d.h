@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 15:31:32 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:22:52 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 
 # define WIN_WIDTH 1800
 # define WIN_HEIGHT 1600
+# define MAP_SCALE 0.5
 
 # define COLOR_LOW 0x007733FF
 # define COLOR_BLACK 0x000000

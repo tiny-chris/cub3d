@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 16:41:18 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/08 18:27:13 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@ void	ft_render_player(t_data *data)
 	t_point	p;
 	t_point	p2;
 
-	p.x = data->player.p.x;
-	p.y = data->player.p.y;
-	p2.x = p.x + (cos(data->player.rotation_angle) * DIR_LEN);
-	p2.y = p.y + (sin(data->player.rotation_angle) * DIR_LEN);
-	ft_draw_rect(data, p, COLOR_RED, data->player.width);
+	p.x = (data->player.p.x * MAP_SCALE);
+	p.y = (data->player.p.y * MAP_SCALE);
+	p2.x = (p.x + (cos(data->player.rotation_angle) * DIR_LEN)) * MAP_SCALE;
+	p2.y = (p.y + (sin(data->player.rotation_angle) * DIR_LEN)) * MAP_SCALE;
+	ft_draw_rect(data, p, COLOR_RED, (data->player.width * MAP_SCALE));
 	ft_draw_line(data, p, p2, COLOR_BLUE);
 }

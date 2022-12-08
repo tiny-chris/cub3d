@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 16:43:57 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/08 18:23:29 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	ft_init_data(t_data *data)
 	// if (!ft_init_t_img(&(data->img), WIN_WIDTH, \
 	// 	WIN_HEIGHT, "minimap"))
 	// 	ft_quit(data);
-	if (!ft_init_t_img(&(data->img), data->base.cols * TILE_SIZE, \
-		data->base.rows * TILE_SIZE, "minimap"))
+	if (!ft_init_t_img(&(data->img), data->base.cols * TILE_SIZE * MAP_SCALE, \
+		data->base.rows * TILE_SIZE * MAP_SCALE, "minimap"))
 		ft_quit(data);
 	data->nbr_rays = WIN_WIDTH;
 	ft_init_player(data);

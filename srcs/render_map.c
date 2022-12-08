@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 14:27:22 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/08 18:25:19 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	ft_render_map(t_data *data)
 					color = COLOR_WHITE;
 				else
 					color = COLOR_BLACK;
-				tile.x = i * TILE_SIZE;
-				tile.y = j * TILE_SIZE;
-				ft_draw_rect(data, tile, color, TILE_SIZE);
+				tile.x = i * TILE_SIZE * MAP_SCALE;
+				tile.y = j * TILE_SIZE * MAP_SCALE;
+				ft_draw_rect(data, tile, color, (TILE_SIZE * MAP_SCALE));
 			}
 			j++;
 		}
