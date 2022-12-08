@@ -50,6 +50,7 @@ SRCS		:= \
 			utils/utils_2.c \
 			utils/utils_3.c \
 			utils/utils_atoi_cub.c \
+			gen_3d_projection.c \
 			init.c \
 			render_map.c \
 			render_player.c \

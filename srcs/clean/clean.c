@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 11:58:32 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:57:38 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 */
 void	ft_quit(t_data *data)
 {
+	// if (data->cub.img)
+	// 	mlx_destroy_image(data->cub.mlx_ptr, data->cub.img);
+	// if (data->cub.win_ptr)
+	// 	mlx_destroy_window(data->cub.mlx_ptr, data->cub.win_ptr);
+	// if (data->cub.mlx_ptr != 0)
+	// {
+	// 	mlx_loop_end(data->cub.mlx_ptr);
+	// 	mlx_destroy_display(data->cub.mlx_ptr);
+	// 	free(data->cub.mlx_ptr);
+	// }
 	if (data->img.img)
 		mlx_destroy_image(data->img.mlx_ptr, data->img.img);
 	if (data->img.win_ptr)

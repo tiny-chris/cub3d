@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 14:29:43 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:57:30 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,32 @@ void	ft_init_rays(t_data *data)
 	}
 }
 
+static int	ft_init_t_img(t_img *img, int win_width, int win_height, char *name)
+{
+	img->mlx_ptr = mlx_init();
+	if (img->mlx_ptr == NULL)
+		return (0);
+	img->win_ptr = mlx_new_window(img->mlx_ptr, win_width, win_height, \
+		name);
+	if (img->win_ptr == NULL)
+		return (0);
+	img->img = mlx_new_image(img->mlx_ptr, win_width, win_height);
+	if (img->img == NULL)
+		return (0);
+	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), \
+		&(img->line_lenght), &(img->endian));
+	if (img->addr == NULL)
+		return (0);
+	return (1);
+}
+
 void	ft_init_data(t_data *data)
 {
-	data->img.mlx_ptr = mlx_init();
-	// if (data->img.mlx_ptr == NULL)
-	// 	ft_clean_game(data);//ajouter le nettoyage mlx
-	data->img.win_ptr = mlx_new_window(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
-	// if (data->img.win_ptr == NULL)
-	// 	ft_clean_game(data);//ajouter le nettoyage mlx
-	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	if (!data->img.img)
-		return ; // On free ?
-	data->img.addr = mlx_get_data_addr(data->img.img, &(data->img.bits_per_pixel), \
-				&(data->img.line_lenght), &(data->img.endian));
-	if (!data->img.addr)
-		return ; // On free ?
+	// if (!ft_init_t_img(&(data->cub), WIN_WIDTH, WIN_HEIGHT, "CUB3D"))
+	// 	ft_quit(data);
+	if (!ft_init_t_img(&(data->img), data->base.cols * TILE_SIZE, \
+		data->base.rows * TILE_SIZE, "minimap"))
+		ft_quit(data);
 	data->nbr_rays = WIN_WIDTH;
 	ft_init_player(data);
 	ft_init_rays(data);
