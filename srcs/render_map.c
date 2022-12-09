@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 18:25:19 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:34:19 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,27 @@ void	ft_render_map(t_data *data)
 	}
 }
 
-int	ft_render_next_frame(t_data *data)
+void	ft_render_rays(t_data *data)
 {
 	int	strip_id;
+	t_point	player;
+	t_point	wall_hit;
 
 	strip_id = 0;
+	while (strip_id < WIN_WIDTH)
+	{
+		player.x = data->player.p.x * MAP_SCALE;
+		player.y = data->player.p.y * MAP_SCALE;
+		wall_hit.x = data->rays[strip_id].wall_hit.x * MAP_SCALE;
+		wall_hit.y = data->rays[strip_id].wall_hit.y * MAP_SCALE;
+		ft_draw_line(data, player, wall_hit, COLOR_RED);
+		strip_id += 1;
+	}
+}
+
+
+int	ft_render_next_frame(t_data *data)
+{
 	if (data->player.turn_direction != 0 || data->player.walk_direction != 0 || data->player.side_direction != 0)
 		ft_update_player(data);
 	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
@@ -84,15 +100,9 @@ int	ft_render_next_frame(t_data *data)
 				&data->img.line_lenght, &data->img.endian);
 	if (!data->img.addr)
 		return (0); // On free ? 
-	// render line
-	ft_render_map(data);
 	ft_cast_all_rays(data);
-	// render rays
-	while (strip_id < WIN_WIDTH)
-	{
-		ft_draw_line(data, data->player.p, data->rays[strip_id].wall_hit, COLOR_RED);
-		strip_id += 1;
-	}
+	ft_render_map(data);
+	ft_render_rays(data);
 	ft_render_player(data);
 	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);
 	return (1);
