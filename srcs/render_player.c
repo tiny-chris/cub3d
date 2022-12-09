@@ -6,40 +6,11 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/09 17:16:51 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:29:53 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
-/*	Fonction js */
-
-// update() {
-// 	// TO DO:
-// 	// update player position based on turnDirecion and walk_direction
-// 	this.rotationAngle += this.turn_direction * this.rotationSpeed;
-
-// 	var moveStep = this.walk_direction * this.moveSpeed;
-// 	//this.x += Math.cos(this.rotationAngle) * moveStep;
-// 	//this.y += Math.sin(this.rotationAngle) * moveStep;
-// 	var	newPlayerX = this.x + Math.cos(this.rotationAngle) * moveStep;
-// 	var newPlayerY = this.y + Math.sin(this.rotationAngle) * moveStep;
-
-// 	// only set new player position if it is not colliding with the map walls
-// 	if (!grid.hasWallAt(newPlayerX, newPlayerY)) {
-// 		this.x = newPlayerX;
-// 		this.y = newPlayerY;
-// 	}
-// }
-
-// hasWallAt(x, y) {
-// 		if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
-// 			return true;
-// 		}
-// 		var mapGridIndexX = Math.floor(x / TILE_size);
-// 		var mapGridIndexY = Math.floor(y / TILE_size);
-// 		return this.grid[mapGridIndexY][mapGridIndexX] != 0; 
 
 t_bool	ft_check_wall(t_data *data, float x, float y)
 {
@@ -66,23 +37,6 @@ t_bool	ft_check_wall(t_data *data, float x, float y)
 		return (TRUE);
 	return (FALSE);
 }
-
-// void	ft_update_player(t_data *d)
-// {
-// 	float		movestep;
-// 	t_player	newplayer;
-
-// 	movestep = 0;
-// 	d->player.rotation_angle -= d->player.turn_direction * d->player.turn_speed;
-// 	movestep = d->player.walk_direction * d->player.walk_speed;
-// 	newplayer.p.x = d->player.p.x + cos(d->player.rotation_angle) * movestep;
-// 	newplayer.p.y = d->player.p.y - sin(d->player.rotation_angle) * movestep;
-// 	if (ft_check_wall(d, newplayer.p.x, newplayer.p.y) == FALSE)
-// 	{
-// 		d->player.p.x = newplayer.p.x;
-// 		d->player.p.y = newplayer.p.y;
-// 	}
-// }
 
 void	ft_forward_diagonal(t_data *d, t_player *newplayer)
 {

@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/09 15:34:19 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:53:36 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_draw_rect(t_data *data, t_point tile, int color, int size)
 	t_point	tile2_cpy;
 	int		count;
 
-	tile2.x = tile.x + size - 1;
+	tile2.x = tile.x + size;
 	tile2.y = tile.y;
 	tile_cpy.x = tile.x;
 	tile_cpy.y = tile.y;
@@ -28,7 +28,7 @@ void	ft_draw_rect(t_data *data, t_point tile, int color, int size)
 	count = 0;
 	while (count < size)
 	{
-		ft_draw_horizontal(data, tile_cpy, tile2_cpy, color);
+		ft_draw_line(data, tile_cpy, tile2_cpy, color);
 		tile_cpy.y += 1;
 		tile2_cpy.y += 1;
 		count++;
@@ -71,7 +71,7 @@ void	ft_render_map(t_data *data)
 
 void	ft_render_rays(t_data *data)
 {
-	int	strip_id;
+	int		strip_id;
 	t_point	player;
 	t_point	wall_hit;
 

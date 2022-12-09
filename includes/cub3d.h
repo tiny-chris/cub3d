@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 18:22:52 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:49:12 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 # define WIN_WIDTH 1800
 # define WIN_HEIGHT 1600
-# define MAP_SCALE 0.5
+# define MAP_SCALE 1
 
 # define COLOR_LOW 0x007733FF
 # define COLOR_BLACK 0x000000
@@ -177,7 +177,7 @@ typedef struct s_player {
 	float			walk_speed;
 }	t_player;
 
-typedef	struct s_hit {
+typedef struct s_hit {
 	float	x_intercept;
 	float	y_intercept;
 	float	x_step;
@@ -201,11 +201,8 @@ typedef struct s_cast
 	t_bool	ray_facing_right;
 }	t_cast;
 
-
-typedef struct	s_ray {
+typedef struct s_ray {
 	float			ray_angle;
-	// float			wall_hit_x;
-	// float			wall_hit_y;
 	t_point			wall_hit;
 	float			distance;
 	int				wall_hit_vertical;
@@ -213,7 +210,6 @@ typedef struct	s_ray {
 	int				is_ray_facing_down;
 	int				is_ray_facing_left;
 	int				is_ray_facing_right;
-//	int				wall_hit_content;
 }	t_ray;
 
 typedef struct s_data {
@@ -222,8 +218,6 @@ typedef struct s_data {
 	t_ray			rays[WIN_WIDTH];
 	t_img			img;
 	t_img			cub;
-	t_point			p1; //
-	t_point			p2; //
 	t_player		player;
 }	t_data;
 
@@ -298,19 +292,14 @@ void		ft_free_bin(t_bin **bin_head);
 
 /*	Draw line	*/
 
-float		ft_abs(float nbr);
 void		ft_draw_line(t_data *data, t_point p1, t_point p2, int color);
-void		ft_draw_vertical(t_data *data, t_point p1, t_point p2, int color);
-void		ft_draw_horizontal(t_data *data, t_point p1, t_point p2, int color);
-void		ft_big_slope(t_data *data, t_point p1, t_point p2, int color, float m);
-void		ft_small_slope(t_data *data, t_point p1, t_point p2, int color, float m);
 
 /*	Render map	*/
 
 void		ft_draw_rect(t_data *data, t_point tile, int color, int size);
 void		ft_render_map(t_data *data);
 int			ft_render_next_frame(t_data *data);
-int		ft_render_3d_visual(t_data *data);
+int			ft_render_3d_visual(t_data *data);
 
 /*	Render player	*/
 
@@ -335,24 +324,17 @@ int			ft_count_isinset(char *str, char c);
 
 /*	Cast Rays	*/
 
-void	ft_cast_all_rays(t_data *data);
-void	ft_cast_ray(t_data *data, float ray_angle, int strip_id);
-void	ft_fill_ray(t_data *data, int strip_id, t_cast *cast, float ray_angle);
-float	ft_distance_btw_points(t_player player, t_point wall_hit); 
-void	ft_init_cast(t_cast *cast);
-void	ft_init_hit(t_hit *hit);
-void	ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast);
-void	ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast);
-float	ft_normalize_angle(float ray_angle);
-void	ft_ray_orientation(t_cast *cast, float ray_angle);
-void	ft_get_horz_steps(t_data *data, float ray_angle, t_cast *cast);
-void	ft_get_vert_steps(t_data *data, float ray_angle, t_cast *cast);
-// void	ft_fill_ray(t_data *data, int strip_id, t_hit *horz, t_hit *vert);
-// void	ft_init_horz_vert(t_hit *horz);
-// void	ft_check_vert_intersection(t_data *data, float ray_angle, int strip_id, t_hit *vert);
-// void	ft_check_horz_intersection(t_data *data, float ray_angle, int strip_id, t_hit *horz);
-// void	ft_ray_orientation(t_data *data, float ray_angle, int strip_id);
-
-
+void		ft_cast_all_rays(t_data *data);
+void		ft_cast_ray(t_data *data, float ray_angle, int strip_id);
+void		ft_fill_ray(t_data *data, int strip_id, t_cast *cast, float ray_angle);
+float		ft_distance_btw_points(t_player player, t_point wall_hit);
+void		ft_init_cast(t_cast *cast);
+void		ft_init_hit(t_hit *hit);
+void		ft_check_vert_intersection(t_data *data, float ray_angle, t_cast *cast);
+void		ft_check_horz_intersection(t_data *data, float ray_angle, t_cast *cast);
+float		ft_normalize_angle(float ray_angle);
+void		ft_ray_orientation(t_cast *cast, float ray_angle);
+void		ft_get_horz_steps(t_data *data, float ray_angle, t_cast *cast);
+void		ft_get_vert_steps(t_data *data, float ray_angle, t_cast *cast);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gen_3d_projection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 15:49:52 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:51:14 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_render_color(t_data *data)
 	while (p1.x < data->nbr_rays)
 	{
 		p2.x = p1.x;
-		ft_draw_vertical(data, p1, p2, COLOR_LOW);
+		ft_draw_line(data, p1, p2, COLOR_LOW);
 		p1.x++;
 	}
 }
@@ -50,7 +50,7 @@ void	ft_render_color_ceiling(t_data *data)
 	while (start.x < data->nbr_rays)
 	{
 		end.x = start.x;
-		ft_draw_vertical(data, start, end, COLOR_LOW);//à changer
+		ft_draw_line(data, start, end, COLOR_LOW);//à changer
 		start.x++;
 	}
 }
@@ -67,7 +67,7 @@ void	ft_render_color_floor(t_data *data)
 	while (start.x < data->nbr_rays)
 	{
 		end.x = start.x;
-		ft_draw_vertical(data, start, end, COLOR_BLUE);//à changer
+		ft_draw_line(data, start, end, COLOR_BLUE);//à changer
 		start.x++;
 	}
 }

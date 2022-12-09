@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/08 18:23:29 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:32:21 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 float	ft_get_rotation_angle(t_base *base)
 {
-	// inverser l'orientation 
 	float	rotation_angle;
 
 	rotation_angle = 0;

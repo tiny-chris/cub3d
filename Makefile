@@ -31,9 +31,6 @@ SRCS		:= \
 			clean/clean.c \
 			clean/clean_free_tabs.c \
 			clean/clean_msg.c \
-			draw/big_slope.c \
-			draw/draw_line.c \
-			draw/small_slope.c \
 			parser/check_1_arg.c \
 			parser/check_2_file.c \
 			parser/check_elem.c \
@@ -54,6 +51,7 @@ SRCS		:= \
 			init.c \
 			render_map.c \
 			render_player.c \
+			draw_line.c \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 
