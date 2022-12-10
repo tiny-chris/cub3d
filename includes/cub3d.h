@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:01:34 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:25:21 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ typedef struct s_data {
 	int				map2d_width;
 	int				map2d_length;
 	t_img			cub;
-	t_img			img;
+	t_img			m2d;
 	t_ray			rays[WIN_WIDTH];
 	t_player		player;
 }	t_data;

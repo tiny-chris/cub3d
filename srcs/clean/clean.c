@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:08:09 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:27:06 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_clean_cub(t_data *data)
 {
 	if (!data)
 		return ;
-	if (data->img.img)
-		mlx_destroy_image(data->mlx_ptr, data->img.img);
+	if (data->m2d.img)
+		mlx_destroy_image(data->mlx_ptr, data->m2d.img);
 	if (data->cub.img)
 		mlx_destroy_image(data->mlx_ptr, data->cub.img);
 	if (data->map2d_display == TRUE)

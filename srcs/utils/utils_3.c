@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:08:53 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:27:16 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	my_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->img.addr + (y * data->img.line_length \
-		+ x * (data->img.bits_per_pixel / 8));
+	dst = data->m2d.addr + (y * data->m2d.line_length \
+		+ x * (data->m2d.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 

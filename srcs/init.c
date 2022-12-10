@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/10 03:13:51 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:24:57 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static void	ft_init_data_0(t_data *data)
 	data->map2d_width = WIN_WIDTH;//a revoir, calculer
 	data->map2d_height = WIN_HEIGHT;//a revoir, calculer
 	data->cub.img = NULL;
-	data->img.img = NULL;
+	data->m2d.img = NULL;
 }
 
 /*	<SUMMARY> Initialize data elements except 'base' content

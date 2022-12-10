@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/10 03:20:04 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:30:10 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	ft_render_rays(t_data *data)
 
 void	ft_render_minimap_2d(t_data *data)
 {
-	if (data->img.img)
-		mlx_destroy_image(data->mlx_ptr, data->img.img);
-	if (!ft_init_t_img(data->img, data->map2d_width, data->map2d_length))
+	if (data->m2d.img)
+		mlx_destroy_image(data->mlx_ptr, data->m2d.img);
+	if (!ft_init_t_img(data->m2d, data->map2d_width, data->map2d_length))
 		ft_exit_cub(1, data);
 	ft_render_map(data);
 	ft_render_rays(data);
@@ -135,7 +135,7 @@ int	ft_render_next_frame(t_data *data)
 		ft_render_minimap_2d(data);
 		mlx_clear_window(data->mlx_ptr, data->map2d_win_ptr);
 		mlx_put_image_to_window(data->mlx_ptr, data->map2d_win_ptr, \
-			data->img.img, 0, 0);//possible de modifier la taille
+			data->m2d.img, 0, 0);//possible de modifier la taille
 	}
 	// cf. dans 'ft_handle_minimap_2d
 	// if (data->map2d_win_ptr)

@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:17:04 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:25:53 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win_ptr, 3, 1L << 1, (void *)ft_key_release, &data);
 	mlx_loop_hook(data.mlx_ptr, ft_render_next_frame, &data);
 	//
-	mlx_loop(data.img.mlx_ptr);
+	mlx_loop(data.mlx_ptr);
 	return (0);
 }
