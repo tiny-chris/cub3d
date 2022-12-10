@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:22:10 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:14:28 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	**ft_get_file_base(char	*file)
 	return (file_base);
 }
 
-static void	ft_get_list_base(t_base *b, t_l_type type)
+static void	ft_get_list_base(t_base *b, t_line_type type)
 {
 	int			i;
 	int			j;

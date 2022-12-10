@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:53:34 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:05:18 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:14:37 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_lstadd_back_line(t_line **line, t_line *new)
 	last->next = new;
 }
 
-void	ft_lstadd_line(t_line **line, int index, char *str, t_l_type type)
+void	ft_lstadd_line(t_line **line, int index, char *str, t_line_type type)
 {
 	t_line	*newline;
 	int		len;

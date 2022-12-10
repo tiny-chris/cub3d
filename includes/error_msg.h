@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:32:47 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 04:32:40 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:41:58 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 # define ER_WAL_ZERO "floor '0' surrounded by wrong character"
 # define ER_WAL_SPACE "space ' ' is next to player or floor '0'"
 
+# define ER_MLX_INIT "initialisation failed"
+# define ER_MLX_WIN "window creation failed"
+# define ER_MLX_IMG "image creation failed"
+# define ER_MLX_ADDR "address setup failed"
 
 // # define E_MAP_BIG_MSG "the map is immense"
 // # define E_MLX_FAILURE_MSG "mlx failed"

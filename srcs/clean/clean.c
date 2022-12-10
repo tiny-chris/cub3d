@@ -6,42 +6,11 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 15:57:38 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:08:09 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
-**	Fonction qui ne prend q'un seul argument peut etre qu'il faudra que
-**	la structure envoyee en paramettre pointe vers d'autres structures pour
-**	tout free avant d'exit ou bien faire un garbage collector aussiiiiii
-*/
-void	ft_quit(t_data *data)
-{
-	// if (data->cub.img)
-	// 	mlx_destroy_image(data->cub.mlx_ptr, data->cub.img);
-	// if (data->cub.win_ptr)
-	// 	mlx_destroy_window(data->cub.mlx_ptr, data->cub.win_ptr);
-	// if (data->cub.mlx_ptr != 0)
-	// {
-	// 	mlx_loop_end(data->cub.mlx_ptr);
-	// 	mlx_destroy_display(data->cub.mlx_ptr);
-	// 	free(data->cub.mlx_ptr);
-	// }
-	if (data->img.img)
-		mlx_destroy_image(data->img.mlx_ptr, data->img.img);
-	if (data->img.win_ptr)
-		mlx_destroy_window(data->img.mlx_ptr, data->img.win_ptr);
-	if (data->img.mlx_ptr != 0)
-	{
-		mlx_loop_end(data->img.mlx_ptr);
-		mlx_destroy_display(data->img.mlx_ptr);
-		free(data->img.mlx_ptr);
-	}
-	(void) data;
-	ft_exit_base(0);
-}
 
 void	ft_close_fd(void)
 {
@@ -52,17 +21,53 @@ void	ft_close_fd(void)
 		close (fd++);
 }
 
-// int	ft_clean_base(int res)
-// {
-// 	ft_magic_malloc(0, NULL, 0);
-// 	ft_close_fd();
-// 	return (res);
-// }
+// *************************voir pour t_img !!!!!!!!!!!!!**********************
+//
+// *************************voir pour t_img !!!!!!!!!!!!!**********************
+// gérer aussi img !!!! (minimap + textures)
+void	ft_clean_cub(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->img.img)
+		mlx_destroy_image(data->mlx_ptr, data->img.img);
+	if (data->cub.img)
+		mlx_destroy_image(data->mlx_ptr, data->cub.img);
+	if (data->map2d_display == TRUE)
+		mlx_destroy_window(data->mlx_ptr, data->map2d_win_ptr);
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
+	{
+		mlx_loop_end(data->mlx_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+	}
+}
 
 void	ft_exit_base(int res)
 {
 	ft_magic_malloc(0, NULL, 0);
 	ft_close_fd();
+	exit(res);
+}
+
+/*
+**	Fonction qui ne prend q'un seul argument peut etre qu'il faudra que
+**	la structure envoyee en paramettre pointe vers d'autres structures pour
+**	tout free avant d'exit ou bien faire un garbage collector aussiiiiii
+*/
+void	ft_quit(t_data *data)
+{
+	ft_clean_cub(data);
+	ft_exit_base(0);
+}
+
+void	ft_exit_cub(int res, t_data *data)
+{
+	ft_magic_malloc(0, NULL, 0);
+	ft_close_fd();
+	ft_clean_cub(data);
 	exit(res);
 }
 

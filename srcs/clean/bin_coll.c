@@ -6,16 +6,11 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 18:09:46 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 11:56:50 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:07:54 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// *************************voir pour t_img !!!!!!!!!!!!!**********************
-//
-// *************************voir pour t_img !!!!!!!!!!!!!**********************
-
 
 /* <SUMMARY> Gets the 'sizeof' corresponding to the given type
 */
