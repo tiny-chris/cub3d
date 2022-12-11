@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:11:36 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:10:40 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	ft_render_color_ceiling(t_data *data)
 	{
 		end.x = start.x;
 		//changer la couleur avec les éléments dans base
-		ft_draw_line(data->cub, start, end, COLOR_LOW);
+		// ft_draw_line2(data->cub, start, end, COLOR_LOW);
+		ft_draw_line2(data->cub, start, end, data->base.col_c_hex);
 		start.x++;
 	}
 }
@@ -46,7 +47,8 @@ void	ft_render_color_floor(t_data *data)
 	{
 		end.x = start.x;
 		//changer la couleur avec les éléments dans base
-		ft_draw_line(data->cub, start, end, COLOR_BLUE);
+		// ft_draw_line2(data->cub, start, end, COLOR_BLUE);
+		ft_draw_line2(data->cub, start, end, data->base.col_f_hex);
 		start.x++;
 	}
 }
@@ -71,7 +73,7 @@ void	ft_generate_3d_projection(t_data *data)
 		if (wall_top_pixel.y < 0)
 			wall_top_pixel.y = 0;
 		wall_top_pixel.x = i;
-		wall_bottom_pixel.y = (WIN_HEIGHT / 2) + (wall_strip_height / 2);
+		wall_bottom_pixel.y = (WIN_HEIGHT / 2) + (proj.wall_strip_height / 2);
 		if (wall_bottom_pixel.y > WIN_HEIGHT)
 			wall_bottom_pixel.y = WIN_HEIGHT;
 		wall_bottom_pixel.x = i;

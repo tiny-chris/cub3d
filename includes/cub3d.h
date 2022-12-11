@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:25:21 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:11:49 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,15 +121,22 @@ typedef struct s_line {
 	struct s_line	*next;
 }	t_line;
 
+typedef struct s_tex {
+	char			*path;
+	void			*img;
+	int				tile_x;
+	int				tile_y;
+}	t_tex;
+
 typedef struct s_base {
 	char			**file_base;
 	char			**map_base;
 	t_line			*list_base;
 	int				nblines_base;
-	char			*tex_no;
-	char			*tex_so;
-	char			*tex_we;
-	char			*tex_ea;
+	t_tex			no;
+	t_tex			so;
+	t_tex			we;
+	t_tex			ea;
 	unsigned long	col_c_hex;
 	unsigned long	col_f_hex;
 	int				**map;
@@ -212,7 +219,7 @@ typedef struct s_data {
 	void			*map2d_win_ptr;
 	int				map2d_display;
 	int				map2d_width;
-	int				map2d_length;
+	int				map2d_height;
 	t_img			cub;
 	t_img			m2d;
 	t_ray			rays[WIN_WIDTH];
@@ -254,8 +261,10 @@ void	ft_lstdelone_line(t_line *node);
 
 /*	Init	*/
 
-void	ft_init_player(t_data *data);
 void	ft_init_data(t_data *data);
+void	ft_init_t_img(t_data *data, t_img *img, int width, int height);
+void	ft_init_player(t_data *data);
+void	ft_init_rays(t_data *data);
 float	ft_get_rotation_angle(t_base *base);
 
 /*	Clean	*/
@@ -302,6 +311,7 @@ void	ft_render_minimap_2d(t_data *data);
 void	ft_draw_rect(t_data *data, t_point tile, int color, int size);
 void	ft_render_map(t_data *data);
 int		ft_render_next_frame(t_data *data);
+void	ft_generate_3d_projection(t_data *data);
 
 /*	Render player	*/
 
@@ -314,6 +324,7 @@ t_bool	ft_check_wall(t_data *data, float x, float y);
 void	my_pixel_put(t_data *data, int x, int y, int color);
 void	my_pixel_put2(t_img img, int x, int y, int color);
 int		ft_key_hook(int keycode, t_data *data);
+// int		ft_key_hook2(int keycode, t_data *data);
 int		ft_key_release(int keycode, t_data *data);
 
 int		ft_open_read(char *file);

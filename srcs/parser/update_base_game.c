@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:15:51 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:23:14 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:59:45 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static void	ft_get_game_elem(t_base *base)
 		if (line->type == L_TEXTURE)
 		{
 			if (line->texture == NO)
-				base->tex_no = line->tex_path;
+				base->no.path = line->tex_path;
 			else if (line->texture == SO)
-				base->tex_so = line->tex_path;
+				base->so.path = line->tex_path;
 			else if (line->texture == WE)
-				base->tex_we = line->tex_path;
+				base->we.path = line->tex_path;
 			else if (line->texture == EA)
-				base->tex_ea = line->tex_path;
+				base->ea.path = line->tex_path;
 		}
 		else if (line->type == L_COLOR)
 		{
@@ -89,8 +89,6 @@ static void	ft_get_game_elem(t_base *base)
 void	ft_update_t_base_game(t_base *base)
 {
 	ft_get_game_elem(base);
-	dprintf(2, "val de c_col_hex = %lX\n", base->col_c_hex);
-	dprintf(2, "val de f_col_hex = %lX\n", base->col_f_hex);
 	base->rows = ft_lines_tabstr(base->map_base);
 	base->cols = ft_strlen_spechar(base->map_base[0], '\n');
 	base->map = ft_get_map_game_int(base);

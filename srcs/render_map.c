@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/10 03:30:10 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:14:07 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ void	ft_render_minimap_2d(t_data *data)
 {
 	if (data->m2d.img)
 		mlx_destroy_image(data->mlx_ptr, data->m2d.img);
-	if (!ft_init_t_img(data->m2d, data->map2d_width, data->map2d_length))
-		ft_exit_cub(1, data);
+	ft_init_t_img(data, &data->m2d, data->map2d_width, data->map2d_height);//size a revoir
 	ft_render_map(data);
 	ft_render_rays(data);
 	ft_render_player(data);
@@ -122,12 +121,11 @@ int	ft_render_next_frame(t_data *data)
 
 	// render cub game
 	mlx_destroy_image(data->mlx_ptr, data->cub.img);
-	if (!ft_init_t_img(data->cub, WIN_WIDTH, WIN_WIDTH))
-		ft_exit_cub(1, data);
+	ft_init_t_img(data, &(data->cub), WIN_WIDTH, WIN_WIDTH);
 	ft_generate_3d_projection(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->cub.img, 0, 0);
-	// mlx_string_put(data->mlx_ptr, data->win_ptr, 15, 20, WHITE, "*m* for
-	//			minimap");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 20, 20, COLOR_WHITE, \
+		"press 'm' for minimap");
 
 	// render minimap
 	if (data->map2d_display == TRUE)
@@ -137,11 +135,6 @@ int	ft_render_next_frame(t_data *data)
 		mlx_put_image_to_window(data->mlx_ptr, data->map2d_win_ptr, \
 			data->m2d.img, 0, 0);//possible de modifier la taille
 	}
-	// cf. dans 'ft_handle_minimap_2d
-	// if (data->map2d_win_ptr)
-	// 	mlx_destroy_window(data->mlx_ptr, data->map2d_win_ptr);
-	// data->map2d_win_ptr = mlx_new_window(data->mlx_ptr, data->map2d_width,
-	// 	data->map2d_height, "MINIMAP 2D");
 	return (1);
 }
 

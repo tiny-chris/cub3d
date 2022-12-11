@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 00:14:28 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:03:01 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ static void	ft_init_t_base_0(t_base *base)
 	base->map_base = NULL;
 	base->list_base = NULL;
 	base->nblines_base = -1;
-	base->tex_no = NULL;
-	base->tex_so = NULL;
-	base->tex_we = NULL;
-	base->tex_ea = NULL;
+	base->no.path = NULL;
+	base->no.img = NULL;
+	base->so.path = NULL;
+	base->so.img = NULL;
+	base->we.path = NULL;
+	base->we.img = NULL;
+	base->ea.path = NULL;
+	base->ea.img = NULL;
 	base->col_c_hex = 0;
 	base->col_f_hex = 0;
 	base->map = NULL;

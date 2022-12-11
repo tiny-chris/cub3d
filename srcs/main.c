@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:25:53 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:58:53 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,28 @@
 */
 void	ZZ_PRINT_BASE_DATA(t_base *base)
 {
-	t_line	*elem;
+	dprintf(1, "ELEMENTS : \n");
+	
+	dprintf(1, "TEXTURE	--> NO = %s\n", base->no.path);
+	dprintf(1, "TEXTURE	--> SO = %s\n", base->so.path);
+	dprintf(1, "TEXTURE	--> WE = %s\n", base->we.path);
+	dprintf(1, "TEXTURE	--> EA = %s\n", base->ea.path);
+	
+	t_line	*line;
 
-	elem = base->list_base;
-	dprintf(1, "ELEM : \n");
-	while (elem)
+	line = base->list_base;
+	while (line)
 	{
-		if (elem->type == L_TEXTURE)
-			dprintf(1, "TEXTURE	--> type %d: %d str = %s\n", elem->type,
-					elem->texture, elem->tex_path);
-		else if (elem->type == L_COLOR)
+		if (line->type == L_COLOR)
 		{
-			dprintf(1, "COLOR	--> type %d: %c str = %s\n", elem->type,
-					elem->color, elem->tex_path);
-			dprintf(1, "color tab = %d - %d - %d\n", elem->col_tab[0],
-					elem->col_tab[1], elem->col_tab[2]);
+			dprintf(1, "COLOR	--> type %d: %c str = %s\n", line->type,
+					line->color, line->tex_path);
+			dprintf(1, "        color tab = %d - %d - %d\n", line->col_tab[0],
+					line->col_tab[1], line->col_tab[2]);
 		}
-		elem = elem->next;
+		line = line->next;
 	}
+
 	int	i = 0;
 	dprintf(1, "\n");
 	dprintf(1, "MAP CHAR** : \n");

@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 03:27:06 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:50:11 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@ void	ft_close_fd(void)
 		close (fd++);
 }
 
-// *************************voir pour t_img !!!!!!!!!!!!!**********************
-//
-// *************************voir pour t_img !!!!!!!!!!!!!**********************
-// gérer aussi img !!!! (minimap + textures)
 void	ft_clean_cub(t_data *data)
 {
 	if (!data)
 		return ;
+	if (data->base.no.img)
+		mlx_destroy_image(data->mlx_ptr, data->base.no.img);
+	if (data->base.so.img)
+		mlx_destroy_image(data->mlx_ptr, data->base.so.img);
+	if (data->base.we.img)
+		mlx_destroy_image(data->mlx_ptr, data->base.we.img);
+	if (data->base.ea.img)
+		mlx_destroy_image(data->mlx_ptr, data->base.ea.img);
 	if (data->m2d.img)
 		mlx_destroy_image(data->mlx_ptr, data->m2d.img);
 	if (data->cub.img)

@@ -50,6 +50,7 @@ SRCS		:= \
 			draw_line.c \
 			gen_3d_projection.c \
 			init.c \
+			init_2.c \
 			render_map.c \
 			render_player.c \
 
