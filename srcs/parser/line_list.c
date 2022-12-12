@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:53:34 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/10 00:14:37 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:13:56 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ void	ft_lstadd_line(t_line **line, int index, char *str, t_line_type type)
 		len = ft_strlen(str);
 	newline = ft_magic_malloc(MALLOC + LST_LINE, NULL, 1);
 	newline->index = index;
+	newline->rank = ft_strjoin("line ", ft_itoa2(index + 1));
+	ft_magic_malloc(ADD + TAB_STR1, newline->rank, 0);
 	newline->content = ft_substr(str, 0, len);
 	ft_magic_malloc(ADD + TAB_STR1, newline->content, 0);
 	newline->type = type;
 	newline->range = -1;
-	newline->texture = NO;
+	newline->texture = ZZ;
 	newline->tex_path = NULL;
 	newline->color = 'X';
 	newline->col_tab = NULL;

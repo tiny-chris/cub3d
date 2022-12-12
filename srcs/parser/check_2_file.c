@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:03:11 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 22:53:08 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,25 @@
 */
 static void	ft_check_lines_order_post_elem(t_line **list_base)
 {
-	t_line	*line;
+	t_line	*l;
 
-	line = (*list_base);
-	if (line && (line->type) == L_MAP)
+	l = (*list_base);
+	if (l && (l->type) == L_MAP)
 	{
-		line->range = 7;
-		while (line && line->type == L_MAP)
-			line = line->next;
-		if (line && (line->type == L_TEXTURE || line->type == L_COLOR \
-			|| line->type == L_UNEXPECT))
-			ft_exit_base(ft_msg_1(1, line->content, NULL, ER_ELE_UNEX));
-		while (line && line->type == L_EMPTY)
-			line = line->next;
-		if (line && line->type != L_EMPTY)
-			ft_exit_base(ft_msg_1(1, line->content, NULL, ER_ELE_UNEX));
+		l->range = 7;
+		while (l && l->type == L_MAP)
+			l = l->next;
+		if (l && (l->type == L_TEXTURE || l->type == L_COLOR \
+			|| l->type == L_UNEXPECT))
+			ft_exit_base(ft_msg_1(1, l->rank, NULL, ER_ELE_UNEX));
+		else if (l && l->type == L_EMPTY)
+		{
+			while (l && l->type == L_EMPTY)
+				l = l->next;
+			if (l && (l->type == L_TEXTURE || l->type == L_COLOR \
+				|| l->type == L_UNEXPECT || l->type == L_MAP))
+				ft_exit_base(ft_msg_1(1, l->rank, NULL, ER_ELE_UNEX));
+		}
 	}
 	else
 		ft_exit_base(ft_msg_1(1, ER_MAP_ERR, NULL, ER_MAP_NONE));
@@ -49,28 +53,28 @@ static void	ft_check_lines_order_post_elem(t_line **list_base)
 */
 int	ft_check_lines_order_err(t_base *base)
 {
-	t_line	*line;
+	t_line	*l;
 	int		nb_text;
 	int		nb_color;
 
-	line = base->list_base;
+	l = base->list_base;
 	nb_text = 0;
 	nb_color = 0;
-	while (line && line->type != L_MAP)
+	while (l && l->type != L_MAP)
 	{
-		if (line->type == L_UNEXPECT)
-			ft_exit_base(ft_msg_1(1, line->content, NULL, ER_ELE_UNEX));
-		else if (line->type == L_TEXTURE)
+		if (l->type == L_UNEXPECT)
+			ft_exit_base(ft_msg_1(1, l->rank, NULL, ER_ELE_UNEX));
+		else if (l->type == L_TEXTURE)
 			nb_text++;
-		else if (line->type == L_COLOR)
+		else if (l->type == L_COLOR)
 			nb_color++;
-		line = line->next;
+		l = l->next;
 	}
 	if (nb_text != 4)
 		ft_exit_base(ft_msg_1(1, NULL, NULL, ER_TEX_NBR));
 	if (nb_color != 2)
 		ft_exit_base(ft_msg_1(1, NULL, NULL, ER_COL_NBR));
-	ft_check_lines_order_post_elem(&line);
+	ft_check_lines_order_post_elem(&l);
 	return (0);
 }
 

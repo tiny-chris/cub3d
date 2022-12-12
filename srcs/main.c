@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/11 20:58:53 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:35:48 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 void	ZZ_PRINT_BASE_DATA(t_base *base)
 {
 	dprintf(1, "ELEMENTS : \n");
-	
+
 	dprintf(1, "TEXTURE	--> NO = %s\n", base->no.path);
 	dprintf(1, "TEXTURE	--> SO = %s\n", base->so.path);
 	dprintf(1, "TEXTURE	--> WE = %s\n", base->we.path);
 	dprintf(1, "TEXTURE	--> EA = %s\n", base->ea.path);
-	
+
 	t_line	*line;
 
 	line = base->list_base;

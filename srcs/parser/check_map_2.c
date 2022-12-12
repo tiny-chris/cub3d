@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:03:50 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:21:30 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ int	ft_check_map_enclosed_by_walls(char **map, int lines, int len)
 		{
 			if (map[i][j] == '0' \
 				&& !ft_cell_enclosed_by_charset(map, i, j, " "))
-				return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_WAL_ZERO));
+				return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_PLY_ZERO));
 			else if ((map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'W' || map[i][j] == 'E') \
 				&& !ft_cell_enclosed_by_charset(map, i, j, " "))
-				return (ft_msg_1(0, ER_MAP_ERR, NULL, ER_PLY_OUT));
+				return (ft_msg_1(0, ER_MAP_ERR, NULL, ER_PLY_ZERO));
 			else if ((j < (len - 1) && map[i][j] == ' ') \
 				&& !ft_cell_enclosed_by_charset(map, i, j, "0NSWE"))
-				return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_WAL_SPACE));
+				return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_PLY_ZERO));
 			j++;
 		}
 		i++;

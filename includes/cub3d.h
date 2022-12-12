@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/12 18:25:42 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/12 23:37:58 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef enum e_texture {
 	SO,
 	WE,
 	EA,
+	ZZ,
 }	t_texture;
 
 /*	structure	*/
@@ -115,6 +116,7 @@ typedef struct s_bin {
 
 typedef struct s_line {
 	int				index;
+	char			*rank;
 	char			*content;
 	t_line_type		type;
 	int				range;
@@ -339,6 +341,7 @@ int		ft_len_delspace_str(char *str);
 int		ft_lines_tabstr(char **tab_str);
 int		*ft_intdup(int *tab, int size);
 int		ft_atoi_cub(char *str);
+char	*ft_itoa2(long long int n);
 size_t	ft_is_in_set(const char *set, char c);
 int		ft_count_isinset(char *str, char c);
 

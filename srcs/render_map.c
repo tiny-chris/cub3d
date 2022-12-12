@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/12 15:02:41 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/12 20:46:01 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,22 +136,24 @@ int	ft_render_next_frame(t_data *data)
 	return (1);
 }
 
-// int	ft_render_next_frame(t_data *data)
-// {
-// 	if (data->player.turn_direction != 0 || data->player.walk_direction != 0 || data->player.side_direction != 0)
-// 		ft_update_player(data);
-// 	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
-// 	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-// 	if (!data->img.img)
-// 		return (0); // On free ?
-// 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel, \
-// 				&data->img.line_length, &data->img.endian);
-// 	if (!data->img.addr)
-// 		return (0); // On free ?
-// 	ft_cast_all_rays(data);
-// 	ft_render_map(data);
-// 	ft_render_rays(data);
-// 	ft_render_player(data);
-// 	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);
-// 	return (1);
-// }
+/*
+int	ft_render_next_frame(t_data *data)
+{
+	if (data->player.turn_direction != 0 || data->player.walk_direction != 0 || data->player.side_direction != 0)
+		ft_update_player(data);
+	mlx_destroy_image(data->img.mlx_ptr, data->img.img);
+	data->img.img = mlx_new_image(data->img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img.img)
+		return (0); // On free ?
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel, \
+				&data->img.line_length, &data->img.endian);
+	if (!data->img.addr)
+		return (0); // On free ?
+	ft_cast_all_rays(data);
+	ft_render_map(data);
+	ft_render_rays(data);
+	ft_render_player(data);
+	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.img, 0, 0);
+	return (1);
+}
+*/

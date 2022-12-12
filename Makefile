@@ -47,6 +47,7 @@ SRCS		:= \
 			utils/utils_2.c \
 			utils/utils_3.c \
 			utils/utils_atoi_cub.c \
+			utils/utils_itoa_cub.c \
 			draw_line.c \
 			gen_3d_projection.c \
 			init.c \

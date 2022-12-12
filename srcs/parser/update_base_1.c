@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:44:29 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:06:00 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:16:23 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	ft_lstadd_new_line(t_line **new_list, t_line *line)
 
 	tmp = ft_magic_malloc(MALLOC + LST_LINE, NULL, 1);
 	tmp->index = line->index;
-	tmp->content = NULL;
+	tmp->rank = line->rank;
+	tmp->content = line->content;
 	tmp->type = line->type;
 	tmp->range = line->range;
 	tmp->texture = line->texture;
 	tmp->tex_path = ft_strdup(line->tex_path);
 	ft_magic_malloc(ADD + TAB_STR1, tmp->tex_path, 0);
 	tmp->color = line->color;
+	tmp->col_tab = NULL;
 	if (tmp->color == 'C' || tmp->color == 'F')
 	{
 		tmp->col_tab = ft_intdup(line->col_tab, 3);
 		ft_magic_malloc(ADD + TAB_INT1, tmp->col_tab, 3);
 	}
-	else
-		tmp->col_tab = NULL;
 	tmp->next = NULL;
 	ft_lstadd_back_line(new_list, tmp);
 }

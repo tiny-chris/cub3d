@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:03:35 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:08:35 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_check_elem_err(t_base *base)
 		if (line->range >= 1 && line->range < 5)
 		{
 			if (!ft_check_filename(line->tex_path, ".xpm"))
-				return (EXIT_FAILURE);
+				return (ft_msg_1(1, line->tex_path, ER_FIL_EXT, USAGE_XPM));
 			if (ft_check_isdirectory(line->tex_path))
 				return (ft_msg_1(EXIT_FAILURE, line->tex_path, NULL,
 						ER_FIL_ISDIR));

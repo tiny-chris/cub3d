@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/11 20:46:06 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:25:39 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*ft_strncpy_map(char *str, int size)
 	int		len;
 
 	if (!str || size == 0)
-		ft_exit_base(ft_msg_1(1, NULL, NULL, ER_MAP_ERR));
+		ft_exit_base(ft_msg_1(1, NULL, NULL, ER_MAP_NONE));
 	copy_map = ft_magic_malloc(MALLOC + TAB_STR1, NULL, (size + 1));
 	len = ft_strlen_spechar(str, '\n');
 	i = 0;
@@ -72,7 +72,7 @@ char	**ft_get_map_base(t_base *base)
 	nb_lines = 0;
 	len_max = ft_len_max_map(base, &nb_lines);
 	if (nb_lines == 0 || len_max == 0)
-		ft_exit_base(ft_msg_1(1, NULL, NULL, ER_MAP_ERR));
+		ft_exit_base(ft_msg_1(1, NULL, NULL, ER_MAP_NONE));
 	map_base = ft_magic_malloc(MALLOC + TAB_STR2, NULL, nb_lines + 1);
 	while (line && line->type != L_MAP)
 		line = line->next;

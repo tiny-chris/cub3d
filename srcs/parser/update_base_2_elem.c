@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:06:36 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 22:59:27 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,13 @@ static int	*ft_get_tab_int_color(char *tex_path)
 	tab_str = ft_split2(tex_path, ',');
 	ft_magic_malloc(ADD + TAB_STRS, tab_str, 0);
 	if (ft_lines_tabstr(tab_str) != 3)
-		ft_exit_base(ft_msg_2(EXIT_FAILURE, 0, ER_COL_FOR, USAGE_COL));
+		ft_exit_base(ft_msg_2(1, 0, ER_COL_FOR, USAGE_COL));
 	tab = ft_magic_malloc(MALLOC + TAB_INT1, NULL, 3);
 	while (++i < 3)
 	{
 		n = ft_atoi_cub(tab_str[i]);
 		if (n < 0 || n > 255)
-			ft_exit_base(ft_msg_2(EXIT_FAILURE, 0, ER_COL_VAL, USAGE_COL));
+			ft_exit_base(ft_msg_2(1, 0, ER_COL_VAL, USAGE_COL));
 		tab[i] = n;
 	}
 	ft_magic_malloc(DELONE, tab_str, 0);

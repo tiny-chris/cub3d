@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/11 21:03:01 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:14:32 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	**ft_get_file_base(char	*file)
 	fd = ft_open_read(file);
 	lines = ft_count_lines_gnl(file);
 	if (!file || lines == 0)
-		ft_exit_base(ft_msg_1(EXIT_FAILURE, file, NULL, ER_FIL_EMPTY));
+		ft_exit_base(ft_msg_1(1, file, NULL, ER_FIL_EMPTY));
 	i = 0;
 	file_base = ft_magic_malloc(MALLOC + TAB_STR2, NULL, (lines + 1));
 	file_base[i] = get_next_line(fd);
@@ -64,8 +64,22 @@ static char	**ft_get_file_base(char	*file)
 	file_base[i] = NULL;
 	close (fd);
 	if (!file_base)
-		ft_exit_base(ft_msg_1(EXIT_FAILURE, file, NULL, ER_FIL_EMPTY));
+		ft_exit_base(ft_msg_1(1, file, NULL, ER_FIL_EMPTY));
 	return (file_base);
+}
+
+static void	ft_get_type(char **list, int *i, int *j, t_line_type *type)
+{
+	if ((list[*i][*j] == 'N' && list[*i][*j + 1] == 'O')
+		|| (list[*i][*j] == 'S' && list[*i][*j + 1] == 'O')
+		|| (list[*i][*j] == 'W' && list[*i][*j + 1] == 'E')
+		|| (list[*i][*j] == 'E' && list[*i][*j + 1] == 'A'))
+		*type = L_TEXTURE;
+	else if ((list[*i][*j] == 'F' && list[*i][*j + 1] == ' ')
+	|| (list[*i][*j] == 'C' && list[*i][*j + 1] == ' '))
+		*type = L_COLOR;
+	else if (list[*i][*j] == '1')
+		*type = L_MAP;
 }
 
 static void	ft_get_list_base(t_base *b, t_line_type type)
@@ -77,20 +91,20 @@ static void	ft_get_list_base(t_base *b, t_line_type type)
 	while (b->file_base[i])
 	{
 		j = 0;
-		while (b->file_base[i][j] == ' ')
-			j++;
 		if (b->file_base[i][j] == '\0' || b->file_base[i][j] == '\n')
 			type = L_EMPTY;
-		else if ((b->file_base[i][j] == 'N' && b->file_base[i][j + 1] == 'O')
-		|| (b->file_base[i][j] == 'S' && b->file_base[i][j + 1] == 'O')
-		|| (b->file_base[i][j] == 'W' && b->file_base[i][j + 1] == 'E')
-		|| (b->file_base[i][j] == 'E' && b->file_base[i][j + 1] == 'A'))
-			type = L_TEXTURE;
-		else if ((b->file_base[i][j] == 'F' && b->file_base[i][j + 1] == ' ')
-		|| (b->file_base[i][j] == 'C' && b->file_base[i][j + 1] == ' '))
-			type = L_COLOR;
-		else if (b->file_base[i][j] == '1')
-			type = L_MAP;
+		else
+		{
+			if (b->file_base[i][j] == ' ')
+			{
+				while (b->file_base[i][j] == ' ')
+					j++;
+				if (b->file_base[i][j] != '\0' && b->file_base[i][j] != '\n')
+					ft_get_type(b->file_base, &i, &j, &type);
+			}
+			else
+				ft_get_type(b->file_base, &i, &j, &type);
+		}
 		ft_lstadd_line(&(b->list_base), i, b->file_base[i], type);
 		type = L_UNEXPECT;
 		i++;
@@ -112,7 +126,7 @@ void	ft_init_t_base(char *file, t_base *base)
 	ft_init_t_base_0(base);
 	base->file_base = ft_get_file_base(file);
 	if (!base->file_base)
-		ft_exit_base(ft_msg_1(EXIT_FAILURE, file, NULL, ER_FIL_EMPTY));
+		ft_exit_base(ft_msg_1(1, file, NULL, ER_FIL_EMPTY));
 	while (base->file_base[i])
 		i++;
 	base->nblines_base = i;
