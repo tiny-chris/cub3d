@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/11 20:51:26 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:25:08 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	ft_init_data_0(t_data *data)
 	data->win_ptr = NULL;
 	data->map2d_win_ptr = NULL;
 	data->map2d_display = FALSE;
-	data->map2d_width = WIN_WIDTH;//a revoir, calculer
-	data->map2d_height = WIN_HEIGHT;//a revoir, calculer
+	data->map2d_width = data->base.cols * TILE_SIZE * MAP_SCALE; //WIN_WIDTH;//a revoir, calculer
+	data->map2d_height = data->base.rows * TILE_SIZE * MAP_SCALE;//WIN_HEIGHT;//a revoir, calculer
 	data->cub.img = NULL;
 	data->m2d.img = NULL;
 }
@@ -63,7 +63,7 @@ void	ft_init_data(t_data *data)
 	ft_init_texture(data, &(data->base.we));
 	ft_init_texture(data, &(data->base.ea));
 	ft_init_t_img(data, &(data->cub), WIN_WIDTH, WIN_HEIGHT);
-	ft_init_t_img(data, &(data->m2d), WIN_WIDTH, WIN_HEIGHT);
+	ft_init_t_img(data, &(data->m2d), data->map2d_width, data->map2d_height); // WIN_WIDTH, WIN_HEIGHT);
 	ft_init_player(data);
 	ft_init_rays(data);
 }

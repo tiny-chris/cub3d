@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gen_3d_projection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/11 21:10:40 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:52:06 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ void	ft_render_color_floor(t_data *data)
 	}
 }
 
+void	ft_init_proj(t_project_val *proj)
+{
+	proj->wall_strip_height = 0;
+	proj->distance_proj_plane = 0;
+	proj->projected_wall_height = 0;
+	proj->perp_distance = 0;
+	proj->color = 0;
+}
+
 void	ft_generate_3d_projection(t_data *data)
 {
 	int				i;
@@ -62,12 +71,14 @@ void	ft_generate_3d_projection(t_data *data)
 
 	ft_render_color_ceiling(data);
 	ft_render_color_floor(data);
+	ft_init_proj(&proj);
 	i = 0;
-	while (i > NUM_RAYS)
+	while (i < NUM_RAYS)
 	{
+		// pour supprimer l'effet fishball
+		proj.perp_distance = data->rays[i].distance * cos(data->rays[i].ray_angle - data->player.rotation_angle);
 		proj.distance_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANGLE / 2);
-		proj.projected_wall_height = (TILE_SIZE / data->rays[i].distance) \
-			* proj.distance_proj_plane;
+		proj.projected_wall_height = (TILE_SIZE / proj.perp_distance) * proj.distance_proj_plane;
 		proj.wall_strip_height = (int) proj.projected_wall_height;
 		wall_top_pixel.y = (WIN_HEIGHT / 2) - (proj.wall_strip_height / 2);
 		if (wall_top_pixel.y < 0)
@@ -77,8 +88,12 @@ void	ft_generate_3d_projection(t_data *data)
 		if (wall_bottom_pixel.y > WIN_HEIGHT)
 			wall_bottom_pixel.y = WIN_HEIGHT;
 		wall_bottom_pixel.x = i;
-		//changer la couleur avec les éléments dans base
-		ft_draw_line2(data->cub, wall_top_pixel, wall_bottom_pixel, COLOR_BLUE);
+		if (data->rays[i].wall_hit_vertical == TRUE)
+			proj.color = COLOR_LIGHT_PURPLE;
+		else
+			proj.color = COLOR_PURPLE;
+		// changer la couleur avec les éléments dans base
+		ft_draw_line2(data->cub, wall_top_pixel, wall_bottom_pixel, proj.color);
 		i++;
 	}
 }

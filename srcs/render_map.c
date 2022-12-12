@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/11 21:14:07 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:02:41 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int	ft_render_next_frame(t_data *data)
 		|| data->player.side_direction != 0)
 		ft_update_player(data);
 	ft_cast_all_rays(data);
-
 	// render cub game
 	mlx_destroy_image(data->mlx_ptr, data->cub.img);
 	ft_init_t_img(data, &(data->cub), WIN_WIDTH, WIN_WIDTH);
@@ -126,14 +125,13 @@ int	ft_render_next_frame(t_data *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->cub.img, 0, 0);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 20, 20, COLOR_WHITE, \
 		"press 'm' for minimap");
-
 	// render minimap
 	if (data->map2d_display == TRUE)
 	{
 		ft_render_minimap_2d(data);
 		mlx_clear_window(data->mlx_ptr, data->map2d_win_ptr);
 		mlx_put_image_to_window(data->mlx_ptr, data->map2d_win_ptr, \
-			data->m2d.img, 0, 0);//possible de modifier la taille
+			data->m2d.img, 0, 0); // possible de modifier la taille
 	}
 	return (1);
 }

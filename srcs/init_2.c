@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/11 20:26:06 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:18:10 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	ft_init_player(t_data *data)
 	data->player.walk_direction = 0;
 	data->player.side_direction = 0;
 	data->player.rotation_angle = ft_get_rotation_angle(base);
-	printf("\ndata->playerotationangle %f\n", data->player.rotation_angle); //à enlever
-	data->player.turn_speed = 3 * (M_PI / 180);
-	data->player.walk_speed = 2.0;
+	printf("\ndata->playerotationangle %f\n", data->player.rotation_angle); // à enlever
+	data->player.turn_speed = TURN_SPEED;
+	data->player.walk_speed = WALK_SPEED;
 }
 
 void	ft_init_rays(t_data *data)

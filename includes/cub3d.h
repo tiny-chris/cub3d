@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/11 21:11:49 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:25:42 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,22 @@
 
 # define DIR_LEN 20
 
-# define WIN_WIDTH 1800
-# define WIN_HEIGHT 1600
-# define MAP_SCALE 1
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 1200
+# define MAP_SCALE 0.5
 # define TILE_SIZE 32
 # define NUM_RAYS WIN_WIDTH
 
 # define FOV_ANGLE (60 * (M_PI / 180))
+# define TURN_SPEED (7 * (M_PI / 180))
+# define WALK_SPEED 7
 
 # define COLOR_BLACK 0x000000
 # define COLOR_WHITE 0xFFFFFF
 # define COLOR_RED 0xFF0000
 # define COLOR_BLUE 0x0000FF
+# define COLOR_LIGHT_PURPLE 0x968BE8
+# define COLOR_PURPLE 0x5B48EA
 # define COLOR_LOW 0x007733FF
 
 /*	enum	*/
@@ -179,6 +183,8 @@ typedef struct s_project_val {
 	int				wall_strip_height;
 	float			distance_proj_plane;
 	float			projected_wall_height;
+	float			perp_distance;
+	int				color;
 }	t_project_val;
 
 typedef struct s_img {
