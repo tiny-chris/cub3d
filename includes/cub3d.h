@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 14:20:04 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:49:36 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ typedef struct s_data {
 	int				map2d_display;
 	int				map2d_width;
 	int				map2d_height;
+	float			dist_proj_plane;
 	t_img			cub;
 	t_img			m2d;
 	t_ray			rays[WIN_WIDTH];

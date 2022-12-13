@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:20:02 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/07 20:12:02 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/13 14:50:11 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,19 +192,31 @@ void	ft_cast_ray(t_data *data, float ray_angle, int strip_id)
 void	ft_cast_all_rays(t_data *data)
 {
 	float	ray_angle;
-	int		strip_id;
-	
-	strip_id = 0;
-	// angle pour le first ray
-	ray_angle = data->player.rotation_angle - (FOV_ANGLE / 2);
-	while (strip_id < WIN_WIDTH)
+	int		col;
+
+	col = 0;
+	while (col < WIN_WIDTH)
 	{
-		ft_cast_ray(data, ray_angle, strip_id);
-		strip_id++;
-		ray_angle += FOV_ANGLE / WIN_WIDTH;
+		ray_angle = data->player.rotation_angle + atan((col - WIN_WIDTH / 2) / data->dist_proj_plane);
+		ft_cast_ray(data, ray_angle, col);
+		col++;
 	}
-	// printf("data->rays[strip_id].is facing down %d\n", data->rays[strip_id - 1].is_ray_facing_down);
-	// printf("data->rays[strip_id].is facing up %d\n", data->rays[strip_id - 1].is_ray_facing_up);
-	// printf("data->rays[strip_id].is facing left %d\n", data->rays[strip_id - 1].is_ray_facing_left);
-	// printf("data->rays[strip_id].is facing right %d\n", data->rays[strip_id - 1].is_ray_facing_right);
 }
+
+// OLD FUNCTION WITH DISTORTION EFFECT
+
+// void	ft_cast_all_rays(t_data *data)
+// {
+// 	float	ray_angle;
+// 	int		strip_id;
+	
+// 	strip_id = 0;
+// 	// angle pour le first ray
+// 	ray_angle = data->player.rotation_angle - (FOV_ANGLE / 2);
+// 	while (strip_id < WIN_WIDTH)
+// 	{
+// 		ft_cast_ray(data, ray_angle, strip_id);
+// 		strip_id++;
+// 		ray_angle += FOV_ANGLE / WIN_WIDTH;
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/12 18:25:08 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/13 14:53:13 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	ft_init_data_0(t_data *data)
 	data->map2d_display = FALSE;
 	data->map2d_width = data->base.cols * TILE_SIZE * MAP_SCALE; //WIN_WIDTH;//a revoir, calculer
 	data->map2d_height = data->base.rows * TILE_SIZE * MAP_SCALE;//WIN_HEIGHT;//a revoir, calculer
+	data->dist_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANGLE / 2);
 	data->cub.img = NULL;
 	data->m2d.img = NULL;
 }

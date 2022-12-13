@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/12 17:52:06 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/13 14:50:34 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	ft_generate_3d_projection(t_data *data)
 	{
 		// pour supprimer l'effet fishball
 		proj.perp_distance = data->rays[i].distance * cos(data->rays[i].ray_angle - data->player.rotation_angle);
-		proj.distance_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANGLE / 2);
-		proj.projected_wall_height = (TILE_SIZE / proj.perp_distance) * proj.distance_proj_plane;
+		//proj.distance_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANGLE / 2);
+		proj.projected_wall_height = (TILE_SIZE / proj.perp_distance) * data->dist_proj_plane;
 		proj.wall_strip_height = (int) proj.projected_wall_height;
 		wall_top_pixel.y = (WIN_HEIGHT / 2) - (proj.wall_strip_height / 2);
 		if (wall_top_pixel.y < 0)
