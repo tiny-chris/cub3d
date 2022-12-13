@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/12 23:29:01 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:14:36 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@
 // 	return (1);
 // }
 
-// static int	ft_only_spechar_at_str_ends(char *map, char c)
-// {
-// 	int	i;
+static int	ft_only_spechar_at_str_ends(char *map, char c)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (map[i] && map[i] == ' ')
-// 		i++;
-// 	if (map[i] != c)
-// 		return (0);
-// 	i = (int) ft_strlen(map) - 1;
-// 	while (map[i] && map[i] == ' ')
-// 		i--;
-// 	if (map[i] != c)
-// 		return (0);
-// 	return (1);
-// }
+	i = 0;
+	while (map[i] && map[i] == ' ')
+		i++;
+	if (map[i] != c)
+		return (0);
+	i = (int) ft_strlen(map) - 1;
+	while (map[i] && map[i] == ' ')
+		i--;
+	if (map[i] != c)
+		return (0);
+	return (1);
+}
 
 /*  ***** Check - line only contains a set of allowed characters *****
 **	Checks if ONLY allowed characters (defined in set) are in the line
@@ -77,36 +77,38 @@ static int	ft_only_charset_in_str(char *str, const char *set)
 	return (1);
 }
 
-// // 1ere ligne = que des 1 ou ' ' mais rien d'autre, au moins un '1'
-// // idem derniere ligne (1ere ligne)
-// // inside : commence par un 1 et finit par un 1
-// int	ft_check_map_global_struct(char **map, int lines)
-// {
-// 	int	i;
+// 1ere ligne = que des 1 ou ' ' mais rien d'autre, au moins un '1'
+// idem derniere ligne (1ere ligne)
+// inside : commence par un 1 et finit par un 1
+int	ft_check_map_global_struct(t_base *b, char **map, int lines)
+{
+	int	i;
 
-// 	i = 0;
-// 	if (!ft_only_charset_in_str(map[i], "1 ")
-// 		|| (ft_count_isinset(map[i], '1') < 1))
-// 		return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_MAP_FIRST));
-// 	i++;
-// 	while (i < (lines - 1) && map[i])
-// 	{
-// 		if (!ft_only_spechar_at_str_ends(map[i], '1'))
-// 			return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_MAP_MIDDLE));
-// 		i++;
-// 	}
-// 	if (!ft_only_charset_in_str(map[i], "1 ")
-// 		|| (ft_count_isinset(map[i], '1') < 1))
-// 		return (ft_msg_1(0, ER_MAP_ERR, ER_WAL_MISS, ER_MAP_LAST));
-// 	return (1);
-// }
+	i = 0;
+	if (!ft_only_charset_in_str(map[i], "1 ")
+		|| (ft_count_isinset(map[i], '1') < 1))
+		return (ft_msg_2(0, ER_MAP_OPEN, "line ", ft_itoa2(b->map_ln + i)));
+	i++;
+	while (i < (lines - 1) && map[i])
+	{
+		if (!ft_only_spechar_at_str_ends(map[i], '1'))
+		{
+			return (ft_msg_2(0, ER_MAP_OPEN, "line ", ft_itoa2(b->map_ln + i)));
+		}
+		i++;
+	}
+	if (!ft_only_charset_in_str(map[i], "1 ")
+		|| (ft_count_isinset(map[i], '1') < 1))
+		return (ft_msg_2(0, ER_MAP_OPEN, "line ", ft_itoa2(b->map_ln + i)));
+	return (1);
+}
 
 /*  ***** Check - map only contains a set of allowed characters *****
 **	Checks if ONLY allowed characters (defined in set) are in the map
 **	- if yes    --> return 1
 **  - if no     --> return 0
 */
-int	ft_check_map_only_set(char **map, int lines, const char *set)
+int	ft_check_map_only_set(t_base *b, char **map, int lines, const char *set)
 {
 	int	i;
 
@@ -116,7 +118,7 @@ int	ft_check_map_only_set(char **map, int lines, const char *set)
 	while (map[i])
 	{
 		if (!ft_only_charset_in_str(map[i], set))
-			return (ft_msg_1(0, ER_MAP_ERR, map[i], ER_MAP_UNEX));
+			return (ft_msg_2(0, ER_MAP_UNEX, "line ", ft_itoa2(b->map_ln + i)));
 		i++;
 	}
 	return (1);
@@ -136,10 +138,10 @@ int	ft_check_map_err(t_base *base)
 	len = ft_strlen(map[0]);
 	if (!map)
 		return (EXIT_FAILURE);
-	if (!ft_check_map_only_set(map, len, "01 NSEW"))
+	if (!ft_check_map_only_set(base, map, len, "01 NSEW"))
 		return (EXIT_FAILURE);
-	// if (!ft_check_map_global_struct(map, lines))
-	// 	return (EXIT_FAILURE);
+	if (!ft_check_map_global_struct(base, map, lines))
+		return (EXIT_FAILURE);
 	if (!ft_check_map_unique_player(map, lines))
 		return (EXIT_FAILURE);
 	if (!ft_check_map_enclosed_by_walls(map, lines, len))

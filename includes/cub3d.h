@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/12 23:37:58 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:20:04 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ typedef struct s_base {
 	char			**file_base;
 	char			**map_base;
 	t_line			*list_base;
-	int				nblines_base;
+	int				map_ln;
 	t_tex			no;
 	t_tex			so;
 	t_tex			we;
@@ -254,8 +254,8 @@ int		**ft_get_map_game_int(t_base *base);
 
 int		ft_check_elem_err(t_base *base);
 int		ft_check_map_err(t_base *base);
-int		ft_check_map_only_set(char **map, int lines, const char *set);
-int		ft_check_map_global_struct(char **map, int lines);
+int		ft_check_map_only_set(t_base *b, char **map, int lines, const char *set);
+int		ft_check_map_global_struct(t_base *b, char **map, int lines);
 int		ft_check_map_unique_player(char **map, int lines);
 int		ft_check_map_enclosed_by_walls(char **map, int lines, int len);
 

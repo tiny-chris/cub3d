@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 00:14:32 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:21:51 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_init_t_base_0(t_base *base)
 	base->file_base = NULL;
 	base->map_base = NULL;
 	base->list_base = NULL;
-	base->nblines_base = -1;
+	base->map_ln = -1;
 	base->no.path = NULL;
 	base->no.img = NULL;
 	base->so.path = NULL;
@@ -70,10 +70,12 @@ static char	**ft_get_file_base(char	*file)
 
 static void	ft_get_type(char **list, int *i, int *j, t_line_type *type)
 {
-	if ((list[*i][*j] == 'N' && list[*i][*j + 1] == 'O')
+	if (list[*i][*j + 1]
+		&& ((list[*i][*j] == 'N' && list[*i][*j + 1] == 'O')
 		|| (list[*i][*j] == 'S' && list[*i][*j + 1] == 'O')
 		|| (list[*i][*j] == 'W' && list[*i][*j + 1] == 'E')
 		|| (list[*i][*j] == 'E' && list[*i][*j + 1] == 'A'))
+		&& (list[*i][*j + 2] && list[*i][*j + 2] == ' '))
 		*type = L_TEXTURE;
 	else if ((list[*i][*j] == 'F' && list[*i][*j + 1] == ' ')
 	|| (list[*i][*j] == 'C' && list[*i][*j + 1] == ' '))
@@ -120,15 +122,23 @@ static void	ft_get_list_base(t_base *b, t_line_type type)
 */
 void	ft_init_t_base(char *file, t_base *base)
 {
-	int	i;
+	int		i;
+	t_line	*line;
 
 	i = 0;
+	line = NULL;
 	ft_init_t_base_0(base);
 	base->file_base = ft_get_file_base(file);
 	if (!base->file_base)
 		ft_exit_base(ft_msg_1(1, file, NULL, ER_FIL_EMPTY));
-	while (base->file_base[i])
-		i++;
-	base->nblines_base = i;
 	ft_get_list_base(base, L_UNEXPECT);
+	line = base->list_base;
+	while (line)
+	{
+		if (line->type == L_MAP)
+			break ;
+		i++;
+		line = line->next;
+	}
+	base->map_ln = i + 1;
 }
