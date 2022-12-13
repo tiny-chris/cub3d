@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 14:49:36 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:23:43 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 # define TILE_SIZE 32
 # define NUM_RAYS WIN_WIDTH
 
-# define FOV_ANGLE (60 * (M_PI / 180))
-# define TURN_SPEED (7 * (M_PI / 180))
+# define FOV_ANGLE (60 * (M_PI / 180))// a forcer
+# define TURN_SPEED (7 * (M_PI / 180))// a forcer
 # define WALK_SPEED 7
 
 # define COLOR_BLACK 0x000000
@@ -128,21 +128,33 @@ typedef struct s_line {
 }	t_line;
 
 typedef struct s_tex {
-	char			*path;
+	char			*path;//
+	void			*img;//
+	int				tile_x;//
+	int				tile_y;//
+}	t_tex;
+
+typedef struct s_img {
 	void			*img;
+	char			*addr;
+	char			*path;
+	char			*color;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 	int				tile_x;
 	int				tile_y;
-}	t_tex;
+}	t_img;
 
 typedef struct s_base {
 	char			**file_base;
 	char			**map_base;
 	t_line			*list_base;
 	int				map_ln;
-	t_tex			no;
-	t_tex			so;
-	t_tex			we;
-	t_tex			ea;
+	t_img			no;
+	t_img			so;
+	t_img			we;
+	t_img			ea;
 	unsigned long	col_c_hex;
 	unsigned long	col_f_hex;
 	int				**map;
@@ -181,21 +193,18 @@ typedef struct s_cast {
 	t_bool			ray_facing_right;
 }	t_cast;
 
-typedef struct s_project_val {
+typedef struct s_proj {
+	int				y;
+	int				dist_top;
+	int				diff[2];
 	int				wall_strip_height;
-	float			distance_proj_plane;
+	float			distance_proj_plane;// deja dans data
 	float			projected_wall_height;
 	float			perp_distance;
-	int				color;
-}	t_project_val;
-
-typedef struct s_img {
-	void			*img;
-	char			*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-}	t_img;
+	t_point			wall_top;
+	t_point			wall_bottom;
+	int				color;//
+}	t_proj;
 
 typedef struct s_ray {
 	float			ray_angle;
@@ -271,6 +280,7 @@ void	ft_lstdelone_line(t_line *node);
 /*	Init	*/
 
 void	ft_init_data(t_data *data);
+void	ft_init_t_img_0(t_img *img);
 void	ft_init_t_img(t_data *data, t_img *img, int width, int height);
 void	ft_init_player(t_data *data);
 void	ft_init_rays(t_data *data);

@@ -6,11 +6,25 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 14:21:51 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:53:35 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
+void	ft_init_t_img_0(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->path = NULL;
+	img->color = NULL;
+	img->bits_per_pixel = 0;
+	img->line_length = 0;
+	img->endian = 0;
+	img->tile_x = 0;
+	img->tile_y = 0;
+}
 
 static void	ft_init_t_base_0(t_base *base)
 {
@@ -18,14 +32,10 @@ static void	ft_init_t_base_0(t_base *base)
 	base->map_base = NULL;
 	base->list_base = NULL;
 	base->map_ln = -1;
-	base->no.path = NULL;
-	base->no.img = NULL;
-	base->so.path = NULL;
-	base->so.img = NULL;
-	base->we.path = NULL;
-	base->we.img = NULL;
-	base->ea.path = NULL;
-	base->ea.img = NULL;
+	ft_init_t_img_0(&(base->no));
+	ft_init_t_img_0(&(base->so));
+	ft_init_t_img_0(&(base->we));
+	ft_init_t_img_0(&(base->ea));
 	base->col_c_hex = 0;
 	base->col_f_hex = 0;
 	base->map = NULL;

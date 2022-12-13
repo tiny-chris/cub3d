@@ -3,24 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/13 14:53:13 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/13 15:47:47 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_init_texture(t_data *data, t_tex *tex)
+static void	ft_init_texture(t_data *data, t_img *tex)
 {
 	tex->img = mlx_xpm_file_to_image(data->mlx_ptr, tex->path, &tex->tile_x, \
 		&tex->tile_y);
-	if (tex->img == 0)
+	if (!tex->img)
 		ft_exit_cub(ft_msg_1(1, tex->path, NULL, ER_TEX_IMG), data);
 	if (tex->tile_x != tex->tile_y || tex->tile_x != TILE_SIZE)
 		ft_exit_cub(ft_msg_1(1, tex->path, NULL, ER_TEX_SIZE), data);
 	// prevoir une etape pour les integrer dans la map
+	// prevoir une etape pour verifier si les imgs sont les memes pour des textures differentes
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bits_per_pixel, \
+		&tex->line_length, &tex->endian);
+	if (!tex->addr)
+		ft_exit_cub(ft_msg_1(1, tex->path, NULL, ER_MLX_ADDR), data);
 }
 
 static void	ft_init_mlxwin_cub(t_data *data)

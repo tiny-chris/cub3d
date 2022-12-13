@@ -1,14 +1,14 @@
 
-WE                      ./textures/img_Wall.xpm
-NO   ./textures/img_Collect.xpm
+NO   ./textures/star.xpm
+WE                      ./textures/blueblue.xpm
 
-SO       ./textures/img_Exit.xpm
-EA ./textures/img_Player.xpm
+SO       ./textures/greengreen.xpm
+EA ./textures/purplepurple.xpm
 
 
 
-F          16,12,39
-C          214,0,    124
+F          0,0,0
+C          255,255,255
 
 
 
