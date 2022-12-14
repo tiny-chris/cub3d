@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:02:59 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:02:53 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,38 +100,6 @@ int	ft_count_lines_gnl(char *file)
 	close(fd);
 	return (count);
 }
-
-// // Other version of counting lines
-// int	ft_count_lines_gnl(char *file)
-// {
-// 	char	*buffer;
-// 	int		fd;
-// 	int		count;
-// 	int		nbyte;
-
-// 	buffer = ft_magic_malloc(MALLOC + TAB_STR1, NULL, 1);
-// 	fd = ft_open_read(file);
-// 	count = 0;
-// 	nbyte = 1;
-// 	while (nbyte > 0)
-// 	{
-// 		ft_bzero(buffer, 2);
-// 		nbyte = read(fd, buffer, 1);
-// 		if (nbyte < 0)
-// 		{
-// 			free (buffer);
-// 			close (fd);
-// 			ft_err_msg(1, "read()", strerror(errno));
-// 			exit(errno);
-// 		}
-// 		if (buffer[0] == '\n')
-// 			count++;
-// 	}
-// 	free(buffer);
-// 	close (fd);
-// 	dprintf(2, "val de count = %d\n", count);
-// 	return (count + 1);
-// }
 
 /*  ***** Parsing - check argc *****
 **  *************************

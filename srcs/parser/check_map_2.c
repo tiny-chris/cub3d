@@ -6,15 +6,14 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 14:05:40 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:04:56 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-	check how many N / E / S / W
-	verify only one from all 4
+/*	<SUMMARY> 	check number of spawns (N, S, W, E) 
+**				and verify there is only one from all 4
 */
 int	ft_check_map_unique_player(char **map, int lines)
 {
@@ -78,42 +77,3 @@ int	ft_check_map_enclosed_by_walls(char **map, int lines, int len)
 	}
 	return (1);
 }
-
-// int	ft_check_map_enclosed_by_walls(char **map, int lines, int len)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 1;
-// 	while (map[i] && i < (lines - 1))
-// 	{
-// 		j = 1;
-// 		while (j < (len - 1) && map[i][j])
-// 		{
-// 			if (map[i][0] == ' ')
-// 				while (j < && map[i][j] && map[i][j] == ' ')
-// 					j++;
-// 			if (map[i][j] == '0'
-// 				&& ft_cell_enclosed_by_charset(map, i, j, " "))
-// 				return (ft_err_msg(0, NULL, "not fully enclosed"));
-// 			// {
-// 				// if (map[i - 1][j] == ' ' || map[i][j - 1] == ' '
-// 					// || map[i][j + 1] == ' ' || map[i + 1][j + 1] == ' ')
-// 					// return (ft_err_msg(0, NULL, "not fully enclosed"));
-// 			// }
-// 			else if ((map[i][j] == 'N' || map[i][j] == 'S'
-// 				|| map[i][j] == 'W' || map[i][j] == 'E')
-// 				&& ft_cell_enclosed_by_charset(map, i, j, " "))
-// 				return (ft_err_msg(0, NULL, "player is not inside map"));
-// 			// {
-// 			// 	if (map[i - 1][j] == ' ' || map[i][j - 1] == ' '
-// 			// 		|| map[i][j + 1] == ' ' || map[i + 1][j + 1] == ' ')
-// 			// 		return (ft_err_msg(0, NULL, "player is not inside map"));
-// 			// }
-// 			else if (j < (len - 1) && map[i][j] == ' ')
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (1);
-// }

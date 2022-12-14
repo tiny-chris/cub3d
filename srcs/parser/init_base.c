@@ -6,24 +6,11 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 15:19:26 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:08:02 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_init_t_img_0(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->path = NULL;
-	img->color = NULL;
-	img->bits_per_pixel = 0;
-	img->line_length = 0;
-	img->endian = 0;
-	img->tile_x = 0;
-	img->tile_y = 0;
-}
 
 static void	ft_init_t_base_0(t_base *base)
 {
@@ -124,10 +111,7 @@ static void	ft_get_list_base(t_base *b, t_line_type type)
 
 /*  ***** Initialisation - base structure *****
 **  *************************
-**  <SUMMARY>	Initialise the base structure that will:
-**				-
-**				- ...
-**				(run mlx, hold images and contain the structure for the game)
+**  <SUMMARY>	Initialise the base structure 
 */
 void	ft_init_t_base(char *file, t_base *base)
 {

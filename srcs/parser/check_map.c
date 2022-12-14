@@ -6,36 +6,11 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 16:09:15 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:07:44 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int	ft_only_spechar_at_str_ends(char **map, char c)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	len;
-
-// 	i = 1;
-// 	len = (int) ft_strlen(map[0]);
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		while (map[i][j] && map[i][j] == ' ')
-// 			j++;
-// 		if (map[i][j] != c)
-// 			return (0);
-// 		j = len - 1;
-// 		while (map[i][j] && map[i][j] == ' ')
-// 			j--;
-// 		if (map[i][j] != c)
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
 
 static int	ft_only_spechar_at_str_ends(char *map, char c)
 {
@@ -54,10 +29,10 @@ static int	ft_only_spechar_at_str_ends(char *map, char c)
 	return (1);
 }
 
-/*  ***** Check - line only contains a set of allowed characters *****
-**	Checks if ONLY allowed characters (defined in set) are in the line
-**	- if yes    --> return 1
-**  - if no     --> return 0
+/*  <SUMMARY>	Check if ONLY allowed characters (defined in set)
+**				are in the line
+**	<RETURN>	- if yes    --> return 1
+**  			- if no     --> return 0
 */
 static int	ft_only_charset_in_str(char *str, const char *set)
 {
@@ -77,9 +52,6 @@ static int	ft_only_charset_in_str(char *str, const char *set)
 	return (1);
 }
 
-// 1ere ligne = que des 1 ou ' ' mais rien d'autre, au moins un '1'
-// idem derniere ligne (1ere ligne)
-// inside : commence par un 1 et finit par un 1
 int	ft_check_map_global_struct(t_base *b, char **map, int lines)
 {
 	int	i;
@@ -103,10 +75,10 @@ int	ft_check_map_global_struct(t_base *b, char **map, int lines)
 	return (1);
 }
 
-/*  ***** Check - map only contains a set of allowed characters *****
-**	Checks if ONLY allowed characters (defined in set) are in the map
-**	- if yes    --> return 1
-**  - if no     --> return 0
+/*  <SUMMARY> Check if ONLY allowed characters (defined in set) 
+**				are in the map
+**	<RETURN>	- if yes    --> return 1
+**  			- if no     --> return 0
 */
 int	ft_check_map_only_set(t_base *b, char **map, int lines, const char *set)
 {
