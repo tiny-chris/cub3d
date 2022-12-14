@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 15:36:41 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:36:28 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@
 
 # define DIR_LEN 20
 
-# define WIN_WIDTH 1600
-# define WIN_HEIGHT 1200
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 800
 # define MAP_SCALE 0.5
 # define TILE_SIZE 32
+# define MINI_TILE 32
 # define NUM_RAYS WIN_WIDTH
 
 # define FOV_ANGLE (60 * (M_PI / 180))// a forcer
@@ -191,6 +192,7 @@ typedef struct s_cast {
 	t_bool			ray_facing_up;
 	t_bool			ray_facing_left;
 	t_bool			ray_facing_right;
+	float			ray_angle;
 }	t_cast;
 
 typedef struct s_proj {
@@ -362,18 +364,15 @@ int		ft_count_isinset(char *str, char c);
 
 void	ft_cast_all_rays(t_data *data);
 void	ft_cast_ray(t_data *data, float ray_angle, int strip_id);
-void	ft_fill_ray(t_data *data, int strip_id, t_cast *cast,
-			float ray_angle);
+void	ft_fill_ray(t_data *data, int strip_id, t_cast *cast);
 float	ft_distance_btw_points(t_player player, t_point wall_hit);
-void	ft_init_cast(t_cast *cast);
+void	ft_init_cast(t_cast *cast, float ray_angle);
 void	ft_init_hit(t_hit *hit);
-void	ft_check_vert_intersection(t_data *data, float ray_angle,
-			t_cast *cast);
-void	ft_check_horz_intersection(t_data *data, float ray_angle,
-			t_cast *cast);
+void	ft_check_vert_intersection(t_data *data, t_cast *cast);
+void	ft_check_horz_intersection(t_data *data, t_cast *cast);
 float	ft_normalize_angle(float ray_angle);
-void	ft_ray_orientation(t_cast *cast, float ray_angle);
-void	ft_get_horz_steps(t_data *data, float ray_angle, t_cast *cast);
-void	ft_get_vert_steps(t_data *data, float ray_angle, t_cast *cast);
+void	ft_ray_orientation(t_cast *cast);
+void	ft_get_horz_steps(t_data *data, t_cast *cast);
+void	ft_get_vert_steps(t_data *data, t_cast *cast);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/09 17:29:53 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 18:11:48 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ t_bool	ft_check_wall(t_data *data, float x, float y)
 
 	mapgridindex_x = 0;
 	mapgridindex_y = 0;
-	if (x < 0 || x > WIN_WIDTH || y < 0 \
-		|| y > WIN_HEIGHT)
+	if (x < 0 || x > data->base.cols * TILE_SIZE || y < 0 \
+		|| y > data->base.rows * TILE_SIZE)
 		return (TRUE);
-	if (x == 0)
-		mapgridindex_x = 0;
 	else
 		mapgridindex_x = floor(x / TILE_SIZE);
 	if (y == 0)
