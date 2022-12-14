@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 20:01:34 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:31:09 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*	<SUMMARY> Gets the roation angle of the player according to the map
+*/
 
 float	ft_get_rotation_angle(t_base *base)
 {
@@ -28,23 +31,29 @@ float	ft_get_rotation_angle(t_base *base)
 	return (rotation_angle);
 }
 
+/*	<SUMMARY> Initialize the player position and orientation
+*/
+
 void	ft_init_player(t_data *data)
 {
 	t_base	*base;
 
 	base = &data->base;
-	data->player.p.x = (base->p_x * TILE_SIZE);// + (TILE_SIZE / 2);
-	data->player.p.y = (base->p_y * TILE_SIZE); // + (TILE_SIZE / 2);
+	data->player.p.x = (base->p_x * TILE_SIZE);
+	data->player.p.y = (base->p_y * TILE_SIZE);
 	data->player.width = 4;
-	data->player.height = 4; // ne garder que width ?
+	data->player.height = 4;
 	data->player.turn_direction = 0;
 	data->player.walk_direction = 0;
 	data->player.side_direction = 0;
 	data->player.rotation_angle = ft_get_rotation_angle(base);
+	printf("\ndata->playerotationangle %f\n", data->player.rotation_angle); // à enlever
 	data->player.turn_speed = TURN_SPEED_COEF * (PI / 180);
 	data->player.walk_speed = WALK_SPEED;
 }
 
+/*	<SUMMARY> Initialize every ray to cast
+*/
 void	ft_init_rays(t_data *data)
 {
 	int	strip_id;
@@ -61,35 +70,5 @@ void	ft_init_rays(t_data *data)
 		data->rays[strip_id].is_ray_facing_left = FALSE;
 		data->rays[strip_id].is_ray_facing_right = FALSE;
 		strip_id++;
-	}
-}
-
-void	ft_init_t_img_0(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->path = NULL;
-	img->color = NULL;
-	img->bits_per_pixel = 0;
-	img->line_length = 0;
-	img->endian = 0;
-	img->tile_x = 0;
-	img->tile_y = 0;
-}
-
-/*	<SUMMARY> Initialize t_img cub and map2d using only one mlx_ptr
-*/
-void	ft_init_t_img(t_data *data, t_img *img, int width, int height)
-{
-	ft_init_t_img_0(img);
-	img->img = mlx_new_image(data->mlx_ptr, width, height);
-	if (img->img == NULL)
-		ft_exit_cub(ft_msg_1(0, "mlx_new_image()", NULL, ER_MLX_IMG), data);
-	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), \
-		&(img->line_length), &(img->endian));
-	if (img->addr == NULL)
-	{
-		ft_exit_cub(ft_msg_1(0, "mlx_get_data_addr()", NULL, ER_MLX_ADDR), \
-			data);
 	}
 }

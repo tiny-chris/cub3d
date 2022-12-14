@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 11:51:49 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:28:54 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	// PART 1: parsing
 	if (ft_check_arg_err(argc, argv[1]))
 		ft_exit_base(EXIT_FAILURE);
 	ft_init_t_base(argv[1], &data.base);
@@ -84,15 +83,11 @@ int	main(int argc, char **argv)
 		ft_exit_base(EXIT_FAILURE);
 	ft_update_t_base_game(&data.base);
 	ZZ_PRINT_BASE_DATA(&data.base);
-	// ft_exit_base(0);// à replacer/ajuster correctement
-	// --> pour tester le parsing
-	// PART 2: game
 	ft_init_data(&data);
-	mlx_hook(data.win_ptr, 17, 1L << 17, (void *)ft_quit, &data); // clic croix
+	mlx_hook(data.win_ptr, 17, 1L << 17, (void *)ft_quit, &data);
 	mlx_hook(data.win_ptr, 2, 1L << 0, (void *)ft_key_hook, &data);
 	mlx_hook(data.win_ptr, 3, 1L << 1, (void *)ft_key_release, &data);
 	mlx_loop_hook(data.mlx_ptr, ft_render_next_frame, &data);
-	//
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

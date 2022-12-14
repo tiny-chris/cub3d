@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gen_3d_projection.c                                :+:      :+:    :+:   */
+/*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 18:43:58 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 20:07:12 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,17 @@ void	ft_init_proj(t_proj *proj)
 
 static void	ft_init_3d_cast(t_data *data, t_ray *ray, t_proj *p, t_img *tex)
 {
-	// pour supprimer l'effet fishball
 	p->perp_distance = ray->distance
 		* cos(ray->ray_angle - data->player.rotation_angle);
-	// p->distance_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANGLE / 2);// deja dans data
 	p->projected_wall_height = (TILE_SIZE / p->perp_distance)
-		* data->dist_proj_plane;//p->distance_proj_plane;
+		* data->dist_proj_plane;
 	p->wall_strip_height = (int) p->projected_wall_height;
 	p->wall_top.y = (WIN_HEIGHT / 2) - (p->wall_strip_height / 2);
 	if (p->wall_top.y < 0)
 		p->wall_top.y = 0;
 	p->wall_bottom.y = (WIN_HEIGHT / 2) + (p->wall_strip_height / 2);
 	if (p->wall_bottom.y > WIN_HEIGHT)
-		p->wall_bottom.y = WIN_HEIGHT;	
+		p->wall_bottom.y = WIN_HEIGHT;
 	if (ray->wall_hit_vertical == TRUE)
 		p->diff[0] = (int) ray->wall_hit.y % tex->tile_x;
 	else
@@ -78,13 +76,13 @@ void	ft_generate_3d_projection(t_data *data)
 	{
 		tex = ft_select_texture(&data->rays[i], data);
 		ft_init_3d_cast(data, &data->rays[i], &p, tex);
-		p.wall_top.x = i;
-		p.wall_bottom.x = i;
 		while (p.y < p.wall_bottom.y)
 		{
 			p.dist_top = p.y + (p.wall_strip_height / 2) - (WIN_HEIGHT / 2);
-			p.diff[1] = p.dist_top * ((float) tex->tile_x / p.wall_strip_height);
-			tex->color = tex->addr + (p.diff[1] * tex->line_length + p.diff[0] * (tex->bits_per_pixel / 8));
+			p.diff[1] = p.dist_top * ((float) tex->tile_x \
+				/ p.wall_strip_height);
+			tex->color = tex->addr + (p.diff[1] * tex->line_length + p.diff[0] \
+				* (tex->bits_per_pixel / 8));
 			my_pixel_put2(data->cub, i, p.y, *(int *) tex->color);
 			p.y++;
 		}
