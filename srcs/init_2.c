@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/12 17:18:10 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 17:10:45 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_init_player(t_data *data)
 	t_base	*base;
 
 	base = &data->base;
-	data->player.p.x = base->p_x * TILE_SIZE;
-	data->player.p.y = base->p_y * TILE_SIZE;
+	data->player.p.x = (base->p_x * TILE_SIZE);// + (TILE_SIZE / 2);
+	data->player.p.y = (base->p_y * TILE_SIZE); // + (TILE_SIZE / 2);
 	data->player.width = 4;
 	data->player.height = 4; // ne garder que width ?
 	data->player.turn_direction = 0;
