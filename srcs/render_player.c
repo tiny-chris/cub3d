@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 18:11:48 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:04:34 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ void	ft_forward_diagonal(t_data *d, t_player *newplayer)
 	if (d->player.side_direction == 1)
 	{
 		newplayer->p.x = d->player.p.x + cos(d->player.rotation_angle \
-			- (M_PI / 4)) * movestep;
+			- (PI / 4)) * movestep;
 		newplayer->p.y = d->player.p.y + sin(d->player.rotation_angle \
-			- (M_PI / 4)) * movestep;
+			- (PI / 4)) * movestep;
 	}
 	else if (d->player.side_direction == -1)
 	{
 		newplayer->p.x = d->player.p.x + cos(d->player.rotation_angle \
-			+ (M_PI / 4)) * movestep;
+			+ (PI / 4)) * movestep;
 		newplayer->p.y = d->player.p.y + sin(d->player.rotation_angle \
-			+ (M_PI / 4)) * movestep;
+			+ (PI / 4)) * movestep;
 	}
 }
 
@@ -65,16 +65,16 @@ void	ft_backward_diagonal(t_data *d, t_player *newplayer)
 	if (d->player.side_direction == 1)
 	{
 		newplayer->p.x = d->player.p.x + cos(d->player.rotation_angle \
-			+ (M_PI / 4)) * movestep;
+			+ (PI / 4)) * movestep;
 		newplayer->p.y = d->player.p.y + sin(d->player.rotation_angle \
-			+ (M_PI / 4)) * movestep;
+			+ (PI / 4)) * movestep;
 	}
 	else if (d->player.side_direction == -1)
 	{
 		newplayer->p.x = d->player.p.x + cos(d->player.rotation_angle \
-			- (M_PI / 4)) * movestep;
+			- (PI / 4)) * movestep;
 		newplayer->p.y = d->player.p.y + sin(d->player.rotation_angle \
-			- (M_PI / 4)) * movestep;
+			- (PI / 4)) * movestep;
 	}
 }
 

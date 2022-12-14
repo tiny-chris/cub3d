@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 17:10:45 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:05:48 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ float	ft_get_rotation_angle(t_base *base)
 
 	rotation_angle = 0;
 	if (base->p_direction == 'N')
-		rotation_angle = (3 * M_PI) / 2;
+		rotation_angle = (3 * PI) / 2;
 	else if (base->p_direction == 'S')
-		rotation_angle = M_PI / 2;
+		rotation_angle = PI / 2;
 	else if (base->p_direction == 'E')
 		rotation_angle = 0;
 	else if (base->p_direction == 'W')
-		rotation_angle = M_PI;
+		rotation_angle = PI;
 	return (rotation_angle);
 }
 
@@ -42,7 +42,7 @@ void	ft_init_player(t_data *data)
 	data->player.side_direction = 0;
 	data->player.rotation_angle = ft_get_rotation_angle(base);
 	printf("\ndata->playerotationangle %f\n", data->player.rotation_angle); // à enlever
-	data->player.turn_speed = TURN_SPEED;
+	data->player.turn_speed = TURN_SPEED_COEF * (PI / 180);
 	data->player.walk_speed = WALK_SPEED;
 }
 

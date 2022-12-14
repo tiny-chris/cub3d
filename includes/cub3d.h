@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 18:36:28 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:08:28 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 
 # define DIR_LEN 20
 
+# define PI 3.141592653
+
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 800
 # define MAP_SCALE 0.5
@@ -44,8 +46,8 @@
 # define MINI_TILE 32
 # define NUM_RAYS WIN_WIDTH
 
-# define FOV_ANGLE (60 * (M_PI / 180))// a forcer
-# define TURN_SPEED (7 * (M_PI / 180))// a forcer
+# define FOV_ANGLE 60//(60 * (M_PI / 180))// a forcer
+# define TURN_SPEED_COEF 7// (7 * (M_PI / 180))// a forcer
 # define WALK_SPEED 7
 
 # define COLOR_BLACK 0x000000
@@ -239,6 +241,7 @@ typedef struct s_data {
 	int				map2d_display;
 	int				map2d_width;
 	int				map2d_height;
+	float			fov;
 	float			dist_proj_plane;
 	t_img			cub;
 	t_img			m2d;

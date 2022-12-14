@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:20:02 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 18:31:28 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:04:46 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_ray_orientation(t_cast *cast)
 {
-	if (cast->ray_angle > 0 && cast->ray_angle < M_PI)
+	if (cast->ray_angle > 0 && cast->ray_angle < PI)
 		cast->ray_facing_down = TRUE;
 	else
 		cast->ray_facing_up = TRUE;
-	if (cast->ray_angle < (M_PI / 2) || cast->ray_angle > (3 * M_PI / 2))
+	if (cast->ray_angle < (PI / 2) || cast->ray_angle > (3 * PI / 2))
 		cast->ray_facing_right = TRUE;
 	else
 		cast->ray_facing_left = TRUE;
@@ -26,9 +26,9 @@ void	ft_ray_orientation(t_cast *cast)
 
 float	ft_normalize_angle(float ray_angle)
 {
-	ray_angle = remainder(ray_angle, (M_PI * 2));
+	ray_angle = remainder(ray_angle, (PI * 2));
 	if (ray_angle < 0)
-		ray_angle = (2 * M_PI) + ray_angle;
+		ray_angle = (2 * PI) + ray_angle;
 	return (ray_angle);
 }
 
