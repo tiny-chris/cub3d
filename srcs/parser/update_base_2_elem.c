@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/12 22:59:27 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:17:35 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,10 @@ static char	*ft_get_str_color(t_line *line, int i, int len)
 	char	*str_color;
 	char	*tmp;
 
-	str_color = ft_substr(line->content, i, len - i);
-	ft_magic_malloc(ADD + TAB_STR1, str_color, 0);
-	tmp = ft_strtrim(str_color, " ");
+	tmp = ft_substr(line->content, i, len - i);
 	ft_magic_malloc(ADD + TAB_STR1, tmp, 0);
-	ft_magic_malloc(DELONE, str_color, 0);
-	len = ft_len_delspace_str(tmp);
-	str_color = ft_magic_malloc(MALLOC + TAB_STR1, NULL, len + 1);
-	i = 0;
-	len = 0;
-	while (tmp[i])
-	{
-		if (tmp[i] != ' ')
-		{
-			str_color[len] = tmp[i];
-			len++;
-		}
-		i++;
-	}
-	str_color[len] = '\0';
+	str_color = ft_strtrim(tmp, " ");
+	ft_magic_malloc(ADD + TAB_STR1, str_color, 0);
 	ft_magic_malloc(DELONE, tmp, 0);
 	tmp = NULL;
 	return (str_color);

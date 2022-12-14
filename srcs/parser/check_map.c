@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 14:14:36 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:09:15 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,6 @@ int	ft_check_map_only_set(t_base *b, char **map, int lines, const char *set)
 	return (1);
 }
 
-/*
-
-*/
 int	ft_check_map_err(t_base *base)
 {
 	char	**map;

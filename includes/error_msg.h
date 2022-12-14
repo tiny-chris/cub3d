@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:32:47 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 15:45:44 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:14:39 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define USAGE_CUB "\nUsage: ./cub3D <map_path>.cub"
 # define USAGE_XPM "\nUsage: ./cub3D <texture_path>.xpm"
-# define USAGE_COL "\nUsage (RGB): <n1, n2, n3> with 'n' between 0 and 255"
+# define USAGE_COL "\nUsage (RGB): < n1,n2,n3 > with 'n#' between 0 and 255"
 # define ER_ARG_MISS "Missing argument"
 # define ER_ARG_TOO "Too many arguments"
 # define ER_MEM_ALLOC "Memory allocation failed"

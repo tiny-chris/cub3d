@@ -6,49 +6,11 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 19:20:45 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:37:42 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_render_color_ceiling(t_data *data)
-{
-	t_point	start;
-	t_point	end;
-
-	start.x = 0;
-	start.y = 0;
-	end.x = 0;
-	end.y = WIN_HEIGHT / 2;
-	while (start.x < NUM_RAYS)
-	{
-		end.x = start.x;
-		//changer la couleur avec les éléments dans base
-		// ft_draw_line2(data->cub, start, end, COLOR_LOW);
-		ft_draw_line2(data->cub, start, end, data->base.col_c_hex);
-		start.x++;
-	}
-}
-
-void	ft_render_color_floor(t_data *data)
-{
-	t_point	start;
-	t_point	end;
-
-	start.x = 0;
-	start.y = WIN_HEIGHT / 2;
-	end.x = 0;
-	end.y = WIN_HEIGHT;
-	while (start.x < NUM_RAYS)
-	{
-		end.x = start.x;
-		//changer la couleur avec les éléments dans base
-		// ft_draw_line2(data->cub, start, end, COLOR_BLUE);
-		ft_draw_line2(data->cub, start, end, data->base.col_f_hex);
-		start.x++;
-	}
-}
 
 static t_img	*ft_select_texture(t_ray *ray, t_data *data)
 {
@@ -95,10 +57,8 @@ static void	ft_init_3d_cast(t_data *data, t_ray *ray, t_proj *p, t_img *tex)
 	if (p->wall_bottom.y > WIN_HEIGHT)
 		p->wall_bottom.y = WIN_HEIGHT;	
 	if (ray->wall_hit_vertical == TRUE)
-		// p->color = COLOR_LIGHT_PURPLE;
 		p->diff[0] = (int) ray->wall_hit.y % tex->tile_x;
 	else
-		// proj.color = COLOR_PURPLE;
 		p->diff[0] = (int) ray->wall_hit.x % tex->tile_x;
 	p->y = p->wall_top.y;
 }
@@ -110,14 +70,12 @@ void	ft_generate_3d_projection(t_data *data)
 	t_proj	p;
 
 	tex = NULL;
-	// ft_init_t_img_0(tex);
 	ft_init_proj(&p);
-	ft_render_color_ceiling(data);
-	ft_render_color_floor(data);
+	ft_draw_color_ceiling(data);
+	ft_draw_color_floor(data);
 	i = 0;
 	while (i < NUM_RAYS)
 	{
-		// pour recuperer les textures
 		tex = ft_select_texture(&data->rays[i], data);
 		ft_init_3d_cast(data, &data->rays[i], &p, tex);
 		p.wall_top.x = i;

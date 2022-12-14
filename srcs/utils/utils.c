@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:10:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/08 12:24:20 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:08:33 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_open_read(char *file)
 
 	fd = open((const char *) file, O_RDONLY);
 	if (fd < 0)
-		ft_exit_base(ft_msg_1(errno, ER_FIL_OPEN, file, ER_FOD_INEX));
+		ft_exit_base(ft_msg_1(errno, ER_FIL_OPEN, file, strerror(errno)));
 	return (fd);
 }
 
@@ -44,24 +44,6 @@ int	ft_strlen_spechar(const char *str, char spe_c)
 		i++;
 	}
 	return (i);
-}
-
-int	ft_len_delspace_str(char *str)
-{
-	int	i;
-	int	len;
-
-	len = (int) ft_strlen(str);
-	i = 0;
-	if (!str || len == 0)
-		return (0);
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			len--;
-		i++;
-	}
-	return (len);
 }
 
 /*	Counts the number of strings of a char**

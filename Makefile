@@ -31,6 +31,8 @@ SRCS		:= \
 			clean/clean.c \
 			clean/clean_free_tabs.c \
 			clean/clean_msg.c \
+			draw/draw_colored_elem.c \
+			draw/draw_line.c \
 			parser/check_1_arg.c \
 			parser/check_2_file.c \
 			parser/check_elem.c \
@@ -48,7 +50,6 @@ SRCS		:= \
 			utils/utils_3.c \
 			utils/utils_atoi_cub.c \
 			utils/utils_itoa_cub.c \
-			draw_line.c \
 			gen_3d_projection.c \
 			init.c \
 			init_2.c \

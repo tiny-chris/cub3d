@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/13 19:23:43 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:36:41 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,6 +319,8 @@ void	ft_free_bin(t_bin **bin_head);
 
 void	ft_draw_line(t_data *data, t_point p1, t_point p2, int color);
 void	ft_draw_line2(t_img img, t_point p1, t_point p2, int color);
+void	ft_draw_color_ceiling(t_data *data);
+void	ft_draw_color_floor(t_data *data);
 
 /*	Handle minimap 2D*/
 
