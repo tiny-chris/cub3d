@@ -33,6 +33,7 @@ SRCS		:= \
 			clean/clean_msg.c \
 			draw/draw_colored_elem.c \
 			draw/draw_line.c \
+			draw/my_pixel_put.c \
 			parser/check_1_arg.c \
 			parser/check_2_file.c \
 			parser/check_elem.c \
@@ -44,17 +45,23 @@ SRCS		:= \
 			parser/update_base_2_elem.c \
 			parser/update_base_3_map.c \
 			parser/update_base_game.c \
-			rays/cast_rays.c \
+			ray_casting/cast_rays.c \
+			ray_casting/fill_ray.c \
+			ray_casting/horz_inter.c \
+			ray_casting/vert_inter.c \
+			init_data/init.c \
+			init_data/init_2.c \
 			utils/utils.c \
-			utils/utils_2.c \
-			utils/utils_3.c \
+			utils/utils_isinset.c \
+			utils/utils_calc.c \
 			utils/utils_atoi_cub.c \
 			utils/utils_itoa_cub.c \
-			gen_3d_projection.c \
-			init.c \
-			init_2.c \
-			render_map.c \
-			render_player.c \
+			utils/utils_key_hook.c \
+			render_minimap/render_player.c \
+			render_minimap/render_map.c \
+			render_3d.c \
+			next_frame.c \
+			update_player.c \
 
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 

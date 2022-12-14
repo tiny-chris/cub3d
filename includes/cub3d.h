@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 19:08:28 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:28:17 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@
 # define MINI_TILE 32
 # define NUM_RAYS WIN_WIDTH
 
-# define FOV_ANGLE 60//(60 * (M_PI / 180))// a forcer
-# define TURN_SPEED_COEF 7// (7 * (M_PI / 180))// a forcer
+# define FOV_ANGLE 60
+# define TURN_SPEED_COEF 7
 # define WALK_SPEED 7
 
 # define COLOR_BLACK 0x000000
@@ -131,10 +131,10 @@ typedef struct s_line {
 }	t_line;
 
 typedef struct s_tex {
-	char			*path;//
-	void			*img;//
-	int				tile_x;//
-	int				tile_y;//
+	char			*path;
+	void			*img;
+	int				tile_x;
+	int				tile_y;
 }	t_tex;
 
 typedef struct s_img {
@@ -280,7 +280,6 @@ void	ft_lstadd_back_line(t_line **line, t_line *new);
 void	ft_lstadd_line(t_line **line, int index, char *str, t_line_type type);
 void	ft_lstadd_new_line(t_line **new_list, t_line *line);
 void	ft_lstdelone_line(t_line *node);
-// free
 
 /*	Init	*/
 
@@ -302,14 +301,10 @@ void	ft_exit_cub(int res, t_data *data);
 int		ft_msg_1(int res, char *msg1, char *msg2, char *msg3);
 int		ft_msg_2(int res, char *msg1, char *msg2, char *msg3);
 
-// void	*ft_free_tabint(int **tab_int, int size);
 void	*ft_free_tabint2(int **tab_int, int size, int type);
-// void	*ft_free_tabint_bin(int **tab_int, int size, int type);
 void	ft_free_strs(char *str1, char *str2, char *str3);
 void	ft_free_ints(int *t_int1, int *t_int2, int *t_int3);
-// void	*ft_free_tabstr(char **tab_str);
 void	*ft_free_tabstr2(char **tab_str, int type);
-// void	*ft_free_tabstr_bin(char **tab_str, int type);
 
 /*	Handle malloc*/
 
@@ -338,6 +333,7 @@ void	ft_draw_rect(t_data *data, t_point tile, int color, int size);
 void	ft_render_map(t_data *data);
 int		ft_render_next_frame(t_data *data);
 void	ft_generate_3d_projection(t_data *data);
+void	ft_render_rays(t_data *data);
 
 /*	Render player	*/
 
@@ -350,7 +346,6 @@ t_bool	ft_check_wall(t_data *data, float x, float y);
 void	my_pixel_put(t_data *data, int x, int y, int color);
 void	my_pixel_put2(t_img img, int x, int y, int color);
 int		ft_key_hook(int keycode, t_data *data);
-// int		ft_key_hook2(int keycode, t_data *data);
 int		ft_key_release(int keycode, t_data *data);
 
 int		ft_open_read(char *file);

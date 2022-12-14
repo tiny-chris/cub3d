@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 19:12:47 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:40:03 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	ft_init_texture(t_data *data, t_img *tex)
 		ft_exit_cub(ft_msg_1(1, tex->path, NULL, ER_TEX_IMG), data);
 	if (tex->tile_x != tex->tile_y || tex->tile_x != TILE_SIZE)
 		ft_exit_cub(ft_msg_1(1, tex->path, NULL, ER_TEX_SIZE), data);
-	// prevoir une etape pour verifier si les imgs sont les memes pour des textures differentes
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bits_per_pixel, \
 		&tex->line_length, &tex->endian);
 	if (!tex->addr)
@@ -33,8 +32,8 @@ static void	ft_init_data_0(t_data *data)
 	data->win_ptr = NULL;
 	data->map2d_win_ptr = NULL;
 	data->map2d_display = FALSE;
-	data->map2d_width = data->base.cols * TILE_SIZE * MAP_SCALE; //WIN_WIDTH;//a revoir, calculer
-	data->map2d_height = data->base.rows * TILE_SIZE * MAP_SCALE;//WIN_HEIGHT;//a revoir, calculer
+	data->map2d_width = data->base.cols * TILE_SIZE * MAP_SCALE;
+	data->map2d_height = data->base.rows * TILE_SIZE * MAP_SCALE;
 	data->fov = FOV_ANGLE * (PI / 180);
 	data->dist_proj_plane = (WIN_WIDTH / 2) / tan(data->fov / 2);
 	data->cub.img = NULL;
@@ -64,7 +63,7 @@ void	ft_init_data(t_data *data)
 		ft_exit_cub(ft_msg_1(1, "mlx_new_window()", NULL, ER_MLX_WIN),
 			data);
 	ft_init_t_img(data, &(data->cub), WIN_WIDTH, WIN_HEIGHT);
-	ft_init_t_img(data, &(data->m2d), data->map2d_width, data->map2d_height); // WIN_WIDTH, WIN_HEIGHT);
+	ft_init_t_img(data, &(data->m2d), data->map2d_width, data->map2d_height);
 	ft_init_player(data);
 	ft_init_rays(data);
 }
