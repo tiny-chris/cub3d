@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/12 22:53:08 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:30:38 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static void	ft_check_lines_order_post_elem(t_line **list_base)
 			l = l->next;
 		if (l && (l->type == L_TEXTURE || l->type == L_COLOR \
 			|| l->type == L_UNEXPECT))
-			ft_exit_base(ft_msg_1(1, l->rank, NULL, ER_ELE_UNEX));
+			ft_exit_base(ft_msg_1(1, ER_ELE_ERR, l->rank, ER_ELE_UNEX));
 		else if (l && l->type == L_EMPTY)
 		{
 			while (l && l->type == L_EMPTY)
 				l = l->next;
 			if (l && (l->type == L_TEXTURE || l->type == L_COLOR \
 				|| l->type == L_UNEXPECT || l->type == L_MAP))
-				ft_exit_base(ft_msg_1(1, l->rank, NULL, ER_ELE_UNEX));
+				ft_exit_base(ft_msg_1(1, ER_ELE_ERR, l->rank, ER_ELE_UNEX));
 		}
 	}
 	else
@@ -47,7 +47,7 @@ static void	ft_check_lines_order_post_elem(t_line **list_base)
 
 /*  ***** Parsing - check lines order *****
 **  *************************
-**  <SUMMARY>	Check number of textures & colors and if they are before map line
+**  <SUMMARY> Check number of textures & colors and position (before map line)
 **	<RETURN>	- if error		--> return 1 + display error message
 **  			- if no error	--> return 0
 */
@@ -63,7 +63,7 @@ int	ft_check_lines_order_err(t_base *base)
 	while (l && l->type != L_MAP)
 	{
 		if (l->type == L_UNEXPECT)
-			ft_exit_base(ft_msg_1(1, l->rank, NULL, ER_ELE_UNEX));
+			ft_exit_base(ft_msg_1(1, ER_ELE_ERR, l->rank, ER_ELE_UNEX));
 		else if (l->type == L_TEXTURE)
 			nb_text++;
 		else if (l->type == L_COLOR)

@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:32:47 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 15:14:39 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:42:49 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@
 # define ER_FIL_EMPTY "is an empty file"
 # define ER_FIL_EXT "has an incorrect file extension"
 # define ER_FIL_ISDIR "is a directory"
+# define ER_ELE_ERR "Invalid element(s)"
 # define ER_ELE_UNEX "is an unexpected line"
-# define ER_ELE_MISS "Missing textures and/or colors"
-# define ER_ELE_TOO "Duplicate textures and/or colors"
-# define ER_TEX_NBR "Invalid number of textures (must be 4)"
-# define ER_COL_NBR "Invalid number of colors (must be 2)"
+# define ER_ELE_MISS "Missing texture and/or color identifier(s)"
+# define ER_ELE_TOO "Duplicate texture and/or color identifier(s)"
+# define ER_PTH_MISS "Missing texture path(s)"
+# define ER_PTH_DUP "Duplicate texture path(s)"
+# define ER_TEX_NBR "Invalid number of textures before map (must be 4)"
+# define ER_COL_NBR "Invalid number of colors before map (must be 2)"
 # define ER_COL_FOR "Invalid format of colors"
 # define ER_COL_VAL "Invalid color values"
 # define ER_MAP_NONE "Missing game map"
@@ -44,7 +47,7 @@
 # define ER_MLX_IMG "image creation failed"
 # define ER_MLX_ADDR "address setup failed"
 # define ER_TEX_IMG "open texture failed"
-# define ER_TEX_SIZE "wrong texture size: only !! XXxXX !! size is allowed"// à ajuster !!
+# define ER_TEX_SIZE "wrong texture size"
 
 // # define E_MAP_BIG_MSG "the map is immense"
 // # define E_MLX_FAILURE_MSG "mlx failed"

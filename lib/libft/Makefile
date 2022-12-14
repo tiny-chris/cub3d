@@ -6,7 +6,7 @@
 #    By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 14:48:02 by lmelard           #+#    #+#              #
-#    Updated: 2022/10/18 18:35:24 by cgaillag         ###   ########.fr        #
+#    Updated: 2022/12/14 19:47:50 by cgaillag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = ft_atoi.c \
 	  ft_split.c \
 	  ft_split2.c \
 	  ft_strchr.c \
+	  ft_strcmp.c \
 	  ft_strdup.c \
 	  ft_striteri.c \
 	  ft_strjoin.c \
