@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 20:31:09 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 20:39:24 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_init_player(t_data *data)
 	data->player.walk_direction = 0;
 	data->player.side_direction = 0;
 	data->player.rotation_angle = ft_get_rotation_angle(base);
-	printf("\ndata->playerotationangle %f\n", data->player.rotation_angle); // à enlever
 	data->player.turn_speed = TURN_SPEED_COEF * (PI / 180);
 	data->player.walk_speed = WALK_SPEED;
 }

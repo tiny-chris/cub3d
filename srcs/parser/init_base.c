@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   init_base.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 20:08:02 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:39:29 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_init_t_base_0(t_base *base)
+void	ft_init_t_img_0(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->path = NULL;
+	img->color = NULL;
+	img->bits_per_pixel = 0;
+	img->line_length = 0;
+	img->endian = 0;
+	img->tile_x = 0;
+	img->tile_y = 0;
+}
+
+void	ft_init_t_base_0(t_base *base)
 {
 	base->file_base = NULL;
 	base->map_base = NULL;

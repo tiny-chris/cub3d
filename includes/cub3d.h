@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 20:30:29 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/14 20:34:34 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,6 +290,7 @@ void	ft_init_t_img(t_data *data, t_img *img, int width, int height);
 void	ft_init_player(t_data *data);
 void	ft_init_rays(t_data *data);
 float	ft_get_rotation_angle(t_base *base);
+void	ft_init_t_base_0(t_base *base);
 
 /*	Clean	*/
 
