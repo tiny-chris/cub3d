@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 14:48:07 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:21:57 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,9 +255,10 @@ void	ft_update_t_base_game(t_base *base);
 int		ft_check_arg_err(int argc, char *file);
 int		ft_check_filename(char *file, char *ext);
 int		ft_check_isdirectory(char *file);
-int		ft_count_lines_gnl(char *file);
 int		ft_check_file_err(t_base *base);
 int		ft_check_lines_order_err(t_base *base);
+int		ft_count_lines_gnl(char *file);
+void	ft_check_max_size_int(char *file, char *str);
 
 void	ft_get_texture(t_line **list_base);
 void	ft_get_color(t_line **list_base);

@@ -1,0 +1,13 @@
+NO ./textures/blueblue.xpm
+EA ./textures/purplepurple.xpm
+WE ./textures/greengreen.xpm
+SO ./textures/star.xpm
+
+C 252,253,
+F 252,253,255
+
+1111111111
+1000000001
+100N000001
+1000000001
+1111111111

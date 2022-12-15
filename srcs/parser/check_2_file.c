@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 19:30:38 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:21:30 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,17 @@ int	ft_check_lines_order_err(t_base *base)
 		ft_exit_base(ft_msg_1(1, NULL, NULL, ER_COL_NBR));
 	ft_check_lines_order_post_elem(&l);
 	return (0);
+}
+
+void	ft_check_max_size_int(char *file, char *str)
+{
+	long	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (i >= INT_MAX)
+		ft_exit_base(ft_msg_1(1, file, NULL, ER_FIL_BIG));
 }
 
 /*  ***** Parsing - check file content *****

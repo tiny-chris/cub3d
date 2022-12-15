@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:32:47 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 14:48:25 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:55:16 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ER_FIL_EMPTY "is an empty file"
 # define ER_FIL_EXT "has an incorrect file extension"
 # define ER_FIL_ISDIR "is a directory"
+# define ER_FIL_BIG "file size is huge! Please consider a smaller size :)"
 # define ER_ELE_ERR "Invalid element(s)"
 # define ER_ELE_UNEX "is an unexpected line"
 # define ER_ELE_MISS "Missing texture and/or color identifier(s)"
@@ -38,7 +39,7 @@
 # define ER_MAP_ERR "Invalid map"
 # define ER_MAP_OPEN "Invalid map, not properly closed"
 # define ER_MAP_UNEX "Invalid map, unauthorised character(s)"
-# define ER_PLY_MISS "missing player (no spawn on the map)"
+# define ER_PLY_MISS "missing player (a unique spawn required)"
 # define ER_PLY_TOO "more than one player (only one spawn allowed)"
 # define ER_PLY_ZERO "player or floor '0' is surrounded by wrong character"
 
