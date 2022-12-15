@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:41:03 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 12:40:17 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:00:46 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 **			and change the miniap2d_display to 'FALSE'
 **	- if "minimap2d_display" is 'FALSE' (window not open)
 **		--> open a new map2d window,
-**			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! *** make hooks available on this window ***
 **			and change the miniap2d_display to 'TRUE'  
 */
 void	ft_handle_minimap_2d(t_data *data)
@@ -34,9 +33,6 @@ void	ft_handle_minimap_2d(t_data *data)
 	{
 		data->map2d_win_ptr = mlx_new_window(data->mlx_ptr, data->map2d_width,
 				data->map2d_height, "MINIMAP 2D");
-		mlx_hook(data->win_ptr, 17, 1L << 17, ft_quit, data);
-		mlx_hook(data->win_ptr, 2, 1L << 0, ft_key_hook, data);
-		mlx_hook(data->win_ptr, 3, 1L << 1, ft_key_release, data);
 		data->map2d_display = TRUE;
 	}
 }

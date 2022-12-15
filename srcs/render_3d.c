@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 20:07:12 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 13:26:59 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_init_proj(t_proj *proj)
 {
 	proj->y = 0;
 	proj->wall_strip_height = 0;
-	proj->distance_proj_plane = 0;
 	proj->projected_wall_height = 0;
 	proj->perp_distance = 0;
 	proj->wall_top.x = 0;

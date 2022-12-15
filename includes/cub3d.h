@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 12:30:44 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:48:07 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 
 # include "libft.h"
 # include "../lib/mlx/mlx.h"
-# include <X11/keysym.h> // a supprimer
 # include "error_msg.h"
 
-# include <errno.h>	//	perror, errno
-# include <fcntl.h>	//	open,
-# include <stdio.h>	//	printf, perror
-# include <stdlib.h>//	malloc, free
-# include <string.h>//	strerror
+# include <errno.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <unistd.h>//	close, read, write, exit
+# include <unistd.h>
 # include <math.h>
 # include <limits.h>
 
@@ -42,7 +41,7 @@
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 800
 # define MAP_SCALE 0.5
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define MINI_TILE 32
 # define NUM_RAYS WIN_WIDTH
 
@@ -202,12 +201,10 @@ typedef struct s_proj {
 	int				dist_top;
 	int				diff[2];
 	int				wall_strip_height;
-	float			distance_proj_plane;// deja dans data
 	float			projected_wall_height;
 	float			perp_distance;
 	t_point			wall_top;
 	t_point			wall_bottom;
-	int				color;//
 }	t_proj;
 
 typedef struct s_ray {
@@ -223,11 +220,11 @@ typedef struct s_ray {
 
 typedef struct s_player {
 	t_point			p;
-	float			width;			// radius ?
-	float			height;			// radius ?
-	int				turn_direction;	// -1 for looking left +1 for looking right
-	int				walk_direction;	// -1 for back +1 for front
-	int				side_direction; // -1 for left +1 for right
+	float			width;
+	float			height;
+	int				turn_direction;
+	int				walk_direction;
+	int				side_direction;
 	float			rotation_angle;
 	float			turn_speed;
 	float			walk_speed;
@@ -270,7 +267,8 @@ int		**ft_get_map_game_int(t_base *base);
 int		ft_check_elem_err(t_base *base);
 int		ft_check_duplicate_tex(t_base *base);
 int		ft_check_map_err(t_base *base);
-int		ft_check_map_only_set(t_base *b, char **map, int lines, const char *set);
+int		ft_check_map_only_set(t_base *b, char **map, int lines, \
+	const char *set);
 int		ft_check_map_global_struct(t_base *b, char **map, int lines);
 int		ft_check_map_unique_player(char **map, int lines);
 int		ft_check_map_enclosed_by_walls(char **map, int lines, int len);

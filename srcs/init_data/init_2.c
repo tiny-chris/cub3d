@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 20:39:24 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 14:36:15 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	ft_init_player(t_data *data)
 	t_base	*base;
 
 	base = &data->base;
-	data->player.p.x = (base->p_x * TILE_SIZE);
-	data->player.p.y = (base->p_y * TILE_SIZE);
+	data->player.p.x = (base->p_x * TILE_SIZE) + (TILE_SIZE / 2);
+	data->player.p.y = (base->p_y * TILE_SIZE) + (TILE_SIZE / 2);
 	data->player.width = 4;
 	data->player.height = 4;
 	data->player.turn_direction = 0;

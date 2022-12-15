@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:32:47 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 19:42:49 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:48:25 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,5 @@
 # define ER_MLX_ADDR "address setup failed"
 # define ER_TEX_IMG "open texture failed"
 # define ER_TEX_SIZE "wrong texture size"
-
-// # define E_MAP_BIG_MSG "the map is immense"
-// # define E_MLX_FAILURE_MSG "mlx failed"
-// # define E_MLX_XPM_FAILURE_MSG "mlx xpm image loading failed (check files)"
 
 #endif

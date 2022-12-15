@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 20:20:46 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 15:00:13 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ t_bool	ft_check_wall(t_data *data, float x, float y)
 	if (x < 0 || x > data->base.cols * TILE_SIZE || y < 0 \
 		|| y > data->base.rows * TILE_SIZE)
 		return (TRUE);
-	else
-		mapgridindex_x = floor(x / TILE_SIZE);
-	if (y == 0)
-		mapgridindex_y = 0;
-	else
-		mapgridindex_y = floor(y / TILE_SIZE);
+	mapgridindex_x = floor(x / TILE_SIZE);
+	mapgridindex_y = floor(y / TILE_SIZE);
 	if (mapgridindex_x < data->base.cols && mapgridindex_y < data->base.rows \
 		&& data->base.map[mapgridindex_y][mapgridindex_x] != 0)
 		return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 12:04:16 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:57:45 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,8 @@ int	ft_render_next_frame(t_data *data)
 	if (data->map2d_display == TRUE)
 	{
 		ft_render_minimap_2d(data);
-		mlx_clear_window(data->mlx_ptr, data->map2d_win_ptr);
 		mlx_put_image_to_window(data->mlx_ptr, data->map2d_win_ptr, \
 			data->m2d.img, 0, 0);
 	}
-	return (1);
+	return (0);
 }
