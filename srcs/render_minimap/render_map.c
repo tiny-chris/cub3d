@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:11:02 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 20:20:52 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 15:19:33 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void	ft_draw_tile(t_data *data, int i, int j)
 			color = COLOR_WHITE;
 		else
 			color = COLOR_BLACK;
-		tile.x = i * TILE_SIZE * MAP_SCALE;
-		tile.y = j * TILE_SIZE * MAP_SCALE;
-		ft_draw_rect(data, tile, color, (TILE_SIZE * MAP_SCALE));
+		tile.x = i * MINI_TILE * MAP_SCALE;
+		tile.y = j * MINI_TILE * MAP_SCALE;
+		ft_draw_rect(data, tile, color, (MINI_TILE * MAP_SCALE));
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 15:00:13 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:20:05 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void	ft_render_rays(t_data *data)
 	strip_id = 0;
 	while (strip_id < WIN_WIDTH)
 	{
-		player.x = data->player.p.x * MAP_SCALE;
-		player.y = data->player.p.y * MAP_SCALE;
-		wall_hit.x = data->rays[strip_id].wall_hit.x * MAP_SCALE;
-		wall_hit.y = data->rays[strip_id].wall_hit.y * MAP_SCALE;
+		player.x = data->player.p.x / TILE_SIZE * MINI_TILE * MAP_SCALE;
+		player.y = data->player.p.y / TILE_SIZE * MINI_TILE * MAP_SCALE;
+		wall_hit.x = data->rays[strip_id].wall_hit.x / TILE_SIZE * MINI_TILE \
+			* MAP_SCALE;
+		wall_hit.y = data->rays[strip_id].wall_hit.y / TILE_SIZE * MINI_TILE \
+			* MAP_SCALE;
 		ft_draw_line(data, player, wall_hit, COLOR_RED);
 		strip_id += 1;
 	}
@@ -57,8 +59,8 @@ void	ft_render_player(t_data *data)
 	t_point	p_cpy;
 	t_point	p2_cpy;
 
-	p.x = (data->player.p.x);
-	p.y = (data->player.p.y);
+	p.x = (data->player.p.x / TILE_SIZE) * MINI_TILE;
+	p.y = (data->player.p.y / TILE_SIZE) * MINI_TILE;
 	p2.x = (p.x + (cos(data->player.rotation_angle) * DIR_LEN));
 	p2.y = (p.y + (sin(data->player.rotation_angle) * DIR_LEN));
 	p_cpy.x = p.x * MAP_SCALE;

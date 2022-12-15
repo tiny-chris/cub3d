@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 12:00:14 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:12:13 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static void	ft_init_data_0(t_data *data)
 	data->win_ptr = NULL;
 	data->map2d_win_ptr = NULL;
 	data->map2d_display = FALSE;
-	data->map2d_width = data->base.cols * TILE_SIZE * MAP_SCALE;
-	data->map2d_height = data->base.rows * TILE_SIZE * MAP_SCALE;
+	data->map2d_width = data->base.cols * MINI_TILE * MAP_SCALE;
+	data->map2d_height = data->base.rows * MINI_TILE * MAP_SCALE;
+	// data->map2d_width = data->base.cols * TILE_SIZE * MAP_SCALE;
+	// data->map2d_height = data->base.rows * TILE_SIZE * MAP_SCALE;
 	data->fov = FOV_ANGLE * (PI / 180);
 	data->dist_proj_plane = (WIN_WIDTH / 2) / tan(data->fov / 2);
 	data->cub.img = NULL;
