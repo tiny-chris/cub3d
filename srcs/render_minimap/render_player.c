@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 15:20:05 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 17:17:26 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,16 @@ void	ft_render_rays(t_data *data)
 	strip_id = 0;
 	while (strip_id < WIN_WIDTH)
 	{
-		player.x = data->player.p.x / TILE_SIZE * MINI_TILE * MAP_SCALE;
-		player.y = data->player.p.y / TILE_SIZE * MINI_TILE * MAP_SCALE;
+		player.x = data->player.p.x / TILE_SIZE * MINI_TILE \
+			* data->minimap_scale;
+		player.y = data->player.p.y / TILE_SIZE * MINI_TILE \
+			* data->minimap_scale;
 		wall_hit.x = data->rays[strip_id].wall_hit.x / TILE_SIZE * MINI_TILE \
-			* MAP_SCALE;
+			* data->minimap_scale;
 		wall_hit.y = data->rays[strip_id].wall_hit.y / TILE_SIZE * MINI_TILE \
-			* MAP_SCALE;
+			* data->minimap_scale;
 		ft_draw_line(data, player, wall_hit, COLOR_RED);
-		strip_id += 1;
+		strip_id += (WIN_WIDTH / 10);
 	}
 }
 
@@ -63,10 +65,11 @@ void	ft_render_player(t_data *data)
 	p.y = (data->player.p.y / TILE_SIZE) * MINI_TILE;
 	p2.x = (p.x + (cos(data->player.rotation_angle) * DIR_LEN));
 	p2.y = (p.y + (sin(data->player.rotation_angle) * DIR_LEN));
-	p_cpy.x = p.x * MAP_SCALE;
-	p_cpy.y = p.y * MAP_SCALE;
-	p2_cpy.x = p2.x * MAP_SCALE;
-	p2_cpy.y = p2.y * MAP_SCALE;
-	ft_draw_rect(data, p_cpy, COLOR_RED, (data->player.width * MAP_SCALE));
+	p_cpy.x = p.x * data->minimap_scale;
+	p_cpy.y = p.y * data->minimap_scale;
+	p2_cpy.x = p2.x * data->minimap_scale;
+	p2_cpy.y = p2.y * data->minimap_scale;
+	ft_draw_rect(data, p_cpy, COLOR_RED, (data->player.width \
+		* data->minimap_scale));
 	ft_draw_line(data, p_cpy, p2_cpy, COLOR_BLUE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_key_hook.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:41:03 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 15:00:46 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:35:17 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ int	ft_key_hook(int keycode, t_data *data)
 	else if (keycode == KEY_CAMERA_RIGHT)
 		data->player.turn_direction = 1;
 	else if (keycode == KEY_MINIMAP)
-		ft_handle_minimap_2d(data);
+	{
+		if (data->minimap_scale != 0)
+			ft_handle_minimap_2d(data);
+		else
+			printf("minimap is too big !!\n");
+	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 14:48:07 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:13:54 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@
 
 # define PI 3.141592653
 
-# define WIN_WIDTH 1200
-# define WIN_HEIGHT 800
+# define WIN_WIDTH 1400
+# define WIN_HEIGHT 1000
 # define MAP_SCALE 0.5
+# define MINI_MAP_SCALE 2
 # define TILE_SIZE 64
 # define MINI_TILE 32
 # define NUM_RAYS WIN_WIDTH
@@ -235,6 +236,7 @@ typedef struct s_data {
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*map2d_win_ptr;
+	float			minimap_scale;
 	int				map2d_display;
 	int				map2d_width;
 	int				map2d_height;
