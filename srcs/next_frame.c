@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   next_frame.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/14 20:12:24 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 12:04:16 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	ft_init_t_img_0(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->path = NULL;
+	img->color = NULL;
+	img->bits_per_pixel = 0;
+	img->line_length = 0;
+	img->endian = 0;
+	img->tile_x = 0;
+	img->tile_y = 0;
+}
+
 /*	<SUMMARY> Initialize t_img cub and map2d using only one mlx_ptr
 */
 void	ft_init_t_img(t_data *data, t_img *img, int width, int height)
 {
+	ft_init_t_img_0(img);
 	img->img = mlx_new_image(data->mlx_ptr, width, height);
 	if (img->img == NULL)
 		ft_exit_cub(ft_msg_1(0, "mlx_new_image()", NULL, ER_MLX_IMG), data);
@@ -28,20 +42,11 @@ void	ft_init_t_img(t_data *data, t_img *img, int width, int height)
 	}
 }
 
-/*	<SUMMARY> Steps to render game window and minimap window
-
-	- update player position when he moves
-		(update coordinates depending on walk direction and rotation angle)
-	- destroy images + reinitialise image (ou peut etre pas necessaire ??????????)
-	- cast all rays
-	- generate 3D projection
-	- put image cub to window
-	- display minimap to 2nd window if condition is TRUE
-		- create a condition (TRUE/FALSE)
-		- render minimap
-		- clear window : map2d_win_ptr
-		- put image map2d to map2d_win_ptr
-	- display player
+/*	<SUMMARY> Follow steps to render game window and minimap window
+**	1. update player
+**	2. cast all rays
+**	3. generate & display 3D projection
+**	4. display minimap (under condition)
 */
 int	ft_render_next_frame(t_data *data)
 {

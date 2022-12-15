@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 19:52:34 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:18:49 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,14 @@ static int	ft_check_count_elem(t_base *base, int range)
 	return (0);
 }
 
-/*  ***** Parsing - check texture elements *****
+/*  ***** Parsing - check elements (textures, & colors) *****
 **  *************************
-**  <SUMMARY>	Check if path is not a directory
-**	<RETURN>	- EXIT_FAILURE: if is a directory
-**				- XIT_SUCCESS, otherwise
+**  <SUMMARY>	Check each case:
+**				- each identifier is unique (F, C, NO, SO, WE, EA)
+**				- each texture path is accessible, has a ".xpm" extension and
+**					is not a directory
+**	<RETURN>	- if all ok : 	0 (EXIT_SUCCESS)
+**				- if not :		1 (EXIT_FAILURE) + error message
 */
 int	ft_check_elem_err(t_base *base)
 {

@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_base.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 20:39:29 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 12:04:11 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_init_t_img_0(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->path = NULL;
-	img->color = NULL;
-	img->bits_per_pixel = 0;
-	img->line_length = 0;
-	img->endian = 0;
-	img->tile_x = 0;
-	img->tile_y = 0;
-}
 
 void	ft_init_t_base_0(t_base *base)
 {
@@ -45,10 +32,9 @@ void	ft_init_t_base_0(t_base *base)
 	base->p_direction = '\0';
 }
 
-/*  ***** Initialising - get file content *****
-**  *************************
-**  <SUMMARY>	Get the file content in a char **
-**				and fill it by reading the file (1 string = 1 line)
+/*  <SUMMARY>	Initialising part
+**	Get the file content in a char ** and fill it by reading the file 
+**	(1 string = 1 line)
 */
 static char	**ft_get_file_base(char	*file)
 {
@@ -122,9 +108,9 @@ static void	ft_get_list_base(t_base *b, t_line_type type)
 	}
 }
 
-/*  ***** Initialisation - base structure *****
-**  *************************
-**  <SUMMARY>	Initialise the base structure 
+/*  <SUMMARY>	Initialising part
+**	Pre-initialise the base structure
+**	and get base elements (file_base, list_base, start line of map)
 */
 void	ft_init_t_base(char *file, t_base *base)
 {

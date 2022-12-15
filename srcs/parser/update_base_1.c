@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:44:29 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/12 23:16:23 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 09:58:20 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,8 @@ static t_line	*ft_update_list_base(t_base *base)
 	return (new_list);
 }
 
-/*  ***** Parsing - check lines order *****
-**  *************************
-**  <SUMMARY>	Feed base structure with file content to facilitate check:
-**				- on elements (textures + colors)
-**				- on map
+/*  <SUMMARY>	Feed base elements (textures, colors and map)
+**				to update linked list 'list_base' and allow checks
 */
 void	ft_update_t_base(t_base *base)
 {

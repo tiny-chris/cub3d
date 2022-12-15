@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 20:07:44 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:42:26 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ static int	ft_only_spechar_at_str_ends(char *map, char c)
 	return (1);
 }
 
-/*  <SUMMARY>	Check if ONLY allowed characters (defined in set)
-**				are in the line
-**	<RETURN>	- if yes    --> return 1
-**  			- if no     --> return 0
-*/
 static int	ft_only_charset_in_str(char *str, const char *set)
 {
 	int	i;
@@ -75,11 +70,6 @@ int	ft_check_map_global_struct(t_base *b, char **map, int lines)
 	return (1);
 }
 
-/*  <SUMMARY> Check if ONLY allowed characters (defined in set) 
-**				are in the map
-**	<RETURN>	- if yes    --> return 1
-**  			- if no     --> return 0
-*/
 int	ft_check_map_only_set(t_base *b, char **map, int lines, const char *set)
 {
 	int	i;
@@ -96,6 +86,17 @@ int	ft_check_map_only_set(t_base *b, char **map, int lines, const char *set)
 	return (1);
 }
 
+/*  ***** Parsing - check map content *****
+**  *************************
+**  <SUMMARY>	Check each case:
+**				- map exists and is not empty
+**				- map contains ONLY allowed characters from given set
+**				- map outside characters are walls
+**				- map has only one player
+**				- map is closed
+**	<RETURN>	- if all ok : 	0 (EXIT_SUCCESS)
+**				- if not :		1 (EXIT_FAILURE) + error message
+*/
 int	ft_check_map_err(t_base *base)
 {
 	char	**map;

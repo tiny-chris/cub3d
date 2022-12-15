@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 19:28:54 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 12:39:59 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int	main(int argc, char **argv)
 	ft_update_t_base_game(&data.base);
 	ZZ_PRINT_BASE_DATA(&data.base);
 	ft_init_data(&data);
-	mlx_hook(data.win_ptr, 17, 1L << 17, (void *)ft_quit, &data);
-	mlx_hook(data.win_ptr, 2, 1L << 0, (void *)ft_key_hook, &data);
-	mlx_hook(data.win_ptr, 3, 1L << 1, (void *)ft_key_release, &data);
+	mlx_hook(data.win_ptr, 17, 1L << 17, ft_quit, &data);
+	mlx_hook(data.win_ptr, 2, 1L << 0, ft_key_hook, &data);
+	mlx_hook(data.win_ptr, 3, 1L << 1, ft_key_release, &data);
 	mlx_loop_hook(data.mlx_ptr, ft_render_next_frame, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);

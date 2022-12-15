@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 15:17:35 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 11:57:59 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ static void	ft_get_list_range(t_line **list_base, int i)
 	}
 }
 
+/*	<SUMMARY> 	Put RGB string (for ceiling & floor) into a tab of 3 int
+**				between 0 and 255
+**	<RETURN>	tab[3]
+**				or exit, when not 3 int or values are out of 0-255 range
+*/
 void	ft_get_texture(t_line **list_base)
 {
 	int		i;
@@ -77,14 +82,6 @@ static char	*ft_get_str_color(t_line *line, int i, int len)
 	return (str_color);
 }
 
-/*
-	- creates a table of strings using ft_split
-	- check if the number of strings == 3 (3 colors), if not: error
-	- create a table of int, malloc it (size 3) + protect
-	- check if each string can be converted to an int
-		if so: put the converted string into the table of int
-		if at least, 1 string cannot be converted: error
-*/
 static int	*ft_get_tab_int_color(char *tex_path)
 {
 	char	**tab_str;
@@ -111,6 +108,9 @@ static int	*ft_get_tab_int_color(char *tex_path)
 	return (tab);
 }
 
+/*	<SUMMARY> 	Catch color lines (F & C identifiers) and flag it
+**				Put RGB info into a tab of 3 int (values are between 0 and 255
+*/
 void	ft_get_color(t_line **list_base)
 {
 	int		i;

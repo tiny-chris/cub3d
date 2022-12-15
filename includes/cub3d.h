@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 20:34:34 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 12:30:44 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ void	ft_init_t_base_0(t_base *base);
 void	ft_close_fd(void);
 void	ft_clean_cub(t_data *data);
 void	ft_exit_base(int res);
-void	ft_quit(t_data *data);
+int		ft_quit(t_data *data);
 void	ft_exit_cub(int res, t_data *data);
 
 int		ft_msg_1(int res, char *msg1, char *msg2, char *msg3);
