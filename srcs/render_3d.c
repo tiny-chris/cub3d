@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:42:35 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 13:26:59 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:03:31 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_init_proj(t_proj *proj)
 	proj->wall_bottom.y = 0;
 	proj->diff[0] = 0;
 	proj->diff[1] = 0;
-	proj->color = 0;
 }
 
 static void	ft_init_3d_cast(t_data *data, t_ray *ray, t_proj *p, t_img *tex)
