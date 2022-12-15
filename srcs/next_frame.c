@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   next_frame.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:51:56 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 17:18:39 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 17:56:47 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	ft_render_next_frame(t_data *data)
 	ft_init_t_img(data, &(data->cub), WIN_WIDTH, WIN_WIDTH);
 	ft_generate_3d_projection(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->cub.img, 0, 0);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 20, 20, COLOR_WHITE, \
-		"press 'm' for minimap");
 	if (data->map2d_display == TRUE && data->minimap_scale != 0)
 	{
 		ft_render_minimap_2d(data);
