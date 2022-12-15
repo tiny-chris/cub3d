@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 16:21:57 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:45:45 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ char	**ft_get_map_base(t_base *base);
 int		**ft_get_map_game_int(t_base *base);
 
 int		ft_check_elem_err(t_base *base);
-int		ft_check_duplicate_tex(t_base *base);
+int		ft_check_elem_dup_content(t_base *base);
 int		ft_check_map_err(t_base *base);
 int		ft_check_map_only_set(t_base *b, char **map, int lines, \
 	const char *set);

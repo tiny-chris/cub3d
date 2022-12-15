@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:15:51 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 19:51:56 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:45:11 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	ft_get_game_elem(t_base *base)
 void	ft_update_t_base_game(t_base *base)
 {
 	ft_get_game_elem(base);
-	if (!ft_check_duplicate_tex(base))
+	if (!ft_check_elem_dup_content(base))
 		ft_exit_base(1);
 	base->rows = ft_lines_tabstr(base->map_base);
 	base->cols = ft_strlen_spechar(base->map_base[0], '\n');
