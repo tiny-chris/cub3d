@@ -6,13 +6,13 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:08:18 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 10:18:49 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:40:07 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_check_duplicate_tex(t_base *base)
+int	ft_check_elem_dup_content(t_base *base)
 {
 	if (!base->no.path || !base->so.path || !base->so.path || !base->so.path)
 		return (ft_msg_1(0, NULL, NULL, ER_PTH_MISS));
@@ -22,6 +22,10 @@ int	ft_check_duplicate_tex(t_base *base)
 		|| (ft_strcmp(base->so.path, base->we.path) == 0)
 		|| (ft_strcmp(base->so.path, base->ea.path) == 0)
 		|| (ft_strcmp(base->we.path, base->ea.path) == 0))
+		return (ft_msg_1(0, NULL, NULL, ER_PTH_DUP));
+	if (!base->col_c_hex || !base->col_f_hex)
+		return (ft_msg_1(0, NULL, NULL, ER_PTH_MISS));
+	if (base->col_c_hex == base->col_f_hex)
 		return (ft_msg_1(0, NULL, NULL, ER_PTH_DUP));
 	return (1);
 }

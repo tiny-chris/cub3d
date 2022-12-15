@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 17:33:19 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 17:48:58 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ static void	ft_init_data_0(t_data *data)
 }
 
 /*	<SUMMARY> Initialize data elements except 'base' content
-	- set up mlx to start game
-	- open textures
-	- init t_img for main game & minimap
-	- init player
-	- init rays
 */
 void	ft_init_data(t_data *data)
 {

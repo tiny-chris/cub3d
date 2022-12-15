@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 17:13:54 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/15 17:47:33 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,9 +257,10 @@ void	ft_update_t_base_game(t_base *base);
 int		ft_check_arg_err(int argc, char *file);
 int		ft_check_filename(char *file, char *ext);
 int		ft_check_isdirectory(char *file);
-int		ft_count_lines_gnl(char *file);
 int		ft_check_file_err(t_base *base);
 int		ft_check_lines_order_err(t_base *base);
+int		ft_count_lines_gnl(char *file);
+void	ft_check_max_size_int(char *file, char *str);
 
 void	ft_get_texture(t_line **list_base);
 void	ft_get_color(t_line **list_base);
@@ -267,7 +268,7 @@ char	**ft_get_map_base(t_base *base);
 int		**ft_get_map_game_int(t_base *base);
 
 int		ft_check_elem_err(t_base *base);
-int		ft_check_duplicate_tex(t_base *base);
+int		ft_check_elem_dup_content(t_base *base);
 int		ft_check_map_err(t_base *base);
 int		ft_check_map_only_set(t_base *b, char **map, int lines, \
 	const char *set);

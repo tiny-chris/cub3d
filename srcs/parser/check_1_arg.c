@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:48:15 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/14 20:02:53 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:08:04 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_count_lines_gnl(char *file)
 {
 	char	*line;
 	int		fd;
-	int		count;
+	long	count;
 
 	count = 0;
 	fd = ft_open_read(file);
@@ -98,7 +98,9 @@ int	ft_count_lines_gnl(char *file)
 	if (line)
 		free(line);
 	close(fd);
-	return (count);
+	if (count >= INT_MAX)
+		ft_exit_base(ft_msg_1(1, file, NULL, ER_FIL_BIG));
+	return ((int) count);
 }
 
 /*  ***** Parsing - check argc *****

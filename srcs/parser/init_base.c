@@ -6,7 +6,7 @@
 /*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:58:11 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 12:04:11 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:28:26 by cgaillag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static char	**ft_get_file_base(char	*file)
 	file_base[i] = get_next_line(fd);
 	while (file_base[i])
 	{
+		ft_check_max_size_int(file, file_base[i]);
 		ft_magic_malloc(ADD + TAB_STR1, file_base[i], 0);
 		i++;
 		file_base[i] = get_next_line(fd);
