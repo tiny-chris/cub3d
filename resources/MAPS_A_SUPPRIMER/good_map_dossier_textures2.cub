@@ -1,9 +1,9 @@
 
-NO   ./textures/star.xpm
-WE                      ./textures/blueblue.xpm
+NO   ./resources/textures_atrier/star.xpm
+WE                      ./resources/textures_atrier/blueblue.xpm
 
-SO       ./textures/greengreen.xpm
-EA ./textures/purplepurple.xpm
+SO       ./resources/textures_atrier/greengreen.xpm
+EA ./resources/textures_atrier/purplepurple.xpm
 
 
 

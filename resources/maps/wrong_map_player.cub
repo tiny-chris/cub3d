@@ -1,0 +1,16 @@
+NO ./resources/textures_a_selectionner/star.xpm
+SO ./resources/textures_a_selectionner/greengreen.xpm
+WE ./resources/textures_a_selectionner/blueblue.xpm
+EA ./resources/textures_a_selectionner/purplepurple.xpm
+F 100,20,0
+C 0,30,100
+11111111111111111
+11011100111101111
+10001100000001111
+10000000100000111
+10000000000000001
+11110000NN0000001
+10000000000000001
+10000000000110001
+11111111111111111
+
