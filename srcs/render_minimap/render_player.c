@@ -6,7 +6,7 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:58:15 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 17:17:26 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/16 18:43:15 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	ft_render_player(t_data *data)
 	p_cpy.y = p.y * data->minimap_scale;
 	p2_cpy.x = p2.x * data->minimap_scale;
 	p2_cpy.y = p2.y * data->minimap_scale;
-	ft_draw_rect(data, p_cpy, COLOR_RED, (data->player.width \
-		* data->minimap_scale));
+	ft_draw_cicle(data, p_cpy);
 	ft_draw_line(data, p_cpy, p2_cpy, COLOR_BLUE);
 }

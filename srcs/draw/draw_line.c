@@ -6,11 +6,33 @@
 /*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:23:34 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 17:07:55 by lmelard          ###   ########.fr       */
+/*   Updated: 2022/12/16 18:43:39 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_draw_cicle(t_data *data, t_point p)
+{
+	t_point	c;
+	float	radius;
+	int		i;
+
+	i = 0;
+	radius = data->player.height;
+	while (radius)
+	{
+		i = 0;
+		while (i < 360)
+		{
+			c.x = cos(i * (180 / PI)) * radius;
+			c.y = sin(i * (180 / PI)) * radius;
+			my_pixel_put(data, p.x + c.x, p.y + c.y, COLOR_RED);
+			i++;
+		}
+		radius--;
+	}
+}
 
 void	ft_draw_rect(t_data *data, t_point tile, int color, int size)
 {

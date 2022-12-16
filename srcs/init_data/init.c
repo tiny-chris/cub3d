@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:56:20 by lmelard           #+#    #+#             */
-/*   Updated: 2022/12/15 17:48:58 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:41:25 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static float	ft_get_minimap_scale(t_data *data)
 	float	scale;
 
 	scale = 0;
-	if (data->base.cols <= 10 && data->base.rows <= 10)
+	if (data->base.cols <= 15 && data->base.rows <= 15)
 		scale = MINI_MAP_SCALE;
 	else if (MAP_SCALE * data->base.cols * MINI_TILE > WIN_WIDTH \
 		|| MAP_SCALE * data->base.rows * MINI_TILE > WIN_HEIGHT)

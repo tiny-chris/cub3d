@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgaillag <cgaillag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmelard <lmelard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:22:54 by cgaillag          #+#    #+#             */
-/*   Updated: 2022/12/15 17:47:33 by cgaillag         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:41:48 by lmelard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define WIN_WIDTH 1400
 # define WIN_HEIGHT 1000
 # define MAP_SCALE 0.5
-# define MINI_MAP_SCALE 2
+# define MINI_MAP_SCALE 1
 # define TILE_SIZE 64
 # define MINI_TILE 32
 # define NUM_RAYS WIN_WIDTH
@@ -221,7 +221,6 @@ typedef struct s_ray {
 
 typedef struct s_player {
 	t_point			p;
-	float			width;
 	float			height;
 	int				turn_direction;
 	int				walk_direction;
@@ -318,8 +317,9 @@ void	ft_lstdelone_bin(t_bin *node);
 void	ft_lstclearone_bin(t_bin **bin_head, void *ptr);
 void	ft_free_bin(t_bin **bin_head);
 
-/*	Draw line	*/
+/*	Draw	*/
 
+void	ft_draw_cicle(t_data *data, t_point p);
 void	ft_draw_line(t_data *data, t_point p1, t_point p2, int color);
 void	ft_draw_line2(t_img img, t_point p1, t_point p2, int color);
 void	ft_draw_color_ceiling(t_data *data);
