@@ -1,12 +1,11 @@
-NO ./resources/textures_a_selectionner/star.xpm
-SO ./resources/textures_a_selectionner/greengreen.xpm
-WE ./resources/textures_a_selectionner/blueblue.xpm
-EA ./resources/textures_a_selectionner/purplepurple.xpm
+NO ./resources/textures/black_brick.xpm
+WE ./resources/textures/blue_brick.xpm
+SO ./resources/textures/grey_brick.xpm
+EA ./resources/textures/sable_brick.xpm
 
 
-
-F 74,171,0
-C 37,150,190
+F 23,21,32
+C 209,205,222
 
 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001

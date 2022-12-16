@@ -1,7 +1,7 @@
-NO ./resources/textures_a_selectionner/star.xpm
-SO ./resources/textures_a_selectionner/greengreen.xpm
-WE ./resources/textures_a_selectionner/blueblue.xpm
-EA ./resources/textures_a_selectionner/purplepurple.xpm
+NO ./resources/textures/black_brick.xpm
+WE ./resources/textures/blue_brick.xpm
+SO ./resources/textures/grey_brick.xpm
+EA ./resources/textures/sable_brick.xpm
 F 100,20,0
 C 0,-1000,30
 11111111111111111

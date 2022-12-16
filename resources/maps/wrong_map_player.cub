@@ -1,9 +1,9 @@
-NO ./resources/textures_a_selectionner/star.xpm
-SO ./resources/textures_a_selectionner/greengreen.xpm
-WE ./resources/textures_a_selectionner/blueblue.xpm
-EA ./resources/textures_a_selectionner/purplepurple.xpm
-F 100,20,0
-C 0,30,100
+NO ./resources/textures/black_brick.xpm
+WE ./resources/textures/blue_brick.xpm
+SO ./resources/textures/grey_brick.xpm
+EA ./resources/textures/sable_brick.xpm
+F 23,21,32
+C 209,205,222
 11111111111111111
 11011100111101111
 10001100000001111
